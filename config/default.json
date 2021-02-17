@@ -1,0 +1,6 @@
+{
+    "db_user":"root",
+    "db_password":"root",
+    "db_uri": "mongodb+srv://root:root@khaba-testdb.5akj7.mongodb.net/khaaba-test?retryWrites=true&w=majority"
+}
+
