@@ -1,3 +1,4 @@
+//connecting to MongoDB 
 const mongoose = require('mongoose')
 const config = require('config')
 const db_uri = config.get('db_uri')
