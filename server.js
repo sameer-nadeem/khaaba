@@ -23,5 +23,5 @@ app.post('/', (req, res) => {
 
 //Starting the application at some PORT
 app.listen(PORT, () => {
-    console.log(`Server running at PORT ----> ${PORT}`)
+    console.log(`Server started at PORT ----> ${PORT}`)
 })
