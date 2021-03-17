@@ -2,35 +2,35 @@ let mongoose = require('mongoose')
 // user schema
 let userSchema  = mongoose.Schema({
 
-Email:{
+email:{
     type: String,
     required: true
 },
-Password:{
+password:{
     type : String,
     required: true
 },
-Address:{
+address:{
     type : String,
     required: true
 },
-Phone:{
+phone:{
     type : String,
     required: true
 },
-FirstName:{
+firstName:{
     type : String,
     required: true
 },
-LastName:{
+lastName:{
     type : String,
     required: true
 }//,
-//ActiveOrders:{
+//activeOrders:{
 //    type : Number,
 //    required: true
 //},
-//CompletedOrders:{
+//completedOrders:{
   //  type : Number,
   //  required: true
 //}

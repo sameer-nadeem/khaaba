@@ -1,5 +1,5 @@
 let mongoose = require('mongoose')
-// user schema
+// kitchen schema
 let kitchenSchema  = mongoose.Schema({
 
 title:{
