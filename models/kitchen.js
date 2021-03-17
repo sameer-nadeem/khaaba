@@ -19,8 +19,9 @@ const kitchenSchema = mongoose.Schema({
         required: true
     },
     chef: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: 'chef'
     },
     activeOrders: [
         {
