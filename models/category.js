@@ -1,13 +1,15 @@
-let mongoose = require('mongoose')
+const mongoose = require('mongoose')
 // category schema
-let categorySchema  = mongoose.Schema({
-    title:{
+const categorySchema = mongoose.Schema({
+    title: {
         type: String,
         required: true
     },
-    expiry:{
-        type : Date,
+    expiry: {
+        type: Number,
         required: true
     }
 });
+
+module.exports = mongoose.model('category', categorySchema)
 

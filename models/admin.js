@@ -1,24 +1,27 @@
-let mongoose = require('mongoose')
+const mongoose = require('mongoose')
+
 // admin schema
-let categorySchema  = mongoose.Schema({
-    userName:{
-        type : String,
+const adminSchema = mongoose.Schema({
+    email: {
+        type: String,
         required: true
     },
-    phone:{
-        type : String,
+    phone: {
+        type: String,
         required: true
     },
-    firstName:{
-        type : String,
+    firstName: {
+        type: String,
         required: true
     },
-    lastName:{
-        type : String,
+    lastName: {
+        type: String,
         required: true
     },
-    password:{
-        type : String,
+    password: {
+        type: String,
         required: true
     }
 });
+
+module.exports = mongoose.model('admin', adminSchema)
