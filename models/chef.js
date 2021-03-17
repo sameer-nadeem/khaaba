@@ -28,8 +28,18 @@ const chefSchema = new Schema({
         required: true
     },
     address: {
-        type: String,
-        required: true
+        addr: {
+            type: String,
+            require: true
+        },
+        coords: {
+            long: {
+                type: Number
+            },
+            lat: {
+                type: Number
+            }
+        }
     },
     password: {
         type: String
