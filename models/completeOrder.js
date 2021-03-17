@@ -1,15 +1,13 @@
 const mongoose = require('mongoose')
-
 const Schema = mongoose.Schema
 
 // +Kitchen
 // +User
 // +Khaabay
 // +Total Price
-// +Status
+// +Final Status
 
-
-const activeOrdersSchema = new Schema({
+const completeOrderSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
@@ -23,7 +21,7 @@ const activeOrdersSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['Pending', 'Preparing', 'Ready'],
+        enum: ['Cancelled', 'Completed'],
         default: 'Pending'
     },
     khaabay: [
@@ -38,4 +36,4 @@ const activeOrdersSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('activeOrder', activeOrdersSchema)
+module.exports = mongoose.model('completeOrder', completeOrderSchema)

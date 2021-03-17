@@ -37,6 +37,10 @@ const chefSchema = new Schema({
     kitchen: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'kitchen'
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 
