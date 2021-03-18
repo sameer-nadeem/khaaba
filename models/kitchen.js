@@ -4,24 +4,20 @@ const kitchenSchema = mongoose.Schema({
 
     title: {
         type: String,
-        required: true
     },
     logo: {
         type: String,
-        required: true
     },
     activeHours: {
-        type: Number,
-        required: true
+        start: {
+            type: Number,
+        },
+        end: {
+            type: Number,
+        }
     },
     description: {
         type: String,
-        required: true
-    },
-    chef: {
-        type: mongoose.Schema.Types.ObjectId,
-        require: true,
-        ref: 'chef'
     },
     activeOrders: [
         {
