@@ -3,7 +3,7 @@ const multer = require('multer')
 const uploader = (req, res, filename, cb) => {
     var Storage = multer.diskStorage({
         destination: function (req, file, callback) {
-            callback(null, './Images')
+            callback(null, './logos')
         },
         filename: function (req, file, callback) {
             callback(null, filename + '_' + file.originalname);
@@ -12,7 +12,7 @@ const uploader = (req, res, filename, cb) => {
 
     var upload = multer({
         storage: Storage
-    }).single('kitchen-logo')
+    }).single('logo')
 
     upload(req, res, cb)
 }
