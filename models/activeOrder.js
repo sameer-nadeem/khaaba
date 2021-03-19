@@ -7,6 +7,7 @@ const Schema = mongoose.Schema
 // +Khaabay
 // +Total Price
 // +Status
+// testinggggg
 
 
 const activeOrdersSchema = new Schema({
@@ -35,7 +36,13 @@ const activeOrdersSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+
+    bate: {
+        type: Date,
+        default: Date.now
     }
+
 })
 
 module.exports = mongoose.model('activeOrder', activeOrdersSchema)
