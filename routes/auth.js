@@ -185,6 +185,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
 
         const jwtpayload = {
             user: chef.id,
+            kitchen: kitchen.id,
             type: 'chef'
         }
 
@@ -276,8 +277,10 @@ router.post('/login/chef', async (req, res) => {
             })
         }
 
+
         const jwtpayload = {
             user: chef.id,
+            kitchen: chef.kitchen,
             type: 'chef'
         }
 
@@ -294,8 +297,6 @@ router.post('/login/chef', async (req, res) => {
             errors: [SERVER_ERROR]
         })
     }
-
-
 
 })
 
