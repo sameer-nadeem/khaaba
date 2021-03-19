@@ -11,10 +11,18 @@ const axios = require('axios')
 const multer = require('multer')
 const path = require('path')
 const chef = require('../models/chef')
+const uuid = require('uuid').v4
+const {
+    USER_ALREADY_EXISTS,
+    SERVER_ERROR,
+    INVALID_CREDITS,
+} = require('../utils/errors')
+
+
 const storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function (req, file, callback) {
-        callback(null, '_' + file.originalname);
+        callback(null, `${uuid()}_` + file.originalname);
     },
     onError: function (err, next) {
         console.log('error', err);
@@ -27,7 +35,6 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 1000000 },
 });
-
 
 
 
@@ -50,7 +57,7 @@ router.post('/signup/customer', async (req, res) => {
 
         if (isUserReg) {
             return res.status(400).json({
-                errors: ['user_already_exists']
+                errors: [USER_ALREADY_EXISTS]
             })
         }
 
@@ -92,15 +99,25 @@ router.post('/signup/customer', async (req, res) => {
     } catch (err) {
         console.error(err.message)
         res.status(400).json({
-            error: ['server_error']
+            errors: [SERVER_ERROR]
         })
     }
 
 })
 
 
+
+// router.post('/signup/chef/logo', upload.single('logo'), (req, res) => {
+
+// })
+
+
 //file upload to be done
-router.post('/signup/chef', /*upload.single('logo'),*/ async (req, res) => {
+
+
+router.post('/signup/chef', upload.single('logo'), async (req, res) => {
+
+
     const {
         email,
         password,
@@ -113,7 +130,10 @@ router.post('/signup/chef', /*upload.single('logo'),*/ async (req, res) => {
         endingHour,
         description,
     } = req.body
+    console.log(req.file)
 
+
+    console.log(req.body)
 
     try {
         const isChefReg = await Chef.exists({
@@ -122,7 +142,7 @@ router.post('/signup/chef', /*upload.single('logo'),*/ async (req, res) => {
 
         if (isChefReg) {
             return res.status(400).json({
-                errors: ['chef_already_exists']
+                errors: [USER_ALREADY_EXISTS]
             })
         }
 
@@ -130,8 +150,6 @@ router.post('/signup/chef', /*upload.single('logo'),*/ async (req, res) => {
 
         const result = await axios.get(mapuri)
         const coords = result.data.results[0].geometry.location
-        console.log('password', req.body.password)
-        console.log('req.body', req.body)
 
         const chef = new Chef({
             email,
@@ -151,7 +169,7 @@ router.post('/signup/chef', /*upload.single('logo'),*/ async (req, res) => {
         //Creating Kitchen
         const kitchen = new Kitchen({
             title,
-            logo: 'undefined',
+            logo: `${req.file.path}`,
             activeHours: {
                 start: startingHour,
                 end: endingHour
@@ -179,7 +197,9 @@ router.post('/signup/chef', /*upload.single('logo'),*/ async (req, res) => {
     } catch (err) {
 
         console.error(err)
-        res.status(400).json()
+        res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
     }
 
 })
@@ -198,7 +218,7 @@ router.post('/login/customer', async (req, res) => {
         if (!user) {
             return res
                 .status(400)
-                .json({ errors: ['invalid_credits'] });
+                .json({ errors: [INVALID_CREDITS] });
         }
 
         //check for password
@@ -207,7 +227,7 @@ router.post('/login/customer', async (req, res) => {
         if (!match) {
             return res
                 .status(400)
-                .json({ errors: ['invalid_credits'] });
+                .json({ errors: [INVALID_CREDITS] });
         }
 
         //JWT Auth
@@ -226,7 +246,7 @@ router.post('/login/customer', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(400).json({
-            error: ['server_error']
+            errors: [SERVER_ERROR]
         })
     }
 })
@@ -244,7 +264,7 @@ router.post('/login/chef', async (req, res) => {
         })
         if (!chef) {
             return res.status(400).json({
-                errors: ['invalid_credits']
+                errors: [INVALID_CREDITS]
             })
         }
 
@@ -252,7 +272,7 @@ router.post('/login/chef', async (req, res) => {
 
         if (!match) {
             return res.status(400).json({
-                errors: ['invalid_credits']
+                errors: [INVALID_CREDITS]
             })
         }
 
@@ -271,7 +291,7 @@ router.post('/login/chef', async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(400).json({
-            error: ['server_error']
+            errors: [SERVER_ERROR]
         })
     }
 

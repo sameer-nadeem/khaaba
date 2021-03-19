@@ -6,6 +6,8 @@ const connectDB = require('./db/db').connectDB
 const auth = require('./middlewares/auth')
 const config = require('config')
 const setRoutes = require('./routes/setRoutes')
+const path = require('path')
+const cors = require('cors')
 //Connects to MongoDB Atlas Cloud
 connectDB()
 
@@ -13,8 +15,10 @@ connectDB()
 app.use(express.urlencoded({
     extended: true
 }))
+app.use(cors())
 app.use(express.json({ extended: true }));
 
+app.use(express.static(path.join(__dirname, "public")));
 
 //Routes
 setRoutes(app)
