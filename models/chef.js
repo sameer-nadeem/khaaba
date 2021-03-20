@@ -13,7 +13,6 @@ const Schema = mongoose.Schema
 const chefSchema = new Schema({
     email: {
         type: String,
-        required: true
     },
     firstName: {
         type: String,
@@ -21,22 +20,19 @@ const chefSchema = new Schema({
     },
     lastName: {
         type: String,
-        required: true
     },
     phone: {
         type: String,
-        required: true
     },
     address: {
         addr: {
             type: String,
-            require: true
         },
         coords: {
-            long: {
+            lat: {
                 type: Number
             },
-            lat: {
+            lng: {
                 type: Number
             }
         }
