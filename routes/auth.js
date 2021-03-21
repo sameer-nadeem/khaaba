@@ -1,17 +1,23 @@
 const express = require('express')
+
 const router = express.Router()
+
+
 const auth = require('../middlewares/auth')
 const bcrypt = require('bcryptjs')
+
 const jwt = require('jsonwebtoken')
+
 const User = require('../models/user')
 const Chef = require('../models/chef')
 const Kitchen = require('../models/kitchen')
 const config = require('config')
 const axios = require('axios')
+
 const multer = require('multer')
-const path = require('path')
-const chef = require('../models/chef')
+
 const uuid = require('uuid').v4
+
 const {
     USER_ALREADY_EXISTS,
     SERVER_ERROR,
@@ -20,7 +26,7 @@ const {
 
 
 const storage = multer.diskStorage({
-    destination: './public/uploads/',
+    destination: './public/uploads/kitchen-logos',
     filename: function (req, file, callback) {
         callback(null, `${uuid()}_` + file.originalname);
     },
@@ -37,6 +43,28 @@ const upload = multer({
 });
 
 
+
+
+router.get('/', auth, async (req, res) => {
+    try {
+        let user = null
+        if (req.user.type === 'chef') {
+            user = await Chef.findById(req.user.id).select('-password').populate('kitchen')
+        } else if (req.user.type === 'customer') {
+            user = await User.findById(req.user.id).select('-password')
+        }
+        res.status(200).json({
+            user: {
+                type: req.user.type,
+                profile: user
+            }
+        })
+    } catch (error) {
+        res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
+})
 
 router.post('/signup/customer', async (req, res) => {
 
@@ -61,9 +89,9 @@ router.post('/signup/customer', async (req, res) => {
             })
         }
 
-        const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
-        const result = await axios.get(mapuri)
+        const result = await axios.get(mapUri)
         const coords = result.data.results[0].geometry.location
 
         const user = new User({
@@ -86,8 +114,10 @@ router.post('/signup/customer', async (req, res) => {
         await user.save()
 
         const jwtpayload = {
-            user: user.id,
-            type: 'customer'
+            user: {
+                id: user.id,
+                type: 'customer'
+            }
         }
 
         jwt.sign(jwtpayload, config.get('token-secret'), { expiresIn: 360000 }, (err, token) => {
@@ -105,18 +135,7 @@ router.post('/signup/customer', async (req, res) => {
 
 })
 
-
-
-// router.post('/signup/chef/logo', upload.single('logo'), (req, res) => {
-
-// })
-
-
-//file upload to be done
-
-
 router.post('/signup/chef', upload.single('logo'), async (req, res) => {
-
 
     const {
         email,
@@ -130,10 +149,11 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
         endingHour,
         description,
     } = req.body
+
+    ////
     console.log(req.file)
-
-
     console.log(req.body)
+    ///
 
     try {
         const isChefReg = await Chef.exists({
@@ -146,9 +166,13 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
             })
         }
 
-        const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
-        const result = await axios.get(mapuri)
+
+        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+
+
+        const result = await axios.get(mapUri)
+
         const coords = result.data.results[0].geometry.location
 
         const chef = new Chef({
@@ -164,6 +188,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
         })
 
         const salt = await bcrypt.genSalt(10)
+
         chef.password = await bcrypt.hash(password, salt)
 
         //Creating Kitchen
@@ -177,21 +202,26 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
             description
         })
 
-        kitchen.save()
+        await kitchen.save()
 
         //
         chef.kitchen = kitchen.id
         await chef.save()
 
+
+
         const jwtpayload = {
-            user: chef.id,
-            kitchen: kitchen.id,
-            type: 'chef'
+            user: {
+                id: chef.id,
+                kitchen: kitchen.id,
+                type: 'chef'
+            }
+
         }
 
         jwt.sign(jwtpayload, config.get('token-secret'), { expiresIn: 360000 }, (err, token) => {
             if (err) throw err
-            return res.json({
+            return res.status(200).json({
                 token
             })
         })
@@ -212,6 +242,7 @@ router.post('/login/customer', async (req, res) => {
         email,
         password
     } = req.body;
+
     try {
 
         user = await User.findOne({ email });
@@ -253,21 +284,29 @@ router.post('/login/customer', async (req, res) => {
 })
 
 router.post('/login/chef', async (req, res) => {
+
     const {
         email,
         password
     } = req.body
+    console.log(req.body)
+
 
     try {
 
         let chef = await Chef.findOne({
             email
         })
+
+
         if (!chef) {
             return res.status(400).json({
                 errors: [INVALID_CREDITS]
             })
         }
+
+        ///
+
 
         const match = await bcrypt.compare(password, chef.password)
 
@@ -279,9 +318,11 @@ router.post('/login/chef', async (req, res) => {
 
 
         const jwtpayload = {
-            user: chef.id,
-            kitchen: chef.kitchen,
-            type: 'chef'
+            user: {
+                id: chef.id,
+                kitchen: chef.kitchen,
+                type: 'chef'
+            }
         }
 
         jwt.sign(jwtpayload, config.get('token-secret'), { expiresIn: 360000 }, (err, token) => {
@@ -299,5 +340,6 @@ router.post('/login/chef', async (req, res) => {
     }
 
 })
+
 
 module.exports = router

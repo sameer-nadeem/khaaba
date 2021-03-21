@@ -1,9 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = 5000 || process.env.PORT
-const jsonwebtoken = require('jsonwebtoken')
 const connectDB = require('./db/db').connectDB
-const auth = require('./middlewares/auth')
 const config = require('config')
 const setRoutes = require('./routes/setRoutes')
 const path = require('path')
