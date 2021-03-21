@@ -9,6 +9,17 @@ const cors = require('cors')
 //Connects to MongoDB Atlas Cloud
 connectDB()
 
+require('./models/user')
+require('./models/activeOrder')
+require('./models/admin')
+require('./models/category')
+require('./models/chef')
+require('./models/completeOrder')
+require('./models/instantKhaaba')
+require('./models/khaaba')
+require('./models/kitchen')
+
+
 //Necessary Middlewares
 app.use(express.urlencoded({
     extended: true

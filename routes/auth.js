@@ -75,7 +75,7 @@ router.post('/signup/customer', async (req, res) => {
         phone,
         firstName,
         lastName,
-
+        city
     } = req.body
 
     try {
@@ -105,6 +105,8 @@ router.post('/signup/customer', async (req, res) => {
             firstName,
             lastName
         })
+        user.address.city = toString(city).toLowerCase()
+        user.address.addr = toString(address).toLowerCase()
 
         const salt = await bcrypt.genSalt(10)
 
@@ -141,6 +143,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
         email,
         password,
         address,
+        city,
         phone,
         firstName,
         lastName,
@@ -155,6 +158,12 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
     console.log(req.body)
     ///
 
+    let logoPath = ''
+
+    if (req.file) {
+        logoPath = req.file.path
+    }
+
     try {
         const isChefReg = await Chef.exists({
             email
@@ -168,7 +177,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
 
 
 
-        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address},${city},Pakistan&key=${config.get('google_maps_api_key')}`
 
 
         const result = await axios.get(mapUri)
@@ -180,12 +189,19 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
             password,
             address: {
                 addr: address,
+                city,
                 coords
             },
             phone,
             firstName,
             lastName
         })
+
+
+        console.log()
+        console.log(toString(address))
+
+        chef.address.city = city.toUpperCase()
 
         const salt = await bcrypt.genSalt(10)
 
@@ -194,7 +210,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
         //Creating Kitchen
         const kitchen = new Kitchen({
             title,
-            logo: `${req.file.path}`,
+            logo: `${logoPath}`,
             activeHours: {
                 start: startingHour,
                 end: endingHour

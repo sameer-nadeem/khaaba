@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const opts = { toJSON: { virtuals: true } };
 
 const Schema = mongoose.Schema
 
@@ -28,6 +29,9 @@ const chefSchema = new Schema({
         addr: {
             type: String,
         },
+        city: {
+            type: String
+        },
         coords: {
             lat: {
                 type: Number
@@ -48,6 +52,10 @@ const chefSchema = new Schema({
         type: Date,
         default: Date.now
     }
+}, opts)
+
+chefSchema.virtual('fullName').get(function () {
+    return this.firstName + ' ' + this.lastName
 })
 
 module.exports = mongoose.model('chef', chefSchema)
