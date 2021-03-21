@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 // kitchen schema
 const kitchenSchema = mongoose.Schema({
-
     title: {
         type: String,
     },
@@ -19,6 +18,16 @@ const kitchenSchema = mongoose.Schema({
     description: {
         type: String,
     },
+    reviews: [
+        {
+            rating: {
+                type: Number
+            },
+            review: {
+                type: String
+            }
+        }
+    ],
     activeOrders: [
         {
             type: mongoose.Schema.Types.ObjectId,

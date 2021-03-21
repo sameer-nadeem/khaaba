@@ -1,0 +1,5 @@
+module.exports.INVALID_TOKEN = 'INVALID_TOKEN'
+module.exports.NO_AUTH_TOKEN = 'NO_AUTH_TOKEN'
+module.exports.SERVER_ERROR = 'SERVER_ERROR'
+module.exports.USER_ALREADY_EXISTS = 'USER_ALREADY_EXISTS'
+module.exports.INVALID_CREDITS = 'INVALID_CREDITS'

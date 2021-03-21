@@ -22,7 +22,7 @@ const completeOrderSchema = new Schema({
     status: {
         type: String,
         enum: ['Cancelled', 'Completed'],
-        default: 'Pending'
+        default: 'Completed'
     },
     khaabay: [
         {
