@@ -45,12 +45,12 @@ const storage = multer.diskStorage({
 
 
 // change customer profile
-router.post('/change_profile/customer', async (req, res) => {
+router.post('/change_profile/customer',auth,  async (req, res) => {
 
     const {
         email,
         address,
-        //city,
+        city,
         phone,
         firstName,
         lastName,
@@ -85,14 +85,14 @@ router.post('/change_profile/customer', async (req, res) => {
             // lastName
 
 
-            User.updateOne({email: email},  
+            User.updateOne({id: req.user.id},  
                 {$set: 
                     {   email:email,
                         firstName:firstName,
                         lastName:lastName, 
                         phone:phone,
-                        // address: {addr: address,city: city, coords:coords}  } }, 
-                        address: {addr: address, coords:coords}  } },
+                        address: {addr: address,city: city, coords:coords}  } }, 
+                        //address: {addr: address, coords:coords}  } },
                         function (err, docs) { 
                 if (err){ 
                     res.status(400).json({
@@ -100,8 +100,9 @@ router.post('/change_profile/customer', async (req, res) => {
                     })
                 } 
                 else{ 
+                    console.log(docs);
                     
-                    
+
                 } 
             });
 
