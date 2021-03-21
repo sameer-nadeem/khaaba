@@ -19,6 +19,14 @@ const kitchenSchema = mongoose.Schema({
     description: {
         type: String,
     },
+    reviews: [{
+        rating: {
+            type: Number
+        } ,
+        review: {
+            type: String
+        }
+    }],
     activeOrders: [
         {
             type: mongoose.Schema.Types.ObjectId,
