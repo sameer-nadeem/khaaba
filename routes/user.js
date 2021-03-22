@@ -13,7 +13,7 @@ const path = require('path')
 const chef = require('../models/chef')
 const kitchen = require('../models/kitchen')
 
-router.post('/review/:id', async (req, res) => {
+router.post('/review/:id',auth, async (req, res) => {
 
     let kitchenID
 
@@ -21,10 +21,22 @@ router.post('/review/:id', async (req, res) => {
         rating,
         review
     } = req.body
-    console.log(rating)
-    console.log(review)
-    kitchenID = req.params.id
+    
+    if (rating >5 || rating<0){
+        
+        return res.status(400).json({
+        errors: ['invalid_credits']
+        })
+    }
 
+    kitchenID = req.params.id
+    await kitchen.updateOne(
+        { _id : kitchenID},
+        {$push : { reviews: {
+            rating : rating,
+            review : review
+        }}}
+    )
     let KitchenObject = await kitchen.findOne({
         _id : kitchenID
     })
@@ -34,27 +46,22 @@ router.post('/review/:id', async (req, res) => {
         })
     }
     //console.log(KitchenObject.title)
-    // console.log(KitchenObject)
+    console.log(KitchenObject)
 
-        try{
-        KitchenObject.reviews.push({
-            rating, review
-        })
-        // console.log(KitchenObject)
-
-    } catch (error) {
-        console.error(error);
-        res.status(400).json({
-            error: ['server_error']
-        })
-    }
-
-
-
-
-
+    //     try{
+    //     KitchenObject.reviews.push({
+    //         rating, review
+    //     })
+    //     console.log(KitchenObject)
+    // } catch (error) {
+    //     console.error(error);
+    //     res.status(400).json({
+    //         error: ['server_error']
+    //     })
+// }
+        
      
-    return res.status(400).json({
+    return res.status(200).json({
         blabal: ['getting']
     })
 })
