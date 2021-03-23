@@ -6,7 +6,7 @@ const Chef = require('../models/chef')
 const Kitchen = require('../models/kitchen')
 const User = require('../models/user')
 const auth = require('../middlewares/auth')
-
+const completeOrder = require('../models/completeOrder')
 const {
     SERVER_ERROR
 } = require('../utils/errors')
@@ -69,47 +69,69 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
 
     } catch (error) {
 
-        return res.status(400).json({
-            errors: [SERVER_ERROR]
-        })
-
     }
 
 
 })
 
 router.get('/byhistory', auth, async (req, res) => {
-    const user = await User.findOne({
-        _id: req.user.id
-    }).populate('completeOrders').populate('khaabay')
+    try {
 
-    console.log(user)
+        const orders = await completeOrder.find({
+            user: req.user.id
+        }).populate('khaabay').sort({
+            date: 'desc'
+        }).limit(4)
 
-    const orders = user.completeOrders
+        console.log(orders)
 
-    console.log(orders)
+        if (orders.length === 0) {
+            return res.redirect('/recommendations/bypopularity')
+        }
 
-    if (orders.length === 0) {
-        return res.redirect('/recommendations/bypopularity')
-    }
+        const khaabay = []
 
-    let categories = []
-
-    orders.forEach(order => {
-        const khaabay = order.khaabay
-        khaabay.forEach(khaaba => {
-            categories = [...categories, khaaba.category]
+        orders.forEach(order => {
+            khaabay.push(...order.khaabay)
         })
-    });
 
-    console.log(categories)
+        return res.status(200).json({
+            khaabay: khaabay.slice(0, 4)
+        })
+
+    } catch (error) {
+        return res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
 
 })
 
-router.get('/bypopularity', (req, res) => {
-    res.json({
-        sameer: "sameer"
-    })
+router.get('/bypopularity/:city', async (req, res) => {
+
+    try {
+
+        const city = req.params.city.toUpperCase()
+
+        const chefs = await Chef.find({
+            'address.city': city,
+        }).sort({ averageRating: 'desc' }).limit(4).populate('kitchen', 'khaabay').populate('khaabay')
+
+        const khaabay = []
+
+        chefs.forEach(chef => {
+            khaabay.push(...chef.kitchen.khaabay)
+        })
+
+        return res.status(200).json({
+            khaabay: khaabay.slice(0, 4)
+        })
+
+    } catch (error) {
+        return res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
 })
 
 

@@ -105,8 +105,7 @@ router.post('/signup/customer', async (req, res) => {
             firstName,
             lastName
         })
-        user.address.city = toString(city).toLowerCase()
-        user.address.addr = toString(address).toLowerCase()
+        user.address.city = city.toUpperCase()
 
         const salt = await bcrypt.genSalt(10)
 
@@ -198,8 +197,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
         })
 
 
-        console.log()
-        console.log(toString(address))
+
 
         chef.address.city = city.toUpperCase()
 
