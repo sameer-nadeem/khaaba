@@ -44,15 +44,11 @@ router.post("/add-khaaba",auth, async(req,res)=>{
     });
 
 
-    // ADD instant khaaba
-
-
-
-router.post("/edit-menu/:id",async(req,res)=>{
+router.post("/edit-menu/:id",auth,async(req,res)=>{
 
     const id = req.params.id
-    const khaabaFeild = {};
-    khaabaFeild
+    let khaabaFeild = {};
+
     if(req.body.title) khaabaFeild.title  =  req.body.title;
     if(req.body.price) khaabaFeild.price =  req.body.price;
     if(req.body.description) khaabaFeild.description  =  req.body.description;
@@ -61,17 +57,16 @@ router.post("/edit-menu/:id",async(req,res)=>{
     if(req.body.date) khaabaFeild.date  =  req.body.date;
     try {
         
-        const khaaba = await khaaba.findOne({ id });
+        let khaaba = await Khaaba.findOne({ id });
 
         if(khaaba){
-            const khaaba = await khaaba.findOneAndUpdate(
-                {user : req.user.id},
+            const khaaba = await Khaaba.findOneAndUpdate(
                 {$set : khaabaFeild},
                 {new : true}
 
             ) ;    
         }
-        khaaba = new khaaba(khaabaFeild);
+        khaaba = new Khaaba(khaabaFeild);
         await khaaba.save();
         res.json(khaaba);
       } catch (error) {
@@ -80,5 +75,19 @@ router.post("/edit-menu/:id",async(req,res)=>{
       }
     });
 
+
+    router.get("/printMenu/:id",async(req,res)=>{
+      const id = req.params.id
+      try {
+        const khaabas = await Khaaba.find({
+          "kitchen":id 
+        });
+    
+        res.json(khaabas);
+      } catch (error) {
+        console.error(error.message);
+        return res.status(500).send("Server error.");
+      }
+    });
 
     module.exports=router
