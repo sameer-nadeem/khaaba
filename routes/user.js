@@ -80,10 +80,43 @@ router.get('/view-reviews/:id', async (req, res) => {
         })
     }
 
-    let returnObject = KitchenObject.reviews
+    let kitchenReviews = KitchenObject.reviews
 
     return res.status(200).json({
-        returnObject
+        kitchenReviews
+    })
+})
+
+router.get('/order-history', auth, async (req, res) => {
+
+    let user = await User.findOne({
+        _id : "605e1450ba483329d8645755"
+    })
+    if (!user) {
+        return res.status(400).json({
+            errors: ['invalid_credits']
+        })}
+
+
+    return res.status(200).json({
+        activeOrders: user.activeOrders,
+        oldOrders: user.completeOrders
+    })
+})
+
+router.get('/active-orders', auth, async (req, res) => {
+
+    let user = await User.findOne({
+        _id : "605e1450ba483329d8645755"
+    })
+    if (!user) {
+        return res.status(400).json({
+            errors: ['invalid_credits']
+        })}
+
+
+    return res.status(200).json({
+        activeOrders: user.activeOrders,
     })
 })
 
