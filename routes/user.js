@@ -13,7 +13,7 @@ const path = require('path')
 const chef = require('../models/chef')
 const kitchen = require('../models/kitchen')
 
-router.post('/review/:id',auth, async (req, res) => {
+router.post('/review/:id', async (req, res) => {
 
     let kitchenID
 
@@ -65,5 +65,27 @@ router.post('/review/:id',auth, async (req, res) => {
         blabal: ['getting']
     })
 })
+
+
+router.get('/view-reviews/:id', async (req, res) => {
+
+    let kitchenID = req.params.id
+
+    let KitchenObject = await kitchen.findOne({
+        _id : kitchenID
+    })
+    if (!KitchenObject) {
+        return res.status(400).json({
+            errors: ['invalid_credits']
+        })
+    }
+
+    let returnObject = KitchenObject.reviews
+
+    return res.status(200).json({
+        returnObject
+    })
+})
+
 
 module.exports = router
