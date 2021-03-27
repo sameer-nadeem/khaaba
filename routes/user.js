@@ -89,7 +89,7 @@ router.get('/view-reviews/:id', async (req, res) => {
 router.get('/order-history', auth, async (req, res) => {
 
     let user = await User.findOne({
-        _id : req.user.id//"605e1450ba483329d8645755"
+        _id : req.user//"605e1450ba483329d8645755"
     })
     if (!user) {
         return res.status(400).json({
@@ -105,8 +105,9 @@ router.get('/order-history', auth, async (req, res) => {
 
 router.get('/active-orders', auth, async (req, res) => {
 
+    console.log(req.user)
     let user = await User.findOne({
-        _id : req.user.id//"605e1450ba483329d8645755"
+        _id : req.user//"605e1450ba483329d8645755"
     })
     if (!user) {
         return res.status(400).json({
