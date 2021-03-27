@@ -1,6 +1,10 @@
 const config = require('config')
 const jsonwebtoken = require('jsonwebtoken')
 
+const {
+    INVALID_TOKEN,
+    NO_AUTH_TOKEN
+} = require('../utils/errors')
 
 
 //Auth Token middleware
@@ -8,8 +12,7 @@ module.exports = function (req, res, next) {
     const req_jwt = req.header('x-auth-token')
     if (!req_jwt) {
         return res.status(401).json({
-            status: 401,
-            errors: ["NULL-AUTH-TOKEN"],
+            errors: [NO_AUTH_TOKEN],
             payload: {
             }
         })
@@ -20,8 +23,7 @@ module.exports = function (req, res, next) {
         next()
     } catch (error) {
         return res.status(401).json({
-            status: 401,
-            errors: ["INVALID-AUTH-TOKEN"],
+            errors: [INVALID_TOKEN],
             payload: {
             }
         })
