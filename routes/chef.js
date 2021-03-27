@@ -19,22 +19,24 @@ router.get('/order-history', auth, async (req, res) => {
 
     console.log(req.user)
     let userObject = await Chef.findOne({
-        _id : req.user//"60573d5785214d0bc5b0f9b7"//req.user.id//
+        _id: req.user.id//"60573d5785214d0bc5b0f9b7"//req.user.id//
     })
     if (!userObject) {
         return res.status(400).json({
             errors: ['invalid_credits']
-        })}
+        })
+    }
     let kitchenID = userObject.kitchen
     console.log(kitchenID)
 
     let chefKitchen = await kitchen.findOne({
-        _id : kitchenID
+        _id: kitchenID
     })
     if (!chefKitchen) {
         return res.status(400).json({
             errors: ['invalid_credits']
-        })}
+        })
+    }
 
 
 
@@ -47,22 +49,24 @@ router.get('/order-history', auth, async (req, res) => {
 router.get('/active-orders', auth, async (req, res) => {
 
     let user = await Chef.findOne({
-        _id : req.user//"60573d5785214d0bc5b0f9b7"//req.user.id
+        _id: req.user.id//"60573d5785214d0bc5b0f9b7"//req.user.id
     })
     if (!user) {
         return res.status(400).json({
             errors: ['invalid_credits']
-        })}
+        })
+    }
     let kitchenID = user.kitchen
     console.log(kitchenID)
 
     let chefKitchen = await kitchen.findOne({
-        _id : kitchenID
+        _id: kitchenID
     })
     if (!chefKitchen) {
         return res.status(400).json({
             errors: ['invalid_credits']
-        })}
+        })
+    }
 
 
     return res.status(200).json({
