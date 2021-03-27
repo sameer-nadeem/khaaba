@@ -40,7 +40,7 @@ const kitchenSchema = mongoose.Schema({
     ]
 });
 
-kitchenSchema.virtual('avg.rating').get(function() {
+kitchenSchema.virtual('avgRating').get(function() {
 let avg = 0
 let count = this.reviews.length
 for (var i = 0; i < count; i++) {
