@@ -47,7 +47,8 @@ let count = this.reviews.length
 for (var i = 0; i < count; i++) {
     avg += this.reviews[i].rating
 }
-return avg/count
+avg = avg/count
+return avg.toFixed(2)
 
 
 
