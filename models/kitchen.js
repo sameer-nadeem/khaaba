@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 // kitchen schema
 const kitchenSchema = mongoose.Schema({
-
     title: {
         type: String,
     },
