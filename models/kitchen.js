@@ -41,4 +41,16 @@ const kitchenSchema = mongoose.Schema({
     ]
 });
 
+kitchenSchema.virtual('avg.rating').get(function() {
+let avg = 0
+let count = this.reviews.length
+for (var i = 0; i < count; i++) {
+    avg += this.reviews[i].rating
+}
+return avg/count
+
+
+
+})
+
 module.exports = mongoose.model('kitchen', kitchenSchema)

@@ -30,13 +30,21 @@ router.post('/review/:id', async (req, res) => {
     }
 
     kitchenID = req.params.id
+    try{
     await kitchen.updateOne(
         { _id : kitchenID},
         {$push : { reviews: {
             rating : rating,
             review : review
         }}}
-    )
+    )} catch (error) {
+            console.error(error);
+            res.status(400).json({
+                error: ['server_error']
+            })
+        }
+
+
     let KitchenObject = await kitchen.findOne({
         _id : kitchenID
     })
@@ -48,21 +56,11 @@ router.post('/review/:id', async (req, res) => {
     //console.log(KitchenObject.title)
     console.log(KitchenObject)
 
-    //     try{
-    //     KitchenObject.reviews.push({
-    //         rating, review
-    //     })
-    //     console.log(KitchenObject)
-    // } catch (error) {
-    //     console.error(error);
-    //     res.status(400).json({
-    //         error: ['server_error']
-    //     })
-// }
+    
         
      
     return res.status(200).json({
-        blabal: ['getting']
+        status: "succusfull Update"
     })
 })
 
@@ -83,7 +81,8 @@ router.get('/view-reviews/:id', async (req, res) => {
     let kitchenReviews = KitchenObject.reviews
 
     return res.status(200).json({
-        kitchenReviews
+        kitchenReviews,
+        avgRating : KitchenObject.avg.rating
     })
 })
 
