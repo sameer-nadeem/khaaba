@@ -18,16 +18,14 @@ const kitchenSchema = mongoose.Schema({
     description: {
         type: String,
     },
-    reviews: [
-        {
-            rating: {
-                type: Number
-            },
-            review: {
-                type: String
-            }
+    reviews: [{
+        rating: {
+            type: Number
+        } ,
+        review: {
+            type: String
         }
-    ],
+    }],
     activeOrders: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -41,5 +39,18 @@ const kitchenSchema = mongoose.Schema({
         }
     ]
 });
+
+kitchenSchema.virtual('avgRating').get(function() {
+let avg = 0
+let count = this.reviews.length
+for (var i = 0; i < count; i++) {
+    avg += this.reviews[i].rating
+}
+avg = avg/count
+return avg.toFixed(2)
+
+
+
+})
 
 module.exports = mongoose.model('kitchen', kitchenSchema)
