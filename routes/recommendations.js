@@ -3,10 +3,8 @@ const router = express.Router()
 const config = require('config')
 const axios = require('axios')
 const Chef = require('../models/chef')
-const Kitchen = require('../models/kitchen')
-const User = require('../models/user')
 const auth = require('../middlewares/auth')
-const completeOrder = require('../models/completeOrder')
+const Order = require('../models/order')
 const {
     SERVER_ERROR
 } = require('../utils/errors')
@@ -79,8 +77,9 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
 router.get('/byhistory', auth, async (req, res) => {
     try {
 
-        const orders = await completeOrder.find({
-            user: req.user.id
+        const orders = await Order.find({
+            user: req.user.id,
+            status: 'Completed'
         }).populate('khaabay').sort({
             date: 'desc'
         }).limit(4)

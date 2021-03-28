@@ -35,6 +35,16 @@ const khaabaSchema = new Schema({
             ref: 'category'
         }
     ],
+    instantKhaaba: {
+        isInstant: {
+            type: Boolean,
+            default: false
+        },
+        availableServings: {
+            type: Number,
+            default: 0
+        }
+    },
     date: {
         type: Date,
         default: Date.now

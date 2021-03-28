@@ -1,6 +1,3 @@
-
-
-
 const express = require('express')
 const app = express()
 const PORT = 5000 || process.env.PORT
@@ -12,12 +9,10 @@ const cors = require('cors')
 connectDB()
 
 require('./models/user')
-require('./models/activeOrder')
+require('./models/order')
 require('./models/admin')
 require('./models/category')
 require('./models/chef')
-require('./models/completeOrder')
-require('./models/instantKhaaba')
 require('./models/khaaba')
 require('./models/kitchen')
 
@@ -29,7 +24,7 @@ app.use(express.urlencoded({
 app.use(cors())
 app.use(express.json({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "build")));
 
 //Routes
 setRoutes(app)

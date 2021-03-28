@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
             type: String,
             require: true
         },
-        city:   {
+        city: {
             type: String
         },
         coords: {
@@ -38,16 +38,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    activeOrders: [
+    orders: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'activeOrder'
-        }
-    ],
-    completeOrders: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'completeOrder'
+            ref: 'order'
         }
     ]
 });

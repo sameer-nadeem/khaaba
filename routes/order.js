@@ -1,27 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('../middlewares/auth')
-const Kitchen = require('../models/kitchen')
-const ActiveOrders = require('../models/activeOrder')
+const Order = require('../models/order')
 
 const {
     SERVER_ERROR,
     UPDATE_ERROR,
 } = require('../utils/errors')
-const User = require('../models/user')
 
 // chef accept order
-router.post('/orderManagement/accept', auth, async (req, res) => {
+router.get('/orders/accept/:id', auth, async (req, res) => {
 
     try {
-        const {
-            orderID,
-        } = req.body
 
-        const acceptedOrder = await ActiveOrders.findOne({ _id: orderID })
-        acceptedOrder.status = 'Preparing'
+        const orderID = req.params.id
+        const order = await Order.findOne({ _id: orderID })
+        order.status = 'Preparing'
 
-        acceptedOrder.save(function (err) {
+        order.save(function (err) {
 
             if (err) {
                 console.error(err)
@@ -33,6 +29,7 @@ router.post('/orderManagement/accept', auth, async (req, res) => {
 
         });
 
+
     } catch (err) {
         console.error(err)
         res.status(400).json({
@@ -43,17 +40,16 @@ router.post('/orderManagement/accept', auth, async (req, res) => {
 
 
 //chef update order status ready
-router.post('/orderManagement/ready', auth, async (req, res) => {
+router.get('/orders/ready/:id', auth, async (req, res) => {
 
     try {
-        const {
-            orderID,
-        } = req.body
 
-        const acceptedOrder = await ActiveOrders.findOne({ _id: orderID })
-        acceptedOrder.status = 'Ready'
+        const orderID = req.params.id
 
-        acceptedOrder.save(function (err) {
+        const order = await Order.findOne({ _id: orderID })
+        order.status = 'Ready'
+
+        order.save(function (err) {
 
             if (err) {
                 console.error(err)
@@ -75,22 +71,15 @@ router.post('/orderManagement/ready', auth, async (req, res) => {
 
 
 //customer cancel order
-router.post('/orderManagement/cancel', auth, async (req, res) => {
+router.get('/orders/cancel/:id', auth, async (req, res) => {
 
     try {
 
+        const orderID = req.params.id
+        const order = await Order.findOne({ _id: orderID })
 
-        const {
-            orderID,
-        } = req.body
-
-
-
-        const kitchen = await Kitchen.findOne({ _id: req.user.kitchen })
-
-        const cancelledOrder = kitchen.activeOrders.filter(_id == orderID)
-        cancelledOrder.status = 'Cancelled';
-        await cancelledOrder.save(function (err) {
+        order.status = 'Cancelled';
+        order.save(function (err) {
 
             if (err) {
                 console.error(err)
@@ -101,22 +90,6 @@ router.post('/orderManagement/cancel', auth, async (req, res) => {
             }
 
         });
-
-        // add to completed
-        kitchen.completedOrders.push(cancelledOrder)
-
-        const newCompleted = new completedOrders
-
-        newCompleted = cancelledOrder;
-        ///////
-
-        kitchen.update(
-            {},
-            { $pull: { activeOrders: { _id: orderID } } },
-            { multi: true }
-        )
-
-
     } catch (err) {
         console.error(err)
         res.status(400).json({

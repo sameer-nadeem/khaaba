@@ -1,9 +1,9 @@
 const authRoutes = require('./auth')
-const kitchenRoutes = require('./chef')
+const kitchenRoutes = require('./kitchen')
 const userRoute = require('./user')
 const chefRoute = require('./chef')
 const recomRoutes = require('./recommendations')
-const orderRoutes = require('./orderManagement')
+const orderRoutes = require('./order')
 const profileRoutes = require('./profile')
 
 module.exports = (app) => {

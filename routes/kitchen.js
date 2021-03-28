@@ -1,115 +1,93 @@
 const express = require("express");
 const router = express.Router();
 const Khaaba = require("../models/khaaba");
-const InstantKhaaba = require("../models/instantKhaaba");
-const chef = require("../models/chef");
 const auth = require("../middlewares/auth");
-const { INVALID_CREDITS, SERVER_ERROR } = require("../utils/errors");
+const { SERVER_ERROR } = require("../utils/errors");
+
+
+
+
 
 // ADD Menu item
-router.post("/add-khaaba",auth, async(req,res)=>{
+router.post("/add-khaaba", auth, async (req, res) => {
 
-    let khaabaFeild = {};
-    let instantKhaabaFeild = {};
-    
-    
-    if(req.body.title) khaabaFeild.title  =  req.body.title;
-    if(req.body.price) khaabaFeild.price =  req.body.price;
-    if(req.body.description) khaabaFeild.description  =  req.body.description;
-    if(req.body.thumbnail) khaabaFeild.thumbnail  =  req.body.thumbnail;
-    if(req.body.category) khaabaFeild.category  =  req.body.category;
+  let khaabaFields = {};
 
+  if (req.body.title) khaabaFields.title = req.body.title;
+  if (req.body.price) khaabaFields.price = req.body.price;
+  if (req.body.description) khaabaFields.description = req.body.description;
+  if (req.body.category) khaabaFields.category = req.body.category;
 
-    khaabaFeild.kitchen = req.user.kitchen
-    console.log(req.user)
-    if(req.body.isInstantKhaaba){
-      
-  
-      if(req.body.servings) instantKhaabaFeild.servings  =  req.body.servings;
+  // khaabaFields.kitchen = req.user.kitchen
+
+  console.log(req.user)
+
+  try {
+
+    let khaaba = new Khaaba(khaabaFields);
+
+    if (req.body.isInstantKhaaba == 'true') {
+      khaaba.instantKhaaba.isInstant = true
+      khaaba.instantKhaaba.availableServings = req.body.servings;
     }
+    await khaaba.save();
 
-    try {
-        
-        khaaba = new Khaaba(khaabaFeild);
-        let instantKhaaba = {}
-        await khaaba.save();
-        if(req.body.isInstantKhaaba){
-
-        instantKhaaba.khaaba = khaaba.id
-        instantKhaaba = new InstantKhaaba(instantKhaabaFeild);
-        await instantKhaaba.save();
-      }
-        return res.status(200).json({khaaba, instantKhaaba});
-      } catch (error) {
-        console.error(error.message);
-        return res
-        .status(400)
-        .json({errors:[INVALID_CREDITS]});
-      }
-    });
-
-
-router.post("/edit-menu/:id",auth,async(req,res)=>{
-    const id = req.params.id
-    let khaabaFeild = {};
-    let instantKhaabaFeild = {};
-    if(req.body.title) khaabaFeild.title  =  req.body.title;
-    if(req.body.price) khaabaFeild.price =  req.body.price;
-    if(req.body.description) khaabaFeild.description  =  req.body.description;
-    if(req.body.thumbnail) khaabaFeild.thumbnail  =  req.body.thumbnail;
-    if(req.body.category) khaabaFeild.category  =  req.body.category;
-
-    if(req.body.isInstantKhaaba){
-      let instantKhaabaFeild = {};        
-  
-      if(req.body.servings) instantKhaabaFeild.servings  =  req.body.servings;
-
-    }
-    try { 
-      Khaaba.updateOne({ _id:id},  
-      {$set: khaabaFeild }, 
-              function (err, docs) { 
-      if (err){ 
-          res.status(400).json({
-              error: [SERVER_ERROR]
-          })
-      } 
-      else{ 
-           res.status(200).json(docs); 
-          
-          
-              
+    return res.status(200).json({ khaaba });
+  } catch (error) {
+    console.error(error.message);
+    return res
+      .status(400)
+      .json({ errors: [SERVER_ERROR] });
   }
-  }); 
-         } catch (error) {
-        return res
-        .status(400)
-        .json({errors:INVALID_CREDITS});
-      }   
-      
 });
 
- router.get("/get-menu/:id",async(req,res)=>{
-      const id = req.params.id
-      try {
-        const khaabas = await Khaaba.find({
-          "kitchen":id 
-        });
 
-        const instantKhaabas = await InstantKhaaba.find({
-          "kitchen":id 
-        });
-    
-        return res.status(200).json({khaabas,
-          instantKhaabas});
+router.post("/edit-menu/:id", auth, async (req, res) => {
+  try {
+    const id = req.params.id
 
-      } catch (error) {
-        return res
-        .status(400)
-        .json({errors:SERVER_ERROR});  
-      }
+    let khaaba = await Khaaba.findOne({
+      _id: id
+    })
 
+    if (req.body.title) khaaba.title = req.body.title;
+    if (req.body.price) khaaba.price = req.body.price;
+    if (req.body.description) khaaba.description = req.body.description;
+    if (req.body.category) khaaba.category = req.body.category;
 
+    if (req.body.isInstantKhaaba == 'true') {
+      khaaba.instantKhaaba.isInstant = true
+      khaaba.instantKhaaba.availableServings = req.body.servings;
+    }
+    await khaaba.save()
+    return res.status(200).json({ khaaba });
+
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ errors: SERVER_ERROR });
+  }
+
+});
+
+router.get("/get-menu/:id", async (req, res) => {
+  const id = req.params.id
+  try {
+    const khaabas = await Khaaba.find({
+      kitchen: id
     });
 
-    module.exports=router
+    return res.status(200).json({
+      khaabas
+    });
+
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ errors: SERVER_ERROR });
+  }
+
+
+});
+
+module.exports = router

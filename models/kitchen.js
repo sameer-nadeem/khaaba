@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const opts = { toJSON: { virtuals: true } };
+
 // kitchen schema
 const kitchenSchema = mongoose.Schema({
     title: {
@@ -21,33 +23,27 @@ const kitchenSchema = mongoose.Schema({
     reviews: [{
         rating: {
             type: Number
-        } ,
+        },
         review: {
             type: String
         }
     }],
-    activeOrders: [
+    orders: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'activeOrder'
-        }
-    ],
-    completeOrders: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'completeOrder'
+            ref: 'order'
         }
     ]
-});
+}, opts);
 
-kitchenSchema.virtual('avgRating').get(function() {
-let avg = 0
-let count = this.reviews.length
-for (var i = 0; i < count; i++) {
-    avg += this.reviews[i].rating
-}
-avg = avg/count
-return avg.toFixed(2)
+kitchenSchema.virtual('avgRating').get(function () {
+    let avg = 0
+    let count = this.reviews.length
+    for (var i = 0; i < count; i++) {
+        avg += this.reviews[i].rating
+    }
+    avg = avg / count
+    return avg.toFixed(2)
 
 
 
