@@ -60,7 +60,7 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
         chefs = chefs.filter(chef => getDistance(coords, chef.address.coords) < config.get('recommendation_radius_km'))
 
         chefs.sort((c1, c2) => {
-            return c2.averageRating - c1.averageRating
+            return c2.avgRating - c1.avgRating
         })
 
         return res.status(200).json({
@@ -88,7 +88,9 @@ router.get('/byhistory', auth, async (req, res) => {
         console.log(orders)
 
         if (orders.length === 0) {
-            return res.redirect('/recommendations/bypopularity')
+            return res.status(200).json({
+                khaabay: []
+            })
         }
 
         const khaabay = []
@@ -110,7 +112,6 @@ router.get('/byhistory', auth, async (req, res) => {
 })
 
 router.get('/bypopularity/:lat/:lng', async (req, res) => {
-
     try {
         const coords = {
             lat: req.params.lat,
@@ -123,10 +124,9 @@ router.get('/bypopularity/:lat/:lng', async (req, res) => {
 
         const city = response.data.results[0].address_components[0].long_name.toUpperCase()
 
-
         const chefs = await Chef.find({
             'address.city': city,
-        }).sort({ averageRating: 'desc' }).limit(4).populate('kitchen', 'khaabay').populate('khaabay')
+        }).sort({ avgRating: 'desc' }).limit(4).populate('kitchen', 'khaabay').populate('khaabay')
 
         const khaabay = []
 
