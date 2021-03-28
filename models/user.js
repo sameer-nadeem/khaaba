@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
             type: String,
             require: true
         },
-        city: {
+        city:   {
             type: String
         },
         coords: {
