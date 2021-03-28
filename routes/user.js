@@ -12,6 +12,10 @@ const multer = require('multer')
 const path = require('path')
 const chef = require('../models/chef')
 const kitchen = require('../models/kitchen')
+const {
+    SERVER_ERROR,
+    INVALID_CREDITS
+} = require('../utils/errors')
 
 router.post('/review/:id', auth, async (req, res) => {
 
@@ -25,7 +29,7 @@ router.post('/review/:id', auth, async (req, res) => {
     if (rating >5 || rating<0){
         
         return res.status(400).json({
-        errors: ['invalid_credits']
+        errors: [INVALID_CREDITS]
         })
     }
 
@@ -40,7 +44,7 @@ router.post('/review/:id', auth, async (req, res) => {
     )} catch (error) {
             console.error(error);
             res.status(400).json({
-                error: ['server_error']
+                errors: [SERVER_ERROR]
             })
         }
 
@@ -74,7 +78,7 @@ router.get('/view-reviews/:id', async (req, res) => {
     })
     if (!KitchenObject) {
         return res.status(400).json({
-            errors: ['invalid_credits']
+            errors: [SERVER_ERROR]
         })
     }
 
@@ -89,11 +93,11 @@ router.get('/view-reviews/:id', async (req, res) => {
 router.get('/order-history', auth, async (req, res) => {
 
     let user = await User.findOne({
-        _id : req.user//"605e1450ba483329d8645755"
+        _id : req.user.id//"605e1450ba483329d8645755"
     })
     if (!user) {
         return res.status(400).json({
-            errors: ['invalid_credits']
+            errors: [SERVER_ERROR]
         })}
 
 
@@ -107,11 +111,11 @@ router.get('/active-orders', auth, async (req, res) => {
 
     console.log(req.user)
     let user = await User.findOne({
-        _id : req.user//"605e1450ba483329d8645755"
+        _id : req.user.id//"605e1450ba483329d8645755"
     })
     if (!user) {
         return res.status(400).json({
-            errors: ['invalid_credits']
+            errors: [SERVER_ERROR]
         })}
 
 
