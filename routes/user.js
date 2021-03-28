@@ -13,7 +13,7 @@ const path = require('path')
 const chef = require('../models/chef')
 const kitchen = require('../models/kitchen')
 
-router.post('/review/:id', async (req, res) => {
+router.post('/review/:id', auth, async (req, res) => {
 
     let kitchenID
 
@@ -21,7 +21,7 @@ router.post('/review/:id', async (req, res) => {
         rating,
         review
     } = req.body
-    
+    // console.log(req.user)
     if (rating >5 || rating<0){
         
         return res.status(400).json({
@@ -45,16 +45,16 @@ router.post('/review/:id', async (req, res) => {
         }
 
 
-    let KitchenObject = await kitchen.findOne({
-        _id : kitchenID
-    })
-    if (!KitchenObject) {
-        return res.status(400).json({
-            errors: ['invalid_credits']
-        })
-    }
-    //console.log(KitchenObject.title)
-    console.log(KitchenObject)
+    // let KitchenObject = await kitchen.findOne({
+    //     _id : kitchenID
+    // })
+    // if (!KitchenObject) {
+    //     return res.status(400).json({
+    //         errors: ['invalid_credits']
+    //     })
+    // }
+    // //console.log(KitchenObject.title)
+    // console.log(KitchenObject)
 
     
         
