@@ -64,11 +64,13 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
         })
 
         return res.status(200).json({
-            chefs: chefs.splice(0, 5)
+            chefs: chefs.slice(0, 4)
         })
 
     } catch (error) {
-
+        return res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
     }
 
 
@@ -107,11 +109,20 @@ router.get('/byhistory', auth, async (req, res) => {
 
 })
 
-router.get('/bypopularity/:city', async (req, res) => {
+router.get('/bypopularity/:lat/:lng', async (req, res) => {
 
     try {
+        const coords = {
+            lat: req.params.lat,
+            lng: req.params.lng
+        }
 
-        const city = req.params.city.toUpperCase()
+        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.lat},${coords.lng}&result_type=administrative_area_level_2&key=${config.get('google_maps_api_key')}`
+
+        const response = await axios.get(mapUri)
+
+        const city = response.data.results[0].address_components[0].long_name.toUpperCase()
+
 
         const chefs = await Chef.find({
             'address.city': city,
