@@ -9,5 +9,4 @@ module.exports = (app) => {
     app.use('/profile', profileRoutes)
     app.use('/recommendations', recommndationRoutes)
     app.use('/orderManagement', recommndationRoutes)
-
 }

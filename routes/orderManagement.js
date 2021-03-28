@@ -4,12 +4,20 @@ const router = express.Router()
 const auth = require('../middlewares/auth')
 
 const Kitchen = require('../models/kitchen')
+const ActiveOrders = require('../models/activeOrders')
 
 const {
-    USER_ALREADY_EXISTS,
     SERVER_ERROR,
-    INVALID_CREDITS,
+    UPDATE_ERROR,
 } = require('../utils/errors')
+const user = require('../models/user')
+
+
+
+
+
+
+
 
 // chef accept order
 router.post('/orderManagement/accept',auth,  async (req, res) => { 
@@ -17,26 +25,23 @@ router.post('/orderManagement/accept',auth,  async (req, res) => {
     try {
         const {
             orderID,
-            kitchenID,
     } = req.body
 
-const kitchen =  await Kitchen.findOne({_id:kitchenID})
+const acceptedOrder =  await ActiveOrders.findOne({_id:orderID})
+acceptedOrder.status = 'Preparing'
 
-kitchen.update({'activeOrders.id': orderID}, {'$set': {
-    'activeOrders.$.status': 'Preparing'
-
-}}, function(err, docs) { 
+acceptedOrder.save(function(err) { 
          
-    if (err){
-        console.error(err)
-        return res.status(400).json({errors: [SERVER_ERROR]})
-    }
-    else
-        {
-            return res,status(200).json(docs)
+        if (err){
+            console.error(err)
+            return res.status(400).json({errors: [UPDATE_ERROR]})
         }
-
-    })
+        else
+            {
+                return res.status(200).end()
+            }
+    
+        });
         
 }catch(err)
 {
@@ -54,26 +59,23 @@ router.post('/orderManagement/ready',auth,  async (req, res) => {
     try {
         const {
             orderID,
-            kitchenID,
     } = req.body
 
-const kitchen =  await Kitchen.findOne({_id:kitchenID})
-
-kitchen.update({'activeOrders.id': orderID}, {'$set': {
-    'activeOrders.$.status': 'Ready'
-
-}}, function(err, docs) { 
-         
-    if (err){
-        console.error(err)
-        return res.status(400).json({errors: [SERVER_ERROR]})
-    }
-    else
-        {
-            return res,status(200).json(docs)
-        }
-
-    })
+    const acceptedOrder =  await ActiveOrders.findOne({_id:orderID})
+    acceptedOrder.status = 'Ready'
+    
+    acceptedOrder.save(function(err) { 
+             
+            if (err){
+                console.error(err)
+                return res.status(400).json({errors: [UPDATE_ERROR]})
+            }
+            else
+                {
+                    return res.status(200).end()
+                }
+        
+            });
         
 }catch(err)
 {
@@ -86,25 +88,40 @@ kitchen.update({'activeOrders.id': orderID}, {'$set': {
 
 
 //customer cancel order
-router.post('/orderManagement/ready',auth,  async (req, res) => {
+router.post('/orderManagement/cancel',auth,  async (req, res) => {
 
     try {
 
 
         const {
             orderID,
-            kitchenID,
     } = req.body
 
 
 
-const kitchen =  await Kitchen.findOne({_id:kitchenID})
+const kitchen =  await Kitchen.findOne({_id:req.user.kitchen})
 
 const cancelledOrder = kitchen.activeOrders.filter(_id == orderID)
-cancelledOrder.status = 'Cancelled'
+cancelledOrder.status = 'Cancelled';
+await cancelledOrder.save(function(err) { 
+             
+    if (err){
+        console.error(err)
+        return res.status(400).json({errors: [UPDATE_ERROR]})
+    }
+    else
+        {
+            return res.status(200).end()
+        }
+
+    });
 
 // add to completed
 kitchen.completedOrders.push(cancelledOrder)
+
+const newCompleted = new completedOrders
+
+newCompleted = cancelledOrder;
 ///////
 
 kitchen.update(

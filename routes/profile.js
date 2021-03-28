@@ -3,20 +3,14 @@ const router = express.Router()
 
 const auth = require('../middlewares/auth')
 
-const jwt = require('jsonwebtoken')
-
 const User = require('../models/user')
 const Chef = require('../models/chef')
-const Kitchen = require('../models/kitchen')
 
 // for jwt authentication
 const config = require('config')
 
 // for files
 const axios = require('axios')
-
-
-const path = require('path')
 
 // for file upload
 
@@ -37,6 +31,7 @@ const {
     USER_ALREADY_EXISTS,
     SERVER_ERROR,
     INVALID_CREDITS,
+    UPDATE_ERROR,
 } = require('../utils/errors')
 const kitchen = require('../models/kitchen')
 
@@ -46,7 +41,7 @@ const kitchen = require('../models/kitchen')
 router.post('/change_pass/chef',auth,  async (req, res) => { // for testing without token
     const {
             password,
-    } = req.body
+    } = reqsu.body
 
 
     try {
@@ -68,8 +63,8 @@ router.post('/change_pass/chef',auth,  async (req, res) => { // for testing with
             })
         } 
         else{ 
-            //const updObj = await Chef.findOne({_id:req.user.id});
-            return res.status(200).json(docs);
+            const updObj = Chef.findOne({_id:req.user.id}).populate(kitchen);
+            return res.status(200).json(updObj);
             
     }
     });
@@ -101,7 +96,7 @@ router.post('/change_pass/customer',auth,  async (req, res) => { // for testing 
                 password: newPassword,
 
             } }, 
-                function (err, docs) { 
+                function (err) { 
         if (err){ 
             res.status(400).json({
                 error: [SERVER_ERROR]
@@ -109,11 +104,8 @@ router.post('/change_pass/customer',auth,  async (req, res) => { // for testing 
         } 
         else{ 
 
-            let something = User.findOne({_id:req.user.id});
-            res.status(400).json({
-                something
-            })
-            
+            // let something = User.findOne({_id:req.user.id});
+            res.status(400).end()
     }
     });
 
@@ -127,7 +119,7 @@ router.post('/change_pass/customer',auth,  async (req, res) => { // for testing 
 
 
 //////////          Change Kitchen Logo
-router.post('/change_profile/logo', auth,  async (req, res) => {
+router.post('/change-profile/logo', auth,  async (req, res) => {
 try {
 
     ////
@@ -146,14 +138,15 @@ try {
         {   
             logo : `${logoPath}`,
         } }, 
-            function (err, docs) { 
+            function (err) { 
     if (err){ 
         res.status(400).json({
             error: [SERVER_ERROR]
         })
     } 
     else{ 
-        return res.status(200).json(docs)
+        const updObj = Chef.findOne({_id:req.user.id}).populate(kitchen);
+        return res.status(200).json(updObj);
 }
 
 });
@@ -172,8 +165,8 @@ try {
 
 
 //////////          Change Chef profile (excluding kitchen logo)
-router.post('/change_profile/chef', auth,  async (req, res) => { // final
-//router.post('/change_profile/chef',  async (req, res) => { // for testing without token
+router.post('/change-profile/chef', auth,  async (req, res) => { // final
+//router.post('/change-profile/chef',  async (req, res) => { // for testing without token
     const {
         email,
         address,
@@ -216,20 +209,17 @@ router.post('/change_profile/chef', auth,  async (req, res) => { // final
                     firstName:firstName,
                     lastName:lastName, 
                     phone:phone,
-                    address: {addr: toString(address).toLowerCase(),city:toString(city).toLowerCase(), coords:coords},
+                    address: {addr: address, city:toString(city).toUpperCase(), coords:coords},
                     city: city,
 
                 } }, 
-                    function (err, docs) { 
+                    function (err) { 
             if (err){ 
                 res.status(400).json({
                     error: [SERVER_ERROR]
                 })
             } 
-            else{ 
-                
-                
-        }
+
         });
 
         kitchen.updateOne({ _id:(retProfile.kitchen)},//req.user.id},  
@@ -246,10 +236,8 @@ router.post('/change_profile/chef', auth,  async (req, res) => { // final
             })
         } 
         else{ 
-            //let something = Chef.findOne({_id:req.user.id})
-            res.status(200).json({
-                docs
-            })
+            const updObj = Chef.findOne({_id:req.user.id}).populate(kitchen);
+            return res.status(200).json(updObj);
             
     }
     });
@@ -265,12 +253,7 @@ router.post('/change_profile/chef', auth,  async (req, res) => { // final
 
 
 /////////           Change Customer Profile
-router.post('/change_profile/customer',auth,  async (req, res) => {
-
-
-    console.log(req.user.id)
-
-
+router.post('/change-profile/customer',auth,  async (req, res) => {
 
     const {
         email,
@@ -279,6 +262,7 @@ router.post('/change_profile/customer',auth,  async (req, res) => {
         phone,
         firstName,
         lastName,
+        
     } = req.body
 
     try {
@@ -312,15 +296,15 @@ router.post('/change_profile/customer',auth,  async (req, res) => {
                         phone:phone,
                         address: {addr: toString(address).toLowerCase(),city: toString(city).toLowerCase(), coords:coords}  
                     } }, 
-                        function (err, docs) { 
+                        function (err) { 
                 if (err){ 
                     res.status(400).json({
                         error: [SERVER_ERROR]
                     })
                 } 
                 else{ 
-                    res.status(200).json(docs)
-                    
+                    const updObj = User.findOne({_id:req.user.id}).populate(kitchen);
+                    return res.status(200).json(updObj);
             }
             });
 
