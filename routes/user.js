@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const auth = require('../middlewares/auth')
 const User = require('../models/user')
-const kitchen = require('../models/kitchen')
+const Kitchen = require('../models/kitchen')
+const Khaaba = require('../models/khaaba')
+const Order = require('../models/order')
 
 const {
     SERVER_ERROR,
@@ -17,7 +19,7 @@ router.post('/review/:id', auth, async (req, res) => {
 
     kitchenID = req.params.id
     try {
-        await kitchen.updateOne(
+        await Kitchen.updateOne(
             { _id: kitchenID },
             {
                 $push: {
@@ -44,7 +46,7 @@ router.get('/view-reviews/:id', async (req, res) => {
 
     let kitchenID = req.params.id
 
-    let KitchenObject = await kitchen.findOne({
+    let KitchenObject = await Kitchen.findOne({
         _id: kitchenID
     })
     if (!KitchenObject) {
@@ -63,40 +65,126 @@ router.get('/view-reviews/:id', async (req, res) => {
 
 router.get('/order-history', auth, async (req, res) => {
 
-    let user = await User.findOne({
-        _id: req.user.id//"605e1450ba483329d8645755"
-    }).populate('orders')
+    let orders = await Order.find({
+        user: req.user.id
+    }).populate('khaabay.khaaba')
 
-    if (!user) {
-        return res.status(400).json({
-            errors: [SERVER_ERROR]
-        })
-    }
 
     return res.status(200).json(
         {
-            orders: user.orders
+            orders
         }
     )
 })
 
 router.get('/active-orders', auth, async (req, res) => {
 
-    console.log(req.user)
-    let user = await User.findOne({
-        _id: req.user.id//"605e1450ba483329d8645755"
+    let orders = await Order.find({
+        user: req.user.id,
+    }).populate('khaabay.khaaba')
+
+
+    return res.status(200).json({
+        activeOrders: orders.filter(order => !order.isComplete)
     })
-    if (!user) {
+})
+
+router.get('/pickup/:id', auth, async (req, res) => {
+    try {
+
+        const orderID = req.params.id
+        const order = await Order.findOne({ _id: orderID })
+
+        order.status = 'Completed';
+        order.save(function (err) {
+
+            if (err) {
+                console.error(err)
+                return res.status(400).json({ errors: [UPDATE_ERROR] })
+            }
+            else {
+                return res.status(200).end()
+            }
+
+        });
+    } catch (err) {
+        console.error(err)
+        res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
+})
+
+router.post('/order', auth, async (req, res) => {
+    try {
+        const {
+            kitchenID,
+            khaabay
+        } = req.body
+
+
+        const user = await User.findOne({
+            _id: req.user.id
+        })
+
+        const kitchen = await Kitchen.findOne({
+            _id: kitchenID
+        })
+
+        const orderFields = {
+            user: user.id,
+            kitchen: kitchen.id,
+            khaabay: [...khaabay]
+        }
+
+        let totalPrice = 0;
+
+        const khaabaMapQ = {}
+        const khaabaIDs = []
+
+        khaabay.forEach(k => {
+            khaabaMapQ[k.khaaba] = k.quantity
+            khaabaIDs.push(k.khaaba)
+        })
+
+        console.log(khaabaMapQ)
+
+        const orderKhaabay = await Khaaba.find({
+            _id: {
+                $in: khaabaIDs
+            }
+        })
+
+        orderKhaabay.forEach(k => {
+            totalPrice += (k.price * khaabaMapQ[k.id])
+        })
+
+        orderFields.totalPrice = totalPrice
+
+        const order = new Order(orderFields)
+
+        await order.save()
+
+        user.orders.push(order.id)
+
+        await user.save()
+
+        kitchen.orders.push(order.id)
+
+        await kitchen.save()
+
+        return res.status(200).json({
+            order
+        })
+
+    } catch (error) {
+        console.log(error.message)
         return res.status(400).json({
             errors: [SERVER_ERROR]
         })
     }
 
-    const orders = user.orders
 
-    return res.status(200).json({
-        activeOrders: orders.filter(order => order.isComplete)
-    })
 })
 
 module.exports = router

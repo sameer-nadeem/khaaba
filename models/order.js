@@ -28,8 +28,13 @@ const orderSchema = new Schema({
     },
     khaabay: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'khaaba'
+            khaaba: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'khaaba'
+            },
+            quantity: {
+                type: Number
+            }
         }
     ],
     date: {

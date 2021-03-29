@@ -20,6 +20,7 @@ const kitchenSchema = mongoose.Schema({
     description: {
         type: String,
     },
+
     reviews: [{
         rating: {
             type: Number
@@ -40,7 +41,9 @@ kitchenSchema.virtual('avgRating').get(function () {
     let avg = 0
     let count = this.reviews.length
     for (var i = 0; i < count; i++) {
-        avg += this.reviews[i].rating
+        if (this.reviews[i].rating) {
+            avg += this.reviews[i].rating
+        }
     }
     avg = avg / count
     return avg.toFixed(2)

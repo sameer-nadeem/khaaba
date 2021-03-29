@@ -9,7 +9,7 @@ const {
 } = require('../utils/errors')
 
 // chef accept order
-router.get('/orders/accept/:id', auth, async (req, res) => {
+router.get('/accept/:id', auth, async (req, res) => {
 
     try {
 
@@ -40,7 +40,7 @@ router.get('/orders/accept/:id', auth, async (req, res) => {
 
 
 //chef update order status ready
-router.get('/orders/ready/:id', auth, async (req, res) => {
+router.get('/ready/:id', auth, async (req, res) => {
 
     try {
 
@@ -71,7 +71,7 @@ router.get('/orders/ready/:id', auth, async (req, res) => {
 
 
 //customer cancel order
-router.get('/orders/cancel/:id', auth, async (req, res) => {
+router.get('/cancel/:id', auth, async (req, res) => {
 
     try {
 

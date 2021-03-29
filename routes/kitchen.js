@@ -25,7 +25,7 @@ router.post("/add-khaaba", auth, async (req, res) => {
   try {
 
     let khaaba = new Khaaba(khaabaFields);
-
+    khaaba.kitchen = req.user.kitchen
     if (req.body.isInstantKhaaba == 'true') {
       khaaba.instantKhaaba.isInstant = true
       khaaba.instantKhaaba.availableServings = req.body.servings;
@@ -42,7 +42,7 @@ router.post("/add-khaaba", auth, async (req, res) => {
 });
 
 
-router.post("/edit-menu/:id", auth, async (req, res) => {
+router.post("/edit-khaaba/:id", auth, async (req, res) => {
   try {
     const id = req.params.id
 

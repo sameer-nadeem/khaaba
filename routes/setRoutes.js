@@ -13,5 +13,5 @@ module.exports = (app) => {
     app.use('/chef', chefRoute)
     app.use('/profile', profileRoutes)
     app.use('/recommendations', recomRoutes)
-    app.use('/orderManagement', orderRoutes)
+    app.use('/order', orderRoutes)
 }

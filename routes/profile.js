@@ -119,55 +119,6 @@ router.post('/change-pass/customer', auth, async (req, res) => { // for testing 
 })
 
 
-
-//////////          Change Kitchen Logo
-router.post('/change-profile/logo', auth, async (req, res) => {
-    try {
-
-        ////
-        console.log(req.file)
-        console.log(req.user.id)
-        ///
-
-        let logoPath = ''
-
-        if (req.file) {
-            logoPath = req.file.path
-        }
-
-        Chef.updateOne({ _id: req.user.id },//"60573d5785214d0bc5b0f9b7"},//req.user.id},//  
-            {
-                $set:
-                {
-                    logo: `${logoPath}`,
-                }
-            },
-            function (err) {
-                if (err) {
-                    res.status(400).json({
-                        error: [SERVER_ERROR]
-                    })
-                }
-                else {
-                    const updObj = Chef.findOne({ _id: req.user.id }).populate('kitchen');
-                    return res.status(200).json(updObj);
-                }
-
-            });
-
-
-    } catch (err) {
-
-        console.error(err)
-        res.status(400).json({
-            errors: [SERVER_ERROR]
-        })
-    }
-
-});
-
-
-
 //////////          Change Chef profile (excluding kitchen logo)
 router.post('/change-profile/chef', [auth, upload.single('logo')], async (req, res) => { // final
     //router.post('/change-profile/chef',  async (req, res) => { // for testing without token

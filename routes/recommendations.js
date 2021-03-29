@@ -125,19 +125,19 @@ router.get('/bypopularity/:lat/:lng', async (req, res) => {
 
         const chefs = await Chef.find({
             'address.city': city,
-        }).sort({ avgRating: 'desc' }).limit(4).populate('kitchen', 'khaabay').populate('khaabay')
+        }).sort({ avgRating: 'desc' }).limit(4).populate('kitchen')
 
-        const khaabay = []
 
-        chefs.forEach(chef => {
-            khaabay.push(...chef.kitchen.khaabay)
+        chefs.sort((c1, c2) => {
+            return c2.avgRating - c1.avgRating
         })
 
         return res.status(200).json({
-            khaabay: khaabay.slice(0, 4)
+            chefs: chefs.slice(0, 4)
         })
 
     } catch (error) {
+        console.log(error.message)
         return res.status(400).json({
             errors: [SERVER_ERROR]
         })
