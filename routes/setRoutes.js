@@ -7,11 +7,11 @@ const orderRoutes = require('./order')
 const profileRoutes = require('./profile')
 
 module.exports = (app) => {
-    app.use('/auth', authRoutes)
-    app.use('/kitchen', kitchenRoutes)
-    app.use('/user', userRoute)
-    app.use('/chef', chefRoute)
-    app.use('/profile', profileRoutes)
-    app.use('/recommendations', recomRoutes)
-    app.use('/order', orderRoutes)
+    app.use('/api/auth', authRoutes)
+    app.use('/api/kitchen', kitchenRoutes)
+    app.use('/api/user', userRoute)
+    app.use('/api/chef', chefRoute)
+    app.use('/api/profile', profileRoutes)
+    app.use('/api/recommendations', recomRoutes)
+    app.use('/api/order', orderRoutes)
 }
