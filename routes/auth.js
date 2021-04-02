@@ -70,7 +70,7 @@ router.post('/signup/customer', async (req, res) => {
         lastName,
         city
     } = req.body
-
+    console.log(req.body)
     try {
         const isUserReg = await User.exists({
             email
