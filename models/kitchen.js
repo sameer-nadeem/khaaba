@@ -11,10 +11,10 @@ const kitchenSchema = mongoose.Schema({
     },
     activeHours: {
         start: {
-            type: Number,
+            type: String,
         },
         end: {
-            type: Number,
+            type: String,
         }
     },
     description: {

@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { Switch, Router, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
-import Register from "./components/forms/Register";
+import Register from "./components/layout/Register";
 import setAuthToken from './util/setAuthToken'
 import { loadUser } from './actions/auth'
 import { ToastContainer } from 'react-toastify';
