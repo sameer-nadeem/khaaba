@@ -154,7 +154,7 @@ const Register = ({ register, registerChef }) => {
         <form onSubmit={onSubmit} className="m-4">
             <div className="row justify-content-center align-items-center mb-3">
                 <div className="col">
-                    <span className="align-midde">Are you a Chef?
+                    <span className="align-middel">Are you a Chef?
                                     </span>
                 </div>
                 <div className="col text-end">

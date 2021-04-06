@@ -1,4 +1,4 @@
-import Reactm, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -44,6 +44,7 @@ const Navbar = ({ isAuthenticated }) => {
                                         <span className="signup-btn">Signup</span>
                                     </Link>
                                 </li>
+
                             </Fragment>
                         }
 

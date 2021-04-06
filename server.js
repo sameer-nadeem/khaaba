@@ -24,7 +24,8 @@ app.use(express.urlencoded({
 app.use(cors())
 app.use(express.json({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "build")));
+
+app.use(express.static(path.join(__dirname, "client/build")));
 
 //Routes
 setRoutes(app)
@@ -33,3 +34,4 @@ setRoutes(app)
 app.listen(PORT, () => {
     console.log(`Server started at PORT ----> ${PORT}`)
 })
+
