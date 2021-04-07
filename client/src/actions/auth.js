@@ -34,8 +34,6 @@ export const loadUser = () => async dispatch => {
 
 export const login = (formData) => async dispatch => {
     const {
-        email,
-        password,
         type
     } = formData
 
