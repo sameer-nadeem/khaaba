@@ -16,7 +16,7 @@ const {
 
 
 const storage = multer.diskStorage({
-    destination: './build/uploads/kitchen-logos',
+    destination: `${config.get('kitchen_logo_path')}`,
     filename: function (req, file, callback) {
         callback(null, `${uuid()}_` + file.originalname);
     },

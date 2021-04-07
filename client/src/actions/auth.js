@@ -5,7 +5,9 @@ import {
     AUTH_ERROR,
     USER_LOADED,
     CHEF_REGISTER_FAIL,
-    CHEF_REGISTER_SUCCESS
+    CHEF_REGISTER_SUCCESS,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS
 } from './types'
 import API from '../config/url'
 import { toast } from 'react-toastify'
@@ -28,6 +30,53 @@ export const loadUser = () => async dispatch => {
         })
     }
 }
+
+
+export const login = (formData) => async dispatch => {
+    const {
+        type
+    } = formData
+
+    console.log('login')
+
+    try {
+        const res = await axios.post(`/api/auth/login/${type}`, formData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data.token
+        })
+        dispatch(loadUser())
+        toast.success('Successfully logged in. Happy eating!')
+        history.push('/')
+    } catch (error) {
+
+        const err = error.response.data.errors[0]
+        console.log(err)
+        if (err === 'INVALID_CREDITS') {
+            toast.error('You entered invalid credentials.')
+        }
+        else {
+            toast.error('Server error')
+
+        }
+
+        dispatch({
+            type: LOGIN_FAIL
+        })
+
+    }
+
+
+
+
+}
+
+
+
 
 
 export const registerChef = (formData) => async dispatch => {
