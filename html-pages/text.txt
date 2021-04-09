@@ -1,0 +1,8 @@
+/api/profile/change-profile/chef
+
+
+axios ----> popular
+
+axios.post('/api/profile/change-profile/chef
+', data)
+axios.get
