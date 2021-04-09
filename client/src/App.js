@@ -9,6 +9,7 @@ import Login from './components/layout/Login'
 import setAuthToken from './util/setAuthToken'
 import { loadUser } from './actions/auth'
 import { ToastContainer } from 'react-toastify';
+import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
 
@@ -26,9 +27,9 @@ const App = () => {
   }, [])
 
 
+
   return (
     <Provider store={store}>
-
       <Router history={history}>
         <ToastContainer />
         <Navbar />
