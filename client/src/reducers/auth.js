@@ -8,7 +8,6 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS
 } from '../actions/types'
-
 const initialState = {
     token: null,
     user: null,

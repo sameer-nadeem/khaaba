@@ -5,6 +5,7 @@ import { Switch, Router, Route } from "react-router-dom";
 import PrivateRoute from './components/routing/PrivateRoute'
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/layout/Register";
+import ChefOrder from './components/layout/ChefOrders'
 import Login from './components/layout/Login'
 import setAuthToken from './util/setAuthToken'
 import { loadUser } from './actions/auth'
@@ -13,6 +14,7 @@ import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
 
+// import { toast } from 'react-toastify'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -27,7 +29,6 @@ const App = () => {
   }, [])
 
 
-
   return (
     <Provider store={store}>
       <Router history={history}>
@@ -36,6 +37,7 @@ const App = () => {
         <Switch>
           <Route exact path="/signup" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/chef-orders" component={ChefOrder} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </Router>
