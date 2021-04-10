@@ -65,27 +65,40 @@ router.get('/view-reviews/:id', async (req, res) => {
 
 router.get('/order-history', auth, async (req, res) => {
 
-    let orders = await Order.find({
-        user: req.user.id
-    }).populate('khaabay.khaaba')
+    try {
 
 
-    return res.status(200).json(
-        {
-            orders
-        }
-    )
+        let orders = await Order.find({
+            user: req.user.id
+        }).populate('khaabay.khaaba').populate('kitchen', ['title', 'reviews'])
+
+        console.log(orders)
+
+        return res.status(200).json(
+            {
+                orders: orders
+                    .filter(order => order.status !== 'Pending' && order.status !== "Preparing")
+            }
+        )
+
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
 })
 
 router.get('/active-orders', auth, async (req, res) => {
 
     let orders = await Order.find({
         user: req.user.id,
-    }).populate('khaabay.khaaba')
+    }).populate('khaabay.khaaba').populate('kitchen', ['title', 'reviews'])
 
 
     return res.status(200).json({
-        activeOrders: orders.filter(order => !order.isComplete)
+        activeOrders: orders
+            .filter(order => order.status !== 'Completed' && order.status !== "Cancelled" && order.status !== "Ready")
     })
 })
 

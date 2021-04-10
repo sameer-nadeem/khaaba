@@ -7,7 +7,8 @@ import {
     CHEF_REGISTER_FAIL,
     CHEF_REGISTER_SUCCESS,
     LOGIN_FAIL,
-    LOGIN_SUCCESS
+    LOGIN_SUCCESS,
+    LOGOUT
 } from './types'
 import API from '../config/url'
 import { toast } from 'react-toastify'
@@ -31,6 +32,12 @@ export const loadUser = () => async dispatch => {
     }
 }
 
+
+export const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT
+    })
+}
 
 export const login = (formData) => async dispatch => {
     const {

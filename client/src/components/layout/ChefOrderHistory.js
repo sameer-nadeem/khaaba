@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getChefActiveOrders } from '../../actions/chef'
-import ChefOrderTable from './tables/ChefOrderTable'
-const ChefOrders = ({ getChefActiveOrders, chefOrders }) => {
-    useEffect(() => {
-        getChefActiveOrders()
-    }, [])
+import { getChefCompleteOrders } from '../../actions/chef'
+import ChefOrderHsitoryTable from './tables/ChefOrderHistoryTable'
 
+
+
+const ChefOrderHistory = ({ getChefCompleteOrders, chefOrders }) => {
+    useEffect(() => {
+        getChefCompleteOrders()
+    }, [])
     return (
         <div className="container-fluid login-container">
             <div className="row justify-content-center pt-3 pb-5">
@@ -18,15 +20,15 @@ const ChefOrders = ({ getChefActiveOrders, chefOrders }) => {
                                 <div className="col text-center">
                                     <div className="btn-group pt-3">
                                         <Link to="/chef/orders">
-                                            <button className="button buttontop buttonnow">Queue</button>
+                                            <button className="button buttontop buttonswitch">Queue</button>
                                         </Link>
                                         <Link to="/chef/order-history">
-                                            <button className="button buttontop buttonswitch">History</button>
+                                            <button className="button buttontop buttonnow">History</button>
                                         </Link>
                                     </div>
                                 </div>
                             </div>
-                            <ChefOrderTable chefOrders={chefOrders} getChefOrders={getChefActiveOrders} />
+                            <ChefOrderHsitoryTable chefOrders={chefOrders} />
                         </div>
                     </div>
                 </div>
@@ -41,4 +43,4 @@ const mapStatesToProps = (state) => {
     }
 }
 
-export default connect(mapStatesToProps, { getChefActiveOrders })(ChefOrders)
+export default connect(mapStatesToProps, { getChefCompleteOrders })(ChefOrderHistory)

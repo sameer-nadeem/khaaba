@@ -80,8 +80,13 @@ a:hover {
 }
 
 .icon {
-  width: 20px !important;
   height: 20px !important;
+  width: 20px !important;
+}
+
+.icon-dropdown {
+  /* height: 20px !important; */
+  width: 30px !important;
 }
 
 .instant-khaaba-link {
@@ -223,6 +228,10 @@ a:hover {
   background-repeat: no-repeat;
   /* height: 100%; */
   min-height: 100vh;
+}
+.dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
 }
 
 input:checked + .slider {

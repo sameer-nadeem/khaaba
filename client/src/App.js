@@ -6,6 +6,7 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/layout/Register";
 import ChefOrder from './components/layout/ChefOrders'
+import ChefOrderHistory from './components/layout/ChefOrderHistory'
 import Login from './components/layout/Login'
 import setAuthToken from './util/setAuthToken'
 import { loadUser } from './actions/auth'
@@ -13,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
+import CustomerOrders from "./components/layout/CustomerOrders";
 
 // import { toast } from 'react-toastify'
 
@@ -37,7 +39,9 @@ const App = () => {
         <Switch>
           <Route exact path="/signup" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/chef-orders" component={ChefOrder} />
+          <Route exact path="/chef/orders" component={ChefOrder} />
+          <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
+          <Route exaxt path='/customer/orders' component={CustomerOrders} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </Router>

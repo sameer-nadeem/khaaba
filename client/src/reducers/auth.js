@@ -6,7 +6,8 @@ import {
     CHEF_REGISTER_FAIL,
     CHEF_REGISTER_SUCCESS,
     LOGIN_FAIL,
-    LOGIN_SUCCESS
+    LOGIN_SUCCESS,
+    LOGOUT
 } from '../actions/types'
 const initialState = {
     token: null,
@@ -33,6 +34,7 @@ const authReducer = (state = initialState, action) => {
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case CUSTOMER_REGISTER_FAIL:
+        case LOGOUT:
         case CHEF_REGISTER_FAIL:
             localStorage.removeItem('token')
             return {
