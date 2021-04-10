@@ -18,6 +18,8 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
+
+
 const Dashboard = () => (<h1>Hello</h1>)
 
 const App = () => {
