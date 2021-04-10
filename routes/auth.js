@@ -153,7 +153,7 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
     let logoPath = ''
 
     if (req.file) {
-        logoPath = req.file.path
+        logoPath = req.file.filename
     }
 
     try {

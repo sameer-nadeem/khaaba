@@ -9,23 +9,9 @@ html * {
 }
 html,
 body {
-  min-height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-body {
+  margin: 0;
   min-height: 100%;
 }
-.mywrapper {
-  min-height: 100vh;
-}
-
-/* 
-.container-fluid {
-  padding-right:0px;
-  padding-left:0px;
-} */
 
 a {
   text-decoration: none;
@@ -39,6 +25,13 @@ a:hover {
   background-color: #ff6433;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+.panel-table {
+  background: #ffffff;
+  /* Orange1 */
+  padding: 0.5em;
+  border: 2px solid #ff6433;
+  border-radius: 10px;
+}
 
 .login-card {
   background: #ffffff;
@@ -46,6 +39,16 @@ a:hover {
   padding: 0.5em;
   border: 2px solid #ff6433;
   border-radius: 10px;
+}
+
+.chef-analytics-card {
+  background: #ffffff;
+  /* Orange1 */
+  padding: 0.5em;
+  border: 2px solid #ff6433;
+  border-radius: 10px;
+  margin-top: 25pt;
+  text-align: center;
 }
 
 .login-heading {
@@ -80,13 +83,8 @@ a:hover {
 }
 
 .icon {
-  height: 20px !important;
   width: 20px !important;
-}
-
-.icon-dropdown {
-  /* height: 20px !important; */
-  width: 30px !important;
+  height: 20px !important;
 }
 
 .instant-khaaba-link {
@@ -226,12 +224,7 @@ a:hover {
   background-image: url("../img/backgrounds/kate-hliznitsova-ZIGxIQ4gzBU-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  /* height: 100%; */
   min-height: 100vh;
-}
-.dropdown-menu {
-  right: 0 !important;
-  left: auto !important;
 }
 
 input:checked + .slider {
@@ -256,55 +249,227 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/**/
 
-.img-upload-btn {
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-radius: 999px;
-}
-
-.file {
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
-  position: absolute;
-}
-
-.file-input label {
-  display: block;
-  position: relative;
-  width: 160px;
-  height: 35px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #ff6433, #ff6433);
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
+.buttonar {
+  border: none;
+  color: white;
+  width: 90px;
   cursor: pointer;
-  transition: transform 0.2s ease-out;
+  border-radius: 101px;
 }
 
-.file-name {
-  position: absolute;
-  bottom: -35px;
-  left: 10px;
+.buttona {
+  background-color: #27ae60;
+}
+
+.buttonr {
+  background-color: #eb5757;
+}
+
+.buttond {
+  background-color: #ff6433;
+}
+
+.buttontop {
+  border: none;
+  width: 11vmax;
+  height: 4vmax;
+  cursor: pointer;
+  border-radius: 5px;
+  /* margin-top: 30px;
+  margin-bottom: 20px; */
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.buttonnow {
+  background-color: #ff6433;
+  color: white;
+}
+
+.buttonswitch {
+  background-color: white;
+  border: 2px solid #ff6433;
+}
+
+.buttoninside {
+  border: none;
+  color: white;
+  background-color: #ff6433;
+  width: 90px;
+  cursor: pointer;
+  border-radius: 101px;
+}
+
+.info-heading {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
   font-size: 15pt;
+  line-height: 20px;
+  color: #000000;
+}
+
+.info-text {
+  font-family: Poppins;
+  font-style: oblique;
+  font-weight: lighter;
+  font-size: 10pt;
+  line-height: 15px;
+  color: #8e8e8e;
+}
+
+.buttonadet {
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 101px;
+  margin: 7pt;
+}
+
+.analytics-icons {
+  width: 70%;
+}
+
+.info-heading-big {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25pt;
+  line-height: 32px;
+  color: #000000;
+  /* transform: translate(-40%, 70%); */
+}
+
+.info-heading-medium {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20pt;
+  line-height: 26px;
+  color: #000000;
+  /* transform: translate(-40%, 70%); */
+}
+
+/* body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  background: #333;
+} */
+
+.chart {
+  width: 600px;
+  height: 300px;
+  display: block;
+}
+
+.numbers {
+  color: #000;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  height: 100%;
+  display: inline-block;
+}
+
+.numbers li {
+  list-style: none;
+  height: 150px;
+  position: relative;
+  bottom: 145px;
+}
+
+.numbers span {
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.bars {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f7f1f1;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 500px;
+  height: 300px;
+  box-shadow: 0 0 10px 0 #fff;
+  border-radius: 5px;
+}
+
+.bars li {
+  display: table-cell;
+  width: 100px;
+  height: 300px;
+  position: relative;
+}
+
+.bars span {
+  width: 100%;
+  position: absolute;
+  bottom: -30px;
+  text-align: center;
+}
+
+.bars .bar {
+  display: block;
+  background: #ff6433;
+  width: 50px;
+  position: absolute;
+  bottom: 0;
+  margin-left: 25px;
+  text-align: center;
+  box-shadow: 0 0 10px 0 rgba(235, 167, 128, 0.63);
+  transition: 0.5s;
+  transition-property: background, box-shadow;
+}
+
+.bars .bar:hover {
+  background: #da3e0d;
+  box-shadow: 0 0 10px 0 #ff6433;
+  cursor: pointer;
+}
+
+.bars .bar:before {
   color: #ff6433;
+  content: attr(data-percentage) "%";
+  position: relative;
+  bottom: 20px;
 }
 
-input:hover + label,
-input:focus + label {
-  transform: scale(1.02);
+.tble-heading {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 2rem;
+  color: #000000;
 }
 
-/* Adding an outline to the label on focus */
-input:focus + label {
-  outline: 0px solid #000;
-  outline: -webkit-focus-ring-color auto 2px;
+.tble-info {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 2rem;
+  color: #000000;
+}
+
+.button-text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5vw;
 }
