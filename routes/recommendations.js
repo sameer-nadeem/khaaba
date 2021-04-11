@@ -87,6 +87,7 @@ router.get('/byhistory', auth, async (req, res) => {
         console.log(orders)
 
         if (orders.length === 0) {
+            console.log('...')
             return res.status(200).json({
                 khaabay: []
             })
