@@ -1,8 +1,9 @@
-<<<<<<< HEAD
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from '../../actions/auth'
+import CartDishes from './tables/CartDishes'
+
 const Navbar = ({ isAuthenticated, type, logout }) => {
   return (
     <div className="">
@@ -26,7 +27,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0 text-center">
               <li className="nav-item">
                 <Link className="nav-link" to="/">
-                  <span className="nav-link-active">Home</span>
+                  <span className="">Home</span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -39,13 +40,6 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                   Contact Us
                 </Link>
               </li>
-=======
-import { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import CartDishes from './tables/CartDishes'
-
->>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
               <li className="nav-item">
                 <Link
@@ -74,9 +68,9 @@ import CartDishes from './tables/CartDishes'
 
               {type !== "chef" && (
                 <li className="nav-item cart-icon">
-                  <a className="nav-link" href="!#">
-                    <img className="icon" src="/img/icons/cart.png" alt="" />
-                  </a>
+                  <span className="nav-link" >
+                    <CartDishes auth={isAuthenticated} />
+                  </span>
                 </li>
               )}
               {isAuthenticated && (
@@ -121,6 +115,7 @@ import CartDishes from './tables/CartDishes'
                         </Link>
                       </li>
 
+
                       <li>
                         <Link onClick={() => logout()} className="dropdown-item" to="">
                           <img
@@ -132,7 +127,6 @@ import CartDishes from './tables/CartDishes'
                         </Link>
                       </li>
                     </ul>
-<<<<<<< HEAD
                   </li>
                 </Fragment>
               )}
@@ -140,42 +134,9 @@ import CartDishes from './tables/CartDishes'
           </div>
         </div>
       </nav>
-    </div>
+    </div >
   );
 };
-=======
-                    <ul className="navbar-nav ms-auto mt-2 mt-lg-0 text-center align-items-center">
-                        {
-                            !isAuthenticated
-                            &&
-                            <Fragment>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to='/login'>
-                                        <span className="login-btn">Login</span>
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to='/signup'>
-                                        <span className="signup-btn">Signup</span>
-                                    </Link>
-                                </li>
-
-                            </Fragment>
-                        }
-
-                    <li className="nav-item cart-icon">
-                        <span className="nav-link" >
-                             <CartDishes auth ={isAuthenticated}/>
-                            </span>
-                    </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    )
-}
->>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
 const mapStatesToProps = (state) => {
   return {

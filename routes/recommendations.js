@@ -57,9 +57,12 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
 
         chefs = chefs.filter(chef => getDistance(coords, chef.address.coords) < config.get('recommendation_radius_km'))
 
+
         chefs.sort((c1, c2) => {
-            return c2.avgRating - c1.avgRating
+            return c2.kitchen.avgRating - c1.kitchen.avgRating
         })
+
+        console.log("..", chefs)
 
         return res.status(200).json({
             chefs: chefs.slice(0, 4)

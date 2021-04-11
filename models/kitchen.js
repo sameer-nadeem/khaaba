@@ -45,6 +45,9 @@ kitchenSchema.virtual('avgRating').get(function () {
             avg += this.reviews[i].rating
         }
     }
+    if (count === 0) {
+        return 0
+    }
     avg = avg / count
     return avg.toFixed(2)
 

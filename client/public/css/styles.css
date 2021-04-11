@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: poppins;
   src: url("../fonts/Poppins-Regular.ttf");
@@ -39,8 +38,6 @@ body {
   padding-right:0px;
   padding-left:0px;
 } */
-
-
 
 a {
   text-decoration: none;
@@ -323,9 +320,8 @@ input:focus + label {
   outline: 0px solid #000;
   outline: -webkit-focus-ring-color auto 2px;
 }
-<<<<<<< HEAD
 
-.cart-card{
+.cart-card {
   background: #ffffff;
   width: 70vmin;
   /* height: ;50vh */
@@ -334,11 +330,10 @@ input:focus + label {
   border: 2px solid #ff6433;
   border-radius: 10px;
   /* margin-top: 25pt; */
-  text-align: center
-
+  text-align: center;
 }
 
-.cart-card2{
+.cart-card2 {
   background: #ffffff;
   width: 60vmin;
   /* height: vh; */
@@ -347,8 +342,7 @@ input:focus + label {
   border: 2px solid #ff6433;
   border-radius: 10px;
   /* margin-top: 25pt; */
-  text-align: center
-
+  text-align: center;
 }
 
 .cart-heading {
@@ -377,31 +371,30 @@ input:focus + label {
   /* line-height: 2rem; */
   color: #000;
 }
-.cart-list{
-  list-style-type:none;
+.cart-list {
+  list-style-type: none;
 }
 .button-checkout {
   border: none;
   color: white;
-  background-color:#ff6433 ;
+  background-color: #ff6433;
   cursor: pointer;
-  width: 50vmin; 
+  width: 50vmin;
   border-radius: 50px;
 }
 .button-checkout:hover {
   /* border: none;
   color: white; */
-  background-color:#DA3E0D ;
+  background-color: #da3e0d;
   box-shadow: 0 0 10px 0 #ff6433;
   /* cursor: pointer;
   width: 50vmin; 
   border-radius: 50px; */
 }
-.drpdown{
+.drpdown {
   background-color: #ff6433;
 }
 .add-to-cart-btn {
-  
   width: 80%;
   background: #ff6433;
   /* Orange1 */
@@ -419,10 +412,6 @@ input:focus + label {
   margin-top: 30px;
 } */
 
-
-.counter-button-left{
-
-=======
 .detail-btn {
   width: auto;
   background: #ff6433;
@@ -439,12 +428,10 @@ input:focus + label {
 }
 .person1-icon {
   box-sizing: border-box;
-  
 }
 .tick-icon {
   box-sizing: border-box;
   width: 70px !important;
-  
 }
 
 .login-fields {
@@ -452,7 +439,7 @@ input:focus + label {
   box-sizing: border-box;
   border-radius: 10px;
 }
-.subject-fields{
+.subject-fields {
   border: 1px solid #ff6433;
   width: 40%;
   box-sizing: border-box;
@@ -465,7 +452,6 @@ input:focus + label {
   border-radius: 10px;
 }
 
-
 .close {
   position: absolute;
   right: 32px;
@@ -477,10 +463,11 @@ input:focus + label {
 .close:hover {
   opacity: 1;
 }
-.close:before, .close:after {
+.close:before,
+.close:after {
   position: absolute;
   left: 15px;
-  content: ' ';
+  content: " ";
   height: 33px;
   width: 2px;
   background-color: #ff6433;
@@ -491,41 +478,37 @@ input:focus + label {
 .close:after {
   transform: rotate(-45deg);
 }
-*{
+* {
   margin: 0;
   padding: 0;
-  
 }
 .rate {
   float: middle;
   height: 46px;
   padding: 0px;
-  
 }
 .rate:not(:checked) > input {
-  position:absolute;
-  top:-9999px;
+  position: absolute;
+  top: -9999px;
 }
 .rate:not(:checked) > label {
-  float:right;
-  width:1em;
-  overflow:hidden;
-  white-space:nowrap;
-  cursor:pointer;
-  font-size:30px;
-  color:#ccc;
-  
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
 }
 .rate:not(:checked) > label:before {
-  content: '★ ';
-  
+  content: "★ ";
 }
 .rate > input:checked ~ label {
-  color: #ff6433;    
+  color: #ff6433;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-  color: #ff6433;  
+  color: #ff6433;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
@@ -535,22 +518,17 @@ input:focus + label {
   color: #ff6433;
 }
 
-.starsDiv{
-
+.starsDiv {
   margin: 0 auto;
 }
 
 .add-btn {
   margin-top: 5%;
-  margin-left:80%;
+  margin-left: 80%;
   width: 20%;
->>>>>>> 6370a37174af95e4dec34a398a4fb13a52effae1
   background: #ff6433;
   /* Orange1 */
   color: #fff;
-
-<<<<<<< HEAD
-
 
   border: 1px solid #ff6433;
   box-sizing: border-box;
@@ -558,8 +536,7 @@ input:focus + label {
   border-top-left-radius: 6px;
 }
 
-.counter-button-right{
-
+.counter-button-right {
   background: #ff6433;
   /* Orange1 */
   color: #fff;
@@ -571,7 +548,7 @@ input:focus + label {
 .counter-button-right:hover {
   /* border: none;
   color: white; */
-  background-color:#DA3E0D ;
+  background-color: #da3e0d;
   box-shadow: 0 0 10px 0 #ff6433;
   /* cursor: pointer;
   width: 50vmin; 
@@ -580,32 +557,23 @@ input:focus + label {
 .counter-button-left:hover {
   /* border: none;
   color: white; */
-  background-color:#DA3E0D ;
+  background-color: #da3e0d;
   box-shadow: 0 0 10px 0 #ff6433;
   /* cursor: pointer;
   width: 50vmin; 
   border-radius: 50px; */
 }
 
-.number-box{
-
-  background: #fff; 
-  color:#ff6433;
+.number-box {
+  background: #fff;
+  color: #ff6433;
   /* Orange1 */
   border: 1px solid #ff6433;
   box-sizing: border-box;
-
-
-  
 }
 
-.height-80{
-  height:80px;
-}
-=======
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-radius: 999px;
+.height-80 {
+  height: 80px;
 }
 .save-btn {
   margin-top: 5%;
@@ -617,12 +585,11 @@ input:focus + label {
   border: 1px solid #ff6433;
   box-sizing: border-box;
   border-radius: 999px;
-}  
+}
 .input-fields {
   border: 1px solid #ff6433;
   margin-left: 60px;
-  width : 50%;
+  width: 50%;
   box-sizing: border-box;
   border-radius: 10px;
 }
->>>>>>> 6370a37174af95e4dec34a398a4fb13a52effae1

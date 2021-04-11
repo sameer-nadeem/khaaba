@@ -24,7 +24,7 @@ const CustomerOrderTable = ({ orders }) => {
                         <th className="text-dark">Order Details</th>
                         {/* <th className="text-dark">Order Type</th> */}
                         <th className="text-dark">Status</th>
-                        <th className="text-dark">Furtur Actions</th>
+                        {/* <th className="text-dark">Furthur Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@ const CustomerOrderTable = ({ orders }) => {
                                 <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
-                                <td className="text-dark"><button type="submit" className="btn detail-btn">Action</button></td>
+                                {/* <td className="text-dark"><button type="submit" className="btn detail-btn">Action</button></td> */}
                             </tr>
 
                         ))
@@ -52,7 +52,7 @@ const CustomerOrderTable = ({ orders }) => {
                                 <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
-                                <td className="text-dark"><button type="submit" className="btn login-btn">Feedback</button></td>
+                                {/* <td className="text-dark"><button type="submit" className="btn login-btn">Feedback</button></td> */}
                             </tr>
 
                         ))
