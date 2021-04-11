@@ -34,7 +34,7 @@ const CustomerOrderTable = ({ orders }) => {
                                 <td className="text-dark">{order._id}</td>
                                 <td className="text-dark">{order.kitchen.title}</td>
                                 <td className="text-dark">{moment(order.date).format('MM-dddd-YYYY hh:mm')}</td>
-                                <td className="text-dark"><Link to="" className="btn detail-btn">Details</Link></td>
+                                <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
                                 <td className="text-dark"><button type="submit" className="btn detail-btn">Action</button></td>
