@@ -19,9 +19,14 @@ import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import CustomerOrders from "./components/layout/CustomerOrders";
 =======
 import {addToCart,loadCart} from './actions/customer'
+=======
+import CheckoutSuccess from './components/layout/Checkout'
+
+>>>>>>> 6370a37174af95e4dec34a398a4fb13a52effae1
 
 >>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
@@ -69,6 +74,7 @@ const App = () => {
         <ToastContainer />
         <Navbar />
         <Switch>
+        <Route exact path='/checkout/success' component={CheckoutSuccess} /> 
           <Route exact path="/signup" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home} />
@@ -77,6 +83,7 @@ const App = () => {
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
 
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          
         </Switch>
       </Router>
     </Provider>
