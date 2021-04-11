@@ -12,6 +12,8 @@ import { ToastContainer } from 'react-toastify';
 import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
+import CheckoutSuccess from './components/layout/Checkout'
+
 
 
 if (localStorage.token) {
@@ -34,10 +36,11 @@ const App = () => {
         <ToastContainer />
         <Navbar />
         <Switch>
+        <Route exact path='/checkout/success' component={CheckoutSuccess} /> 
           <Route exact path="/signup" component={Register} />
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
-          <Route exact path="/user/order" component={Checkout} />
+          
         </Switch>
       </Router>
     </Provider>
