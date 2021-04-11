@@ -1,106 +1,7 @@
-
-/* FARAZ/////////////////////////////////////////*/
-.add-to-cart-btn {
-  
-  width: 80%;
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-
-  margin-top: 30px;
-  margin-left: 10px;
-
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-radius: 6px;
+@font-face {
+  font-family: poppins;
+  src: url("../fonts/Poppins-Regular.ttf");
 }
-
-.dish-count{
-  margin-top: 30px;
-}
-
-
-.counter-button-left{
-
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-
-
-
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
-}
-
-.counter-button-right{
-
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-bottom-right-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
-.number-box{
-
-  background: #fff; 
-  color:#ff6433;
-  /* Orange1 */
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-
-
-  
-}
-
-.height-80{
-  height:80px;
-}
-
-
-
-
-
-
-
-
-
-.dish-image {
-  /* position: absolute; */
-
-  width: 110px;
-  height: 110px;
-  
-  text-align: center;
-  
-  border-radius: 50%;
-  
-  border: 4px solid #FF6433;
-  box-sizing: border-box;
-  }
-
-  .r-circle {
-    border-radius: 50%!important;
-    text-align: center;
-}
-
-.image-container {
-  text-align: center;
-  padding-top: 5pt;
-}
-
-.image-container3 {
-  text-align: center;
-  padding-top: 5pt;
-  height: 100px;
-  width: 100px
-
-}
-
 
 html * {
   font-family: poppins;
@@ -370,6 +271,13 @@ a:hover {
   padding-right: 15px;
 }
 
+.login-container {
+  background-image: url("../img/backgrounds/kate-hliznitsova-ZIGxIQ4gzBU-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
 
 
 .menu-top-container{
@@ -378,7 +286,7 @@ a:hover {
 
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 290px;
+  height: 290px;
   
   background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url("../img/backgrounds/lily-banse--YHSwy6uqvk-unsplash.jpg");
 }
@@ -492,7 +400,7 @@ div label input {
 body {
    font-family:sans-serif;
 }
-.image-container2{
+.image-container{
   text-align: center;
   }
 .camera-container{
@@ -512,7 +420,7 @@ border-radius: 50%;
 border: 4px solid #FF6433;
 box-sizing: border-box;
 }
-.dish-image2 {
+.dish-image {
   /* position: absolute; */
   margin-top: 1%;
   margin-left: 1%;
@@ -639,289 +547,64 @@ color: #000000;
 }
 
 
-/* FARAAZ/////////////////////////////////////////*/
-
-
-/* ////////HAMZA //////////////////*/
-
-.bg-white {
-
-background-color: white;
-
-}
-
-.bg-orange {
-
-background-color: #FF6433;
-
-}
-
-.color-white {
-
-color: white;
-
-}
-
-
-.color-orange {
-
-color: #FF6433
-
-}
-.cusine-card {
-width: 10rem; border-radius: 16px;
-
-
-}
-.kitchen-card {
-
-width: 18rem; border-radius: 16px;
-
-}
-
-.rounded-image{
-
- border-top-left-radius: 16px; border-top-right-radius: 16px 
-
-}
-
-.star1{
-font-size: 25px; letter-spacing: 4px; bottom: 0;
-
-}
-.rating-font {
-
-font-size: 20px; color: #8E8E8E;
-
-}
-
-
-
-
-.card{
-  border: 2px solid #FF6433;
-
-}
-.carousel-control-next-icon{
-  src:url ("./img/icons/cart.png")
+.add-to-cart-btn {
   
-}
-@font-face {
-  font-family: poppins;
-  src: url("../fonts/Poppins-Bold.ttf");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: poppins;
-  src: url("../fonts/Poppins-SemiBold.ttf");
-  font-weight: semibold;
-}
-.orange-btn {
-/* Orange1 */
-
-
-background: #FF6433;
-/* Orange1 */
-
-border: 1px solid #FF6433;
-box-sizing: border-box;
-
-border-radius: 20px;
-
-}
-.review-card{
- 
-  position: absolute;
-width: 20pc;
-height: 305px;
-margin: auto;
-
-
-background: #FFFFFF;
-border-radius: 30px;
-  background: #FFFFFF;
-  border-radius: 30px;
-
-}
-.img-fill {
- 
-object-fit: fill;
-  background-image: url("appetizer.jpg");
-  background-size: cover;
-
-  background-position: 0% 0%;
-}
-
-.cuisine {
-
-  left: 0%;
-  right: 0%;
-  top: 13.26%;
-  bottom: 11.6%;
-  
-  background: #FFFFFF;
+  width: 80%;
+  background: #ff6433;
   /* Orange1 */
-  
-  border: 1px solid #FF6433;
+  color: #fff;
+
+  margin-top: 30px;
+  margin-left: 10px;
+
+  border: 1px solid #ff6433;
   box-sizing: border-box;
-  border-radius: 16px;
-}
-.checked {
-  color: #FF6433;
-  
-}
-.review-heading{
-  font-family: Poppins;
- 
-  font-weight: semibold;
-  font-size: 48px;
-  line-height: 36px;
-  /* or 75% */
-  
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.25px;
-  
-  color: #000000;
-
+  border-radius: 6px;
 }
 
-.carousel-multi-item .controls-top {
-  margin-bottom: 1.88rem;
-  text-align: center;
+
+.dish-count{
+  margin-top: 30px;
 }
 
-.carousel-item {
-  height: 350px;
-}
 
-.carousel-indicators li {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-}
-.carousel-indicators {
-  bottom: -30px;
-}
-.searchbar-center{
-position: relative;
-top: 200px;
+.counter-button-left{
 
-}
-
-.fitted {
-    padding: 120px 70px;
-}
-.strip{
-  position: relative;
-  background-image: url(../img/backgrounds/strip.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 50vh;
-
-}
-.khaabatry-card{
-  position: relative;  
-  top: -150px;
-  background: #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-}
-
-.rounded-edges{
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  
+  background: #ff6433;
   /* Orange1 */
-  
-  border: 3px solid #FF6433;
+  color: #fff;
+
+
+
+  border: 1px solid #ff6433;
   box-sizing: border-box;
-  border-radius: 16px;
-
-}
-.findfood-btn {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  
-  background: #FF6433;
-  border-radius: 135px;
-} 
-.search-heading {
-
-
-font-family: Poppins;
-font-style: normal;
-font-weight: 600;
-font-size: 80px;
-line-height: 90px;
-/* or 108% */
-
-font-feature-settings: 'liga' off;
-
-/* Text / Gray 900 */
-
-color: #18191F;
-
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
 }
 
-.search-subheading {
+.counter-button-right{
 
-  
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 32px;
-  /* or 178% */
-  
-  font-feature-settings: 'liga' off;
-  
-  /* Text / Gray 900 */
-  
-  color: #18191F;
-  
-  
-  /* Inside Auto Layout */
-  
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin: 16px 0px;
-
-
-
+  background: #ff6433;
+  /* Orange1 */
+  color: #fff;
+  border: 1px solid #ff6433;
+  box-sizing: border-box;
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
 }
-.find-heading {
 
- 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 12px;
-  line-height: 18px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+.number-box{
+
+  background: #fff; 
+  color:#ff6433;
+  /* Orange1 */
+  border: 1px solid #ff6433;
+  box-sizing: border-box;
+
+
   
-  /* White */
-  
-  color: #FFFFFF;
-
-
 }
-.home-container {
-  background-image: url("../img/backgrounds/Group_231.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
+
+.height-80{
+  height:80px;
 }

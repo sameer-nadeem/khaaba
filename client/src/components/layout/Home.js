@@ -3,12 +3,61 @@ import {connect} from 'react-redux'
 import { getPopularKitchens} from '../../actions/homepage'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+// import { addToCart }  from '../../actions/homeAction'
+
+import { getHistoryRecommendation } from '../../actions/homeAction'
+import {useEffect} from 'react'
+import axios from 'axios'
+
+
+
+
+
 
 const Home = () => {
 
-const [popkitchens,setpopkitchens] =useState([])
+    const [byHistory, sethistory ] = React.useState([])
+
+    const [dishcounter, setdishcounter ] = React.useState([0,0,0,0])
+
+    const increasecounter = (index)=>{
+
+        let temparray = [...dishcounter]
+        temparray[index] = temparray[index]+1
+
+        setdishcounter(temparray)
+        console.log(temparray)
+    }
+
+    const decreasecounter = (index)=>{
+
+        let temparray = [...dishcounter]
+        if( temparray[index] !== 0)
+        {
+            temparray[index] = temparray[index]-1
+
+            setdishcounter(temparray)
+            console.log(temparray)
+        }
+
+    }
+    const [popkitchens,setpopkitchens] =useState([])
 
 useEffect(async() => { 
+   try {
+            const res = await axios.get('/api/recommendations/byhistory') 
+            
+            console.log(res.data.khaabay);
+
+            sethistory(res.data.khaabay)
+
+          }
+          catch(error) {
+            console.log(error);
+            
+            //toast error something went wrong please try again
+          }
+
     let nav= await navigator.geolocation.getCurrentPosition(async (position)=> {
       const res= await axios.get(`/api/recommendations/bylocation/${position.coords.latitude}/${position.coords.longitude}`)
       setpopkitchens(res.data.chefs)
@@ -37,7 +86,13 @@ let ratingcheck = (avgRating) => {
 
 }
 
+
+  
+
+
     return (
+
+ 
         <Fragment>
 
 <div className="container-fluid home-container fitted justify-content-center">
@@ -52,7 +107,9 @@ let ratingcheck = (avgRating) => {
        <div className="col-md-4">
            <h4 className="search-subheading ">Khaaba is the place to satisfy all your cravings for delicious homecooked food  </h4>
        </div>
-       <div className="row">
+
+       </div>
+           <div className="row">
            <div className="col-md-5  ">
            <div className="input-group ">
                <input type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
@@ -83,6 +140,7 @@ let ratingcheck = (avgRating) => {
        </div>
        <div className="row justify-content-end"> 
            <div className="col-md-4 form-group">
+
                <button className="btn btn-primary pull-right orange-btn " type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
              </div>
            
@@ -98,6 +156,7 @@ let ratingcheck = (avgRating) => {
    <div  className="review-heading d-inline"> Popular<span className="color-orange"> Kitchens</span> </div>
  </div>
    <div className="row justify-content-sm-evenly px-5 ">
+
 
 {
   popkitchens.map((chef,index) => (
@@ -120,7 +179,7 @@ let ratingcheck = (avgRating) => {
                    </div>
                    </div>
                    </div>
- 
+
          </div>
   ))
   }
@@ -136,6 +195,7 @@ let ratingcheck = (avgRating) => {
 </div>
      <div className="row justify-content-center px-lg-5 ">
      <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -151,6 +211,7 @@ let ratingcheck = (avgRating) => {
 
    </div>
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -158,7 +219,8 @@ let ratingcheck = (avgRating) => {
        <div className="row px-3">
        <div className="card-body">
            
-         <h5 className="card-title text-center pb-2" >Pizzas</h5>
+         <h5 className="card-title text-center pb-2">Pizzas</h5>
+
 
      </div>
      </div>
@@ -166,6 +228,7 @@ let ratingcheck = (avgRating) => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -181,6 +244,7 @@ let ratingcheck = (avgRating) => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -196,6 +260,7 @@ let ratingcheck = (avgRating) => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -211,6 +276,7 @@ let ratingcheck = (avgRating) => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -226,6 +292,7 @@ let ratingcheck = (avgRating) => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card"  onClick={() => toast.error(`Feature underconstruction`)}>
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -242,6 +309,7 @@ let ratingcheck = (avgRating) => {
 
    
    <div className="col d-flex justify-content-center pb-4" >
+
      <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
@@ -258,10 +326,7 @@ let ratingcheck = (avgRating) => {
    
      </div>
    </div>
-   {/* </div> */}
 
-   {/* <div >
-   </div> */}
    <div className="container-fluid pt-5 pb-5 bg-white" >
      <div className="row justify-content-sm-center pb-5">
        <div  className="review-heading d-inline"> You might<span className="color-orange"> also like...</span> </div>
@@ -269,137 +334,49 @@ let ratingcheck = (avgRating) => {
        
  <div className="row dish-card-row px-5  pb-4 justify-content-center ">
 
-   <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
-     <div className = "card dish-card">                             
-         <div className="image-container">
-             <img className="dish-image2" src="appetizer.jpg" alt="Dish preview"/>
-             </div> 
-             <div className="row align-items-end justify-content-center height-80">
-                 <div className = "row justify-content-between">
-                     <div className = "col dishname">chicken karahi </div>
-                     <div className = "col-2 text-end price" > Rs 0000 </div>
-                 </div>
-                 <div className = "row">
 
-                     <div className = "col"> steam cooked </div>
-                 </div>
-             </div>
-             <div className="row justify-content-start">
-                 
-                 <div className = "row justify-content-between">
-                     <div className = "col dishname"><button type="submit" className=" add-to-cart-btn ">Add to cart</button></div>
-                     <div className = "col-2 text-end price dish-count" >
-                         <div className="btn-group" role="group" aria-label="Basic example">
-                         <button type="button" className="counter-button-left">+</button>
-                         <button type="button" className="number-box">00</button>
-                         <button type="button" className="counter-button-right">-</button>
-                       </div>  </div>
-                 </div>
-             </div>
-     </div>
-   </div>
-
-   <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
-       <div className = "card dish-card">                             
-           <div className="image-container">
-               <img className="dish-image2" src="appetizer.jpg" alt="Dish preview"/>
-               </div> 
-               <div className="row align-items-end justify-content-center height-80">
-                   <div className = "row justify-content-between">
-                       <div className = "col dishname">chicken karahi </div>
-                       <div className = "col-2 text-end price" > Rs 0000 </div>
-                   </div>
-                   <div className = "row">
- 
-                       <div className = "col"> steam cooked </div>
-                   </div>
-               </div>
-               <div className="row justify-content-start">
-                   
-                   <div className = "row justify-content-between">
-                       <div className = "col dishname"><button type="submit" className=" add-to-cart-btn ">Add to cart</button></div>
-                       <div className = "col-2 text-end price dish-count" >
-                           <div className="btn-group" role="group" aria-label="Basic example">
-                           <button type="button" className="counter-button-left">+</button>
-                           <button type="button" className="number-box">00</button>
-                           <button type="button" className="counter-button-right">-</button>
-                         </div>  </div>
-                   </div>
-               </div>
-       </div>
-     </div>
+{
+    
+    byHistory.map((khaabay, index)=>(
 
 
-     <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
-       <div className = "card dish-card">                             
-           <div className="image-container">
-               <img className="dish-image2" src="appetizer.jpg" alt="Dish preview"/>
-               </div> 
-               <div className="row align-items-end justify-content-center height-80">
-                   <div className = "row justify-content-between">
-                       <div className = "col dishname">chicken karahi </div>
-                       <div className = "col-2 text-end price" > Rs 0000 </div>
-                   </div>
-                   <div className = "row">
- 
-                       <div className = "col"> steam cooked </div>
-                   </div>
-               </div>
-               <div className="row justify-content-start">
-                   
-                   <div className = "row justify-content-between">
-                       <div className = "col dishname"><button type="submit" className=" add-to-cart-btn ">Add to cart</button></div>
-                       <div className = "col-2 text-end price dish-count" >
-                           <div className="btn-group" role="group" aria-label="Basic example">
-                           <button type="button" className="counter-button-left">+</button>
-                           <button type="button" className="number-box">00</button>
-                           <button type="button" className="counter-button-right">-</button>
-                         </div>  </div>
-                   </div>
-               </div>
-       </div>
-     </div>
+        <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
+        <div className = "card dish-card">                             
+            <div className="image-container">
+                <img className="dish-image2" src="appetizer.jpg" alt="Dish preview"/>
+                </div> 
+                <div className="row align-items-end justify-content-center height-80">
+                    <div className = "row justify-content-between">
+                        <div className = "col dishname">{`${khaabay.khaaba.title}`} </div> 
+                        <div className = "col-2 text-end price" > {`Rs ${khaabay.khaaba.price}`} </div>
+                    </div>
+                    <div className = "row">
+  
+                        <div className = "col"> {`${khaabay.khaaba.description}`} </div>
+                    </div>
+                </div>
+                <div className="row justify-content-start">
+                    
+                    <div className = "row justify-content-between">
+                        <div className = "col dishname"><button type="submit" className=" add-to-cart-btn " >Add to cart</button></div>
+                        <div className = "col-2 text-end price dish-count" >
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" className="counter-button-left" onClick={()=>decreasecounter(index)} >-</button>
+                            <button type="button" className="number-box">{`${dishcounter[index]}`}</button>
+                            <button type="button" className="counter-button-right"onClick={()=>increasecounter(index)}>+</button>
+                          </div>  </div>
+                    </div>
+                </div>
+        </div>
+      </div>
+    ))
+}
 
-     <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
-       <div className = "card dish-card">                             
-           <div className="image-container">
-               <img className="dish-image2" src="appetizer.jpg" alt="Dish preview"/>
-               </div> 
-               <div className="row align-items-end justify-content-center height-80">
-                   <div className = "row justify-content-between">
-                       <div className = "col dishname">chicken karahi </div>
-                       <div className = "col-2 text-end price" > Rs 0000 </div>
-                   </div>
-                   <div className = "row">
- 
-                       <div className = "col"> steam cooked </div>
-                   </div>
-               </div>
-               <div className="row justify-content-start">
-                   
-                   <div className = "row justify-content-between">
-                       <div className = "col dishname"><button type="submit" className=" add-to-cart-btn ">Add to cart</button></div>
-                       <div className = "col-2 text-end price dish-count" >
-                           <div className="btn-group" role="group" aria-label="Basic example">
-                           <button type="button" className="counter-button-left">+</button>
-                           <button type="button" className="number-box">00</button>
-                           <button type="button" className="counter-button-right">-</button>
-                         </div>  </div>
-                   </div>
-               </div>
-       </div>
-     </div>
- 
 </div>
  
            </div>
            
-        {/*</div>
-         </div>    
-         </div>
 
-         </div>
-         </div> */}
 
         </Fragment>
         
@@ -408,4 +385,4 @@ let ratingcheck = (avgRating) => {
 }
 
 export default Home
-// export default connect (null, {getPopularKitchens}) (Home)
+

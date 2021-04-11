@@ -8,6 +8,7 @@ import Register from "./components/layout/Register";
 
 import Home from "./components/layout/Home";
 
+
 import ChefOrder from './components/layout/ChefOrders'
 import ChefOrderHistory from './components/layout/ChefOrderHistory'
 import Login from './components/layout/Login'
@@ -24,6 +25,19 @@ import CustomerOrders from "./components/layout/CustomerOrders";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
+if (!localStorage.cart){
+
+  localStorage.setItem('cart',JSON.stringify({kitchenID:0,
+                                              khaabay:[]}))
+}
+
+
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+
 
 
 
@@ -48,6 +62,7 @@ const App = () => {
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
+
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </Router>
