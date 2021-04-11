@@ -136,7 +136,7 @@ const Home = ({ addToCart }) => {
             <div className="row justify-content-end">
               <div className="col-md-4 form-group">
 
-                <button className="btn btn-primary pull-right orange-btn " type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
+                <button className="btn pull-right orange-btn" type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
               </div>
 
             </div>
@@ -168,7 +168,7 @@ const Home = ({ addToCart }) => {
                           <i className="fa fa-star checked star1"> </i>
                           <span className="d-inline-block text-align-center rating-font">{ratingcheck(chef.kitchen.avgRating)}</span>
                         </span>
-                        <a className="btn btn-primary pull-right orange-btn " onClick={() => toast.error(`Feature underconstruction`)}>Menu </a>
+                        <a className="btn pull-right orange-btn" style={{ color: "white" }} onClick={() => toast.error(`Feature underconstruction`)}>Menu </a>
 
                       </div>
                     </div>
