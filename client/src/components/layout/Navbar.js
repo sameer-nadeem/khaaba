@@ -52,7 +52,7 @@ const Navbar = ({ isAuthenticated }) => {
 
                     <li className="nav-item cart-icon">
                         <span className="nav-link" >
-                             <CartDishes/>
+                             <CartDishes auth ={isAuthenticated}/>
                             </span>
                     </li>
 

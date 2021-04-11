@@ -10,3 +10,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const ADD_CART = 'ADD_CART' 
 export const REMOVE_CART = 'REMOVE_CART'
+export const CHECKOUT_FAIL = "CHECKOUT_FAIL"
+export const  CHECKOUT_SUCCESS = "CHECKOUT_SUCCESS"

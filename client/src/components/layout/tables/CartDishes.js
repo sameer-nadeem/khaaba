@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import {postCheckout} from '../../../actions/customer'
 import {connect} from 'react-redux'
 
 
 // import moment from 'moment'
 import axios from 'axios'
 
-const CartDishes = ({cart}) => {
+const CartDishes = ({cart,postCheckout,auth}) => {
     
 const totalCalc = (cart) => {
     let total =0
@@ -14,6 +15,12 @@ const totalCalc = (cart) => {
     });
     return total
 }
+
+const clickFunc = () => {
+
+postCheckout(auth)
+}
+
 
 
 
@@ -63,7 +70,7 @@ return (
                     </div>
             </div>
             <div className="row justify-content-center">
-            <button className="button button-checkout button-sm">Done</button>
+            <button className="button button-checkout button-sm" onClick={clickFunc} >Done</button>
             </div>
         </div>
         </div>
@@ -83,5 +90,5 @@ const mapStatesToProps = (state) => {
     }
 }
 
-export default connect(mapStatesToProps)(CartDishes)
+export default connect(mapStatesToProps,{postCheckout})(CartDishes)
 

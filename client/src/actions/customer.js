@@ -1,31 +1,47 @@
-import {ADD_CART, REMOVE_CART} from './types'
-import {toast} from 'react-toastify'
+import {ADD_CART, REMOVE_CART,CHECKOUT_FAIL,CHECKOUT_SUCCESS} from './types'
+import {toast, ToastContainer} from 'react-toastify'
 import 
 {
-    CHECKOUT_FAIL,
-    CHECKOUT_SUCCESS
+
 }from'./types'
 import axios from 'axios'
 
 
 
-export const getCheckout = ()=>async dispatch=>
+export const postCheckout = (isAuthenticated)=>async dispatch=>
 {
+    let cart = JSON.parse(localStorage.cart)
+    if (!isAuthenticated) {
+        toast.error('You are not Signed in')
+        return
+    }
+    if(cart.kitchenID !== 0)
+    {
     try{
-        const res = await axios.post('api/user/order')
+        const res = await axios.post('api/user/order',cart,
+        {headers: {
+            'Content-Type': 'application/json'
+            }})
+        localStorage.setItem('cart',JSON.stringify({kitchenID:0,
+            khaabay:[]}))
         dispatch({
             type: CHECKOUT_SUCCESS,
-            payload : res.data.orders
         })
+        toast.success('Succesfully Ordered')
+
     }
     catch (error){
         dispatch({
             type: CHECKOUT_FAIL,
-
         })
         toast.error("Server error!")
     }
+    }else{
+
+        toast.error('Your Cart is Empty!')
+    }
 } 
+
 
 export const addToCart =  (kitchenID, khaabaID, quantity, price, title) => dispatch =>{
 

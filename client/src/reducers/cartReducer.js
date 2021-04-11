@@ -1,4 +1,4 @@
-import {ADD_CART, REMOVE_CART} from '../actions/types'
+import {ADD_CART, REMOVE_CART, CHECKOUT_SUCCESS, CHECKOUT_FAIL} from '../actions/types'
 import {toast} from 'react-toastify'
 
 const initialState = {
@@ -13,8 +13,13 @@ const cartReducer = (state = initialState, action) => {
             
             return {kitchenID:action.payload.kitchenID,
                     khaabay: action.payload.khaabay}
-            
-    
+        case CHECKOUT_SUCCESS:
+                return {
+                    kitchenID: null,
+                    khaabay: []  
+                }
+        case CHECKOUT_FAIL:
+
         default:
             return state
     }

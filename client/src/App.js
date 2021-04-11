@@ -31,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     store.dispatch(loadUser())
-    // store.dispatch(addToCart(1,12344,2,60,'Thai Noodles'))
+    store.dispatch(addToCart('6060e763bb69f004ab5db929','6060ebe6ebf5ef4e98b38637',2,60,'Thai Noodles'))
     // store.dispatch(addToCart(1,12344,2,60,'TNoodles'))
     // store.dispatch(addToCart(1,12344,2,60,'Thigh'))
 
