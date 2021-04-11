@@ -13,7 +13,7 @@ router.get('/order-history', auth, async (req, res) => {
 
     let orders = await Order.find({
         kitchen: req.user.kitchen,
-    }).populate('khaabay.khaaba').populate('user', ['firstName', 'lastName'])
+    }).populate('khaabay.khaaba').populate('user', ['-password',])
 
     console.log(orders)
 
@@ -26,7 +26,7 @@ router.get('/active-orders', auth, async (req, res) => {
 
     let orders = await Order.find({
         kitchen: req.user.kitchen,
-    }).populate('khaabay.khaaba').populate('user', ['firstName', 'lastName'])
+    }).populate('khaabay.khaaba').populate('user', ['-password'])
 
     console.log(orders)
     return res.status(200).json({

@@ -1,11 +1,20 @@
-import React, { Fragment, useEffect } from 'react'
-
+import React, { Fragment, useEffect, useState } from 'react'
+import UserDetail from '../../modals/UserDetail'
 import moment from 'moment'
 import axios from 'axios'
 const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
     useEffect(() => {
         console.log(chefOrders)
     }, [])
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [userDetail, setUserDetail] = useState(null)
+    const showUserDetail = (user) => {
+        setUserDetail(user)
+        setShow(true)
+    }
 
     const onAccept = async (id) => {
         console.log(id)
@@ -37,6 +46,8 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
 
     return (
         <Fragment>
+            <UserDetail user={userDetail} show={show} handleClose={handleClose} handleShow={handleShow} />
+
             <div
                 className="table-responsive"
             // style="filter: blur(0px) brightness(100%)"
@@ -109,7 +120,7 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                                     <td className="table-heading text-break">{moment(order.date).format('MM-dddd-YYYY hh:mm')}</td>
                                     <td className="table-heading text-break">{order.user.firstName}
                                         <br />
-                                        <button className="button buttonar buttond btn-sm">Details</button>
+                                        <button onClick={() => showUserDetail(order.user)} className="button buttonar buttond btn-sm">Details</button>
                                     </td>
                                     <td className="table-heading text-break w-25">
                                         <ul className="list-group">
