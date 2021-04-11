@@ -1,6 +1,8 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-
+import React, { Fragment, useEffect, useState } from 'react'
+import {connect} from 'react-redux'
+import { getPopularKitchens} from '../../actions/homepage'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 // import { addToCart }  from '../../actions/homeAction'
 
 import { getHistoryRecommendation } from '../../actions/homeAction'
@@ -39,9 +41,10 @@ const Home = () => {
         }
 
     }
+    const [popkitchens,setpopkitchens] =useState([])
 
-     useEffect(async ()=>{
-        try {
+useEffect(async() => { 
+   try {
             const res = await axios.get('/api/recommendations/byhistory') 
             
             console.log(res.data.khaabay);
@@ -55,14 +58,41 @@ const Home = () => {
             //toast error something went wrong please try again
           }
 
+    let nav= await navigator.geolocation.getCurrentPosition(async (position)=> {
+      const res= await axios.get(`/api/recommendations/bylocation/${position.coords.latitude}/${position.coords.longitude}`)
+      setpopkitchens(res.data.chefs)
+      console.log(position.coords.latitude,position.coords.longitude)
 
-    }, [])
+    }, showError);
+  
+  function showError(error) {
+    toast.error("Geolocation Error") ;
+    }
+  
+  // const res= await axios.get('/api/recommendations/bylocation/31.401068715387026/74.26103820925032')
+  // setpopkitchens(res.data.chefs)
+  // getPopularKitchens()
+}, []
+)
+console.log(popkitchens)
+
+let ratingcheck = (avgRating) => {
+
+  if (avgRating==`NaN`)
+  {
+    return `--`
+  }
+  return `${avgRating}/5`
+
+}
+
+
+  
 
 
     return (
 
-        
-
+ 
         <Fragment>
 
 <div className="container-fluid home-container fitted justify-content-center">
@@ -77,21 +107,20 @@ const Home = () => {
        <div className="col-md-4">
            <h4 className="search-subheading ">Khaaba is the place to satisfy all your cravings for delicious homecooked food  </h4>
        </div>
+
        </div>
-    
-       <div className="row">
+           <div className="row">
            <div className="col-md-5  ">
            <div className="input-group ">
                <input type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
                  aria-describedby="search-addon" />
-               <button type="button" className="btn findfood-btn find-heading">Find Food</button>
+               <button type="button" className="btn findfood-btn find-heading" onClick={() => toast.error(`Feature underconstruction`)}>Find Food</button>
              </div>
              </div>
-       </div>      
-   
+       </div>  
 
-       
-
+       </div>
+  
 
 
  
@@ -111,7 +140,8 @@ const Home = () => {
        </div>
        <div className="row justify-content-end"> 
            <div className="col-md-4 form-group">
-               <button className="btn btn-primary pull-right orange-btn " type="submit">Try Now</button>
+
+               <button className="btn btn-primary pull-right orange-btn " type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
              </div>
            
        </div>
@@ -127,111 +157,34 @@ const Home = () => {
  </div>
    <div className="row justify-content-sm-evenly px-5 ">
 
-     <div className="col-lg-3 pb-2 d-flex justify-content-center">
-         
+
+{
+  popkitchens.map((chef,index) => (
+     <div key={`${index}`} className="col-lg-3 pb-2 d-flex justify-content-center">   
                   
                    <div className="card justify-content-md-center kitchen-card">
-                     <img src="appetizer.jpg" className="card-img-top rounded-image" alt="..." />
+                     <img src={`/uploads/kitchen-logos/${chef.kitchen.logo}`} className="card-img-top rounded-image" alt="Logo" />
                      <div className="row px-3  justify-content-sm-center">
                      <div className="card-body">
                          
-                       <h5 className="card-title text-center pb-2">Kitchen Name</h5>
+                       <h5 className="card-title text-center pb-2">{`${chef.kitchen.title}`}</h5>
                      <div className="bottom-0 ">
                          <span className="d-inline-block bottom-0">
                          <i className="fa fa-star checked star1"> </i>
-                         <span className="d-inline-block text-align-center rating-font"> 4/<span>5</span></span>
-                       
+                         <span className="d-inline-block text-align-center rating-font">{ratingcheck(chef.kitchen.avgRating)}</span>                     
                      </span>
-                     
-                     
-                       <a href="#" className="btn btn-primary pull-right orange-btn ">Menu </a>
-                    
-                     </div>
-                   </div>
-                   </div>
-                   </div>
-           </div>
-
-                 <div className="col-lg-3 pb-2 d-flex justify-content-center">        
-                  
-                   <div className="card kitchen-card">
-                     <img src="appetizer.jpg" className="card-img-top rounded-image" alt="..."/>
-                     <div className="row px-3">
-                     <div className="card-body">
-                         
-                       <h5 className="card-title text-center pb-2">Kitchen Name</h5>
-                     <div className="bottom-0 ">
-                         <span className="d-inline-block bottom-0">
-                         <i className="fa fa-star checked star1 "> </i>
-                         <span className="d-inline-block text-align-center rating-font"> 4/<span>5</span></span>
-                       
-                     </span>
-                     
-                     
-                       <a href="#" className="btn btn-primary pull-right orange-btn ">Menu </a>
+                       <a className="btn btn-primary pull-right orange-btn " onClick={() => toast.error(`Feature underconstruction`)}>Menu </a>
                     
                      </div>
                    </div>
                    </div>
                    </div>
 
-                   </div>
+         </div>
+  ))
+  }
                   
-                   <div className="col-lg-3 pb-2 d-flex justify-content-center">
 
-
-                     <div className="card kitchen-card">
-                       <img src="appetizer.jpg" className="card-img-top rounded-image" alt="..."/>
-                       <div className="row px-3">
-                       <div className="card-body">
-                           
-                         <h5 className="card-title text-center pb-2">Kitchen Name</h5>
-                       <div className="bottom-0 ">
-                           <span className="d-inline-block bottom-0">
-                           <i className="fa fa-star checked star1 "> </i>
-                           <span className="d-inline-block text-align-center rating-font"> 4/<span>5</span></span>
-                         
-                       </span>
-                       
-                       
-                         <a href="#" className="btn btn-primary pull-right orange-btn ">Menu </a>
-                      
-                       </div>
-                     </div>
-                     </div>
-                     </div>
-                  
-                  </div>
-
-                  <div className="col-lg-3 pb-2 d-flex justify-content-center">
-
-                   <div className="card kitchen-card">
-                     <img src="appetizer.jpg" className="card-img-top rounded-image" alt="..."/>
-                     <div className="row px-3">
-                     <div className="card-body">
-                         
-                       <h5 className="card-title text-center pb-2">Kitchen Name</h5>
-                     <div className="bottom-0 ">
-                         <span className="d-inline-block bottom-0">
-                         <i className="fa fa-star checked star1 "> </i>
-                         <span className="d-inline-block text-align-center rating-font "> 4/<span>5</span></span>
-                       
-                     </span>
-                     
-                     
-                       <a href="#" className="btn btn-primary pull-right orange-btn ">Menu </a>
-                    
-                     </div>
-                   </div>
-                   </div>
-                   </div>
-                  
-                 
-                             
-         
-     </div>
-     
-   
   
  
  </div>
@@ -242,7 +195,8 @@ const Home = () => {
 </div>
      <div className="row justify-content-center px-lg-5 ">
      <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -257,7 +211,8 @@ const Home = () => {
 
    </div>
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -266,13 +221,15 @@ const Home = () => {
            
          <h5 className="card-title text-center pb-2">Pizzas</h5>
 
+
      </div>
      </div>
      </div>  
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -287,7 +244,8 @@ const Home = () => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -302,7 +260,8 @@ const Home = () => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -317,7 +276,8 @@ const Home = () => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -332,7 +292,8 @@ const Home = () => {
    </div>
 
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card"  onClick={() => toast.error(`Feature underconstruction`)}>
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -348,7 +309,8 @@ const Home = () => {
 
    
    <div className="col d-flex justify-content-center pb-4" >
-     <div className="card cusine-card" >
+
+     <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
        <div className="image-container">
          <img className="dish-image" src="appetizer.jpg" alt="Dish preview"/>
          </div> 
@@ -409,7 +371,7 @@ const Home = () => {
       </div>
     ))
 }
- 
+
 </div>
  
            </div>

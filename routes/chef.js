@@ -13,10 +13,12 @@ router.get('/order-history', auth, async (req, res) => {
 
     let orders = await Order.find({
         kitchen: req.user.kitchen,
-    }).populate('khaabay.khaaba')
+    }).populate('khaabay.khaaba').populate('user', ['-password',])
+
+    console.log(orders)
 
     return res.status(200).json({
-        orders
+        orders: orders.filter(order => order.status !== 'Pending' && order.status !== "Preparing")
     })
 })
 
@@ -24,12 +26,14 @@ router.get('/active-orders', auth, async (req, res) => {
 
     let orders = await Order.find({
         kitchen: req.user.kitchen,
-    }).populate('khaabay.khaaba')
+    }).populate('khaabay.khaaba').populate('user', ['-password'])
 
+    console.log(orders)
     return res.status(200).json({
         activeOrders: orders
-            .filter(order => !order.isComplete)
+            .filter(order => order.status !== 'Completed' && order.status !== "Cancelled" && order.status !== "Ready")
     })
+
 })
 
 

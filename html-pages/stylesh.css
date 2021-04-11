@@ -1,19 +1,6 @@
-
 @font-face {
   font-family: poppins;
-  src: url("../fonts/Poppins-Regular.ttf");
-  font-weight: normal;
-}
-@font-face {
-  font-family: poppins;
-  src: url("../fonts/Poppins-Bold.ttf");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: poppins;
-  src: url("../fonts/Poppins-SemiBold.ttf");
-  font-weight: semibold;
+  src: url("./Poppins-Regular.ttf");
 }
 
 html * {
@@ -22,25 +9,9 @@ html * {
 }
 html,
 body {
-  min-height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-body {
+  margin: 0;
   min-height: 100%;
 }
-.mywrapper {
-  min-height: 100vh;
-}
-
-/* 
-.container-fluid {
-  padding-right:0px;
-  padding-left:0px;
-} */
-
-
 
 a {
   text-decoration: none;
@@ -54,7 +25,34 @@ a:hover {
   background-color: #ff6433;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+.panel-table{
+  background: #ffffff;
+  /* Orange1 */
+  padding: 0.5em;
+  border: 2px solid #ff6433;
+  border-radius: 10px;
+}
+.detail-btn {
+  width: auto;
+  background: #ff6433;
+  /* Orange1 */
+  color: #fff;
 
+  border: 1px solid #ff6433;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+.login-btn {
+  background: #ffffff;
+  /* Orange1 */
+  color: #ff6433 !important;
+  border: 1px solid #ff6433 !important;
+  box-sizing: border-box;
+  border-radius: 999px;
+  width: auto;
+  color: #ff6433;
+
+}
 .login-card {
   background: #ffffff;
   /* Orange1 */
@@ -93,15 +91,23 @@ a:hover {
   border-radius: 50%;
   width: 48px !important;
 }
-
-.icon {
-  height: 20px !important;
-  width: 20px !important;
+.person-icon {
+  box-sizing: border-box;
+  width: 48px !important;
+}
+.person1-icon {
+  box-sizing: border-box;
+  
+}
+.tick-icon {
+  box-sizing: border-box;
+  width: 70px !important;
+  
 }
 
-.icon-dropdown {
-  /* height: 20px !important; */
-  width: 30px !important;
+.icon {
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .instant-khaaba-link {
@@ -236,17 +242,24 @@ a:hover {
   box-sizing: border-box;
   border-radius: 10px;
 }
+.subject-fields{
+  border: 1px solid #ff6433;
+  width: 40%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.message-fields {
+  border: 1px solid #ff6433;
+  height: 150px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
 
 .login-container {
-  background-image: url("../img/backgrounds/kate-hliznitsova-ZIGxIQ4gzBU-unsplash.jpg");
+  background-image: url("./Background.png");
   background-size: cover;
   background-repeat: no-repeat;
-  /* height: 100%; */
   min-height: 100vh;
-}
-.dropdown-menu {
-  right: 0 !important;
-  left: auto !important;
 }
 
 input:checked + .slider {
@@ -272,54 +285,77 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.img-upload-btn {
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-radius: 999px;
-}
-
-.file {
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
+.close {
   position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
 }
-
-.file-input label {
-  display: block;
-  position: relative;
-  width: 160px;
-  height: 35px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #ff6433, #ff6433);
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease-out;
+.close:hover {
+  opacity: 1;
 }
-
-.file-name {
+.close:before, .close:after {
   position: absolute;
-  bottom: -35px;
-  left: 10px;
-  font-size: 15pt;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #ff6433;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+*{
+  margin: 0;
+  padding: 0;
+  
+}
+.rate {
+  float: middle;
+  height: 46px;
+  padding: 0px;
+  
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+  
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+  
+}
+.rate > input:checked ~ label {
+  color: #ff6433;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #ff6433;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
   color: #ff6433;
 }
 
-input:hover + label,
-input:focus + label {
-  transform: scale(1.02);
+.starsDiv{
+
+  margin: 0 auto;
 }
 
-/* Adding an outline to the label on focus */
-input:focus + label {
-  outline: 0px solid #000;
-  outline: -webkit-focus-ring-color auto 2px;
-}
