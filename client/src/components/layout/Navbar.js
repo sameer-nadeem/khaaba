@@ -1,6 +1,8 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import CartDishes from './tables/CartDishes'
+
 
 const Navbar = ({ isAuthenticated }) => {
 
@@ -48,11 +50,11 @@ const Navbar = ({ isAuthenticated }) => {
                             </Fragment>
                         }
 
-                        <li className="nav-item cart-icon">
-                            <a className="nav-link" href='!#'>
-                                <img className="icon" src="./img/icons/cart.png" alt='' />
-                            </a>
-                        </li>
+                    <li className="nav-item cart-icon">
+                        <span className="nav-link" >
+                             <CartDishes/>
+                            </span>
+                    </li>
 
                     </ul>
                 </div>
