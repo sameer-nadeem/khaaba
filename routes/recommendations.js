@@ -80,7 +80,7 @@ router.get('/byhistory', auth, async (req, res) => {
         const orders = await Order.find({
             user: req.user.id,
             status: 'Completed'
-        }).populate('khaabay').sort({
+        }).populate('khaabay.khaaba').sort({
             date: 'desc'
         }).limit(4)
 
