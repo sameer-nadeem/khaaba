@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -38,6 +39,13 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                   Contact Us
                 </Link>
               </li>
+=======
+import { Fragment } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import CartDishes from './tables/CartDishes'
+
+>>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
               <li className="nav-item">
                 <Link
@@ -124,6 +132,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                         </Link>
                       </li>
                     </ul>
+<<<<<<< HEAD
                   </li>
                 </Fragment>
               )}
@@ -134,6 +143,39 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
     </div>
   );
 };
+=======
+                    <ul className="navbar-nav ms-auto mt-2 mt-lg-0 text-center align-items-center">
+                        {
+                            !isAuthenticated
+                            &&
+                            <Fragment>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to='/login'>
+                                        <span className="login-btn">Login</span>
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to='/signup'>
+                                        <span className="signup-btn">Signup</span>
+                                    </Link>
+                                </li>
+
+                            </Fragment>
+                        }
+
+                    <li className="nav-item cart-icon">
+                        <span className="nav-link" >
+                             <CartDishes auth ={isAuthenticated}/>
+                            </span>
+                    </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    )
+}
+>>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
 const mapStatesToProps = (state) => {
   return {

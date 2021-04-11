@@ -18,7 +18,12 @@ import { ToastContainer } from 'react-toastify';
 import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
+<<<<<<< HEAD
 import CustomerOrders from "./components/layout/CustomerOrders";
+=======
+import {addToCart,loadCart} from './actions/customer'
+
+>>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
 // import { toast } from 'react-toastify'
 
@@ -30,6 +35,7 @@ if (!localStorage.cart){
   localStorage.setItem('cart',JSON.stringify({kitchenID:0,
                                               khaabay:[]}))
 }
+<<<<<<< HEAD
 
 
 
@@ -40,6 +46,8 @@ if (localStorage.token) {
 
 
 
+=======
+>>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
 
 const Dashboard = () => (<h1>Hello</h1>)
 
@@ -47,6 +55,11 @@ const App = () => {
 
   useEffect(() => {
     store.dispatch(loadUser())
+    store.dispatch(addToCart('6060e763bb69f004ab5db929','6060ebe6ebf5ef4e98b38637',2,60,'Thai Noodles'))
+    // store.dispatch(addToCart(1,12344,2,60,'TNoodles'))
+    // store.dispatch(addToCart(1,12344,2,60,'Thigh'))
+
+    store.dispatch(loadCart())
   }, [])
 
 
