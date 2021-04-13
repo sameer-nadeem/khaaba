@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middlewares/auth')
+const { auth, customerAuth } = require('../middlewares/auth')
 const User = require('../models/user')
 const Kitchen = require('../models/kitchen')
 const Khaaba = require('../models/khaaba')
@@ -10,7 +10,7 @@ const {
     SERVER_ERROR,
 } = require('../utils/errors')
 
-router.post('/review/:id', auth, async (req, res) => {
+router.post('/review/:id', customerAuth, async (req, res) => {
     let kitchenID
     const {
         rating,
@@ -63,14 +63,14 @@ router.get('/view-reviews/:id', async (req, res) => {
     })
 })
 
-router.get('/order-history', auth, async (req, res) => {
+router.get('/order-history', customerAuth, async (req, res) => {
 
     try {
 
 
         let orders = await Order.find({
             user: req.user.id
-        }).populate('khaabay.khaaba').populate('kitchen', ['title', 'reviews'])
+        }).sort({ date: "desc" }).populate('khaabay.khaaba').populate('kitchen', ['title', 'reviews'])
 
         console.log(orders)
 
@@ -89,11 +89,11 @@ router.get('/order-history', auth, async (req, res) => {
     }
 })
 
-router.get('/active-orders', auth, async (req, res) => {
+router.get('/active-orders', customerAuth, async (req, res) => {
 
     let orders = await Order.find({
         user: req.user.id,
-    }).populate('khaabay.khaaba').populate('kitchen', ['title', 'reviews'])
+    }).sort({ date: 'desc' }).populate('khaabay.khaaba').populate('kitchen', ['title', 'reviews'])
 
 
     return res.status(200).json({
@@ -102,7 +102,7 @@ router.get('/active-orders', auth, async (req, res) => {
     })
 })
 
-router.get('/pickup/:id', auth, async (req, res) => {
+router.get('/pickup/:id', customerAuth, async (req, res) => {
     try {
 
         const orderID = req.params.id
@@ -128,7 +128,7 @@ router.get('/pickup/:id', auth, async (req, res) => {
     }
 })
 
-router.post('/order', auth, async (req, res) => {
+router.post('/order', customerAuth, async (req, res) => {
     try {
         const {
             kitchenID,

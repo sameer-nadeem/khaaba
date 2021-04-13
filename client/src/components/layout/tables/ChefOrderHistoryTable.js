@@ -30,6 +30,8 @@ const ChefOrderHsitoryTable = ({ chefOrders }) => {
                             <th className="table-heading">Date</th>
                             <th className="table-heading">Customer</th>
                             <th className="table-heading">Items</th>
+                            <th className="table-heading">Quantity</th>
+
                             <th className="table-heading">Total(Pkr)</th>
                         </tr>
                     </thead>
@@ -43,8 +45,8 @@ const ChefOrderHsitoryTable = ({ chefOrders }) => {
                                         <br />
                                         <button onClick={() => showUserDetail(order.user)} className="button buttonar buttond btn-sm">Details</button>
                                     </td>
-                                    <td className="table-heading text-break w-25">
-                                        <ul className="list-group">
+                                    <td className="table-heading text-break">
+                                        <ul className="list-group list-group-flush">
                                             {
                                                 order.khaabay.map((k, i) => (
                                                     <li key={i} className="list-group-item">{k.khaaba.title}</li>
@@ -52,7 +54,15 @@ const ChefOrderHsitoryTable = ({ chefOrders }) => {
                                             }
                                         </ul>
                                     </td>
-                                    {/* <td className="table-heading text-break">x</td> */}
+                                    <td className="table-heading text-break">
+                                        <ul className="list-group list-group-flush">
+                                            {
+                                                order.khaabay.map((k, i) => (
+                                                    <li key={i} className="list-group-item">{k.quantity}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </td>
                                     < td className="table-heading text-break" > {order.totalPrice}</td>
                                     {/* <td className="table-heading text-break">x</td> */}
 
@@ -62,6 +72,14 @@ const ChefOrderHsitoryTable = ({ chefOrders }) => {
 
                     </tbody>
                 </table>
+                <div className="row justify-content-center">
+                    <div className="col-4 text-center">
+                        {
+                            chefOrders.loading && <img className='float-center' width="15%" src="/img/Ellipsis-1s-200px.gif" />
+
+                        }
+                    </div>
+                </div>
             </div >
         </Fragment >
     )

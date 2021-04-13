@@ -26,7 +26,13 @@ const kitchenSchema = mongoose.Schema({
             type: Number
         },
         review: {
-            type: String
+            heading: {
+                type: String
+
+            },
+            body: {
+                type: String
+            }
         }
     }],
     orders: [

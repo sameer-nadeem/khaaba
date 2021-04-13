@@ -6,8 +6,8 @@ import CartDishes from './tables/CartDishes'
 
 const Navbar = ({ isAuthenticated, type, logout }) => {
   return (
-    <div className="">
-      <nav className="navbar navbar-expand-md navbar-dark sticky-top">
+    <div className="mb-5">
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             KHAABA
@@ -67,7 +67,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
               )}
 
               {type !== "chef" && (
-                <li className="nav-item cart-icon">
+                <li className="nav-item">
                   <span className="nav-link" >
                     <CartDishes auth={isAuthenticated} />
                   </span>

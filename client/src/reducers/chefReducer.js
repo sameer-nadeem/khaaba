@@ -2,18 +2,19 @@ import { ACTIVE_ORDERS_CHEF_FAIL, ACTIVE_ORDERS_CHEF_SUCCESS, COMPLETE_ORDERS_CH
 
 const initialState = {
     activeOrders: [],
-    completeOrders: []
+    completeOrders: [],
+    loading: true
 }
 
 const chefReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTIVE_ORDERS_CHEF_SUCCESS:
             return {
-                ...state, activeOrders: action.payload
+                ...state, activeOrders: action.payload, loading: false
             }
         case COMPLETE_ORDERS_CHEF_SUCCESS:
             return {
-                ...state, completeOrders: action.payload
+                ...state, completeOrders: action.payload, loading: false
             }
         case COMPLETE_ORDERS_CHEF_FAIL:
         case ACTIVE_ORDERS_CHEF_FAIL:

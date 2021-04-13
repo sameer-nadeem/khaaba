@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middlewares/auth')
+const { auth, chefAuth } = require('../middlewares/auth')
 const Order = require('../models/order')
 
 const {
@@ -8,12 +8,12 @@ const {
 } = require('../utils/errors')
 
 
-router.get('/order-history', auth, async (req, res) => {
+router.get('/order-history', chefAuth, async (req, res) => {
 
 
     let orders = await Order.find({
         kitchen: req.user.kitchen,
-    }).populate('khaabay.khaaba').populate('user', ['-password',])
+    }).sort({ date: 'desc' }).populate('khaabay.khaaba').populate('user', ['-password',])
 
     console.log(orders)
 
@@ -22,11 +22,11 @@ router.get('/order-history', auth, async (req, res) => {
     })
 })
 
-router.get('/active-orders', auth, async (req, res) => {
+router.get('/active-orders', chefAuth, async (req, res) => {
 
     let orders = await Order.find({
         kitchen: req.user.kitchen,
-    }).populate('khaabay.khaaba').populate('user', ['-password'])
+    }).sort({ date: 'desc' }).populate('khaabay.khaaba').populate('user', ['-password'])
 
     console.log(orders)
     return res.status(200).json({

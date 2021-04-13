@@ -3,7 +3,7 @@ const router = express.Router()
 const config = require('config')
 const axios = require('axios')
 const Chef = require('../models/chef')
-const auth = require('../middlewares/auth')
+const { auth, customerAuth } = require('../middlewares/auth')
 const Order = require('../models/order')
 const {
     SERVER_ERROR
@@ -77,7 +77,7 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
 
 })
 
-router.get('/byhistory', auth, async (req, res) => {
+router.get('/byhistory', customerAuth, async (req, res) => {
     try {
 
         const orders = await Order.find({

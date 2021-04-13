@@ -59,7 +59,7 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                             <th className="table-heading">Date</th>
                             <th className="table-heading">Customer</th>
                             <th className="table-heading">Items</th>
-                            {/* <th className="table-heading">Quantity</th> */}
+                            <th className="table-heading">Quantity</th>
                             <th className="table-heading">Total(Pkr)</th>
                             {/* <th className="table-heading">Order Type</th> */}
                             <th className="table-heading">Actions</th>
@@ -73,7 +73,7 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                                     <td className="table-heading text-break">{moment(order.date).format('MM-dddd-YYYY hh:mm')}</td>
                                     <td className="table-heading text-break">{order.user.firstName}</td>
                                     <td className="table-heading text-break w-25">
-                                        <ul className="list-group">
+                                        <ul className="list-group list-group-flush">
                                             {
                                                 order.khaabay.map((k, i) => (
                                                     <li key={i} className='list-group-item'>{k.khaaba.title}</li>
@@ -81,7 +81,13 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                                             }
                                         </ul>
                                     </td>
-                                    {/* <td className="table-heading text-break">x</td> */}
+                                    <td className="table-heading text-break"> <ul className="list-group list-group-flush">
+                                        {
+                                            order.khaabay.map((k, i) => (
+                                                <li key={i} className='list-group-item'>{k.quantity}</li>
+                                            ))
+                                        }
+                                    </ul></td>
                                     <td className="table-heading text-break">{order.totalPrice}</td>
                                     {/* <td className="table-heading text-break">x</td> */}
                                     <td className="table-heading text-break" style={{ width: "20%" }}>
@@ -95,6 +101,14 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
 
                     </tbody>
                 </table>
+                <div className="row justify-content-center">
+                    <div className="col-4 text-center">
+                        {
+                            chefOrders.loading && <img className='float-center' width="15%" src="/img/Ellipsis-1s-200px.gif" />
+
+                        }
+                    </div>
+                </div>
             </div>
             <h5 className="card-title text-center login-heading pt-3">In Progress</h5>
             <div
@@ -108,6 +122,7 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                             <th className="table-heading">Date</th>
                             <th className="table-heading">Customer</th>
                             <th className="table-heading">Items</th>
+                            <th className="table-heading">Quantity</th>
                             <th className="table-heading">Total(Pkr)</th>
                             <th className="table-heading">Action</th>
                         </tr>
@@ -122,8 +137,8 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                                         <br />
                                         <button onClick={() => showUserDetail(order.user)} className="button buttonar buttond btn-sm">Details</button>
                                     </td>
-                                    <td className="table-heading text-break w-25">
-                                        <ul className="list-group">
+                                    <td className="table-heading text-break">
+                                        <ul className="list-group list-group-flush">
                                             {
                                                 order.khaabay.map((k, i) => (
                                                     <li key={i} className="list-group-item">{k.khaaba.title}</li>
@@ -131,7 +146,15 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
                                             }
                                         </ul>
                                     </td>
-                                    {/* <td className="table-heading text-break">x</td> */}
+                                    <td className="table-heading text-break">
+                                        <ul className="list-group list-group-flush">
+                                            {
+                                                order.khaabay.map((k, i) => (
+                                                    <li key={i} className="list-group-item">{k.quantity}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </td>
                                     < td className="table-heading text-break" > {order.totalPrice}</td>
                                     {/* <td className="table-heading text-break">x</td> */}
                                     <td className="table-heading text-break"><button className="button buttonar buttona btn-sm me-1"
@@ -143,6 +166,14 @@ const ChefOrderTable = ({ chefOrders, getChefOrders }) => {
 
                     </tbody>
                 </table>
+                <div className="row justify-content-center">
+                    <div className="col-4 text-center">
+                        {
+                            chefOrders.loading && <img className='float-center' width="15%" src="/img/Ellipsis-1s-200px.gif" />
+
+                        }
+                    </div>
+                </div>
             </div >
         </Fragment >
     )

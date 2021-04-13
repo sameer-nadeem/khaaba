@@ -1,15 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getPopularKitchens } from '../../actions/homepage'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { addToCart } from '../../actions/customer'
-
-import { getHistoryRecommendation } from '../../actions/homeAction'
-
-
-
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Home = ({ addToCart }) => {
 
@@ -38,7 +33,7 @@ const Home = ({ addToCart }) => {
 
   }
   const [popkitchens, setpopkitchens] = useState([])
-
+  const [popLoading, setPopLoading] = useState(true)
   useEffect(async () => {
     try {
       const res = await axios.get('/api/recommendations/byhistory')
@@ -57,6 +52,7 @@ const Home = ({ addToCart }) => {
     let nav = await navigator.geolocation.getCurrentPosition(async (position) => {
       const res = await axios.get(`/api/recommendations/bylocation/${position.coords.latitude}/${position.coords.longitude}`)
       setpopkitchens(res.data.chefs)
+      setPopLoading(false)
       console.log(position.coords.latitude, position.coords.longitude)
 
     }, showError);
@@ -77,7 +73,7 @@ const Home = ({ addToCart }) => {
     if (avgRating === 0) {
       return `--`
     }
-    return `${avgRating}/5`
+    return `${avgRating}/5.00`
 
   }
 
@@ -103,13 +99,13 @@ const Home = ({ addToCart }) => {
             <h4 className="search-subheading ">Khaaba is the place to satisfy all your cravings for delicious homecooked food  </h4>
           </div>
           <div className="row">
-            {/* <div className="col-md-5">
+            <div className="col-md-5">
               <div className="input-group ">
-                <input type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
+                <input style={{ zIndex: "1" }} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
                   aria-describedby="search-addon" />
                 <button type="button" className="btn findfood-btn find-heading" onClick={() => toast.error(`Feature underconstruction`)}>Find Food</button>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
 
@@ -150,15 +146,25 @@ const Home = ({ addToCart }) => {
         <div className="row justify-content-sm-center pb-5">
           <div className="review-heading d-inline"> Popular<span className="color-orange"> Kitchens</span> </div>
         </div>
+        <div className="row justify-content-center">
+          <div className="col-4 text-center">
+            {
+              popLoading && <img className='float-center' src="/img/Ellipsis-1s-200px.gif" />
+
+            }
+          </div>
+        </div>
         <div className="row justify-content-sm-evenly px-5 ">
 
 
           {
-            popkitchens.map((chef, index) => (
+
+            !popLoading && popkitchens.map((chef, index) => (
               <div key={`${index}`} className="col-lg-3 pb-2 d-flex justify-content-center">
 
                 <div className="card justify-content-md-center kitchen-card">
-                  <img src={`/uploads/kitchen-logos/${chef.kitchen.logo}`} className="card-img-top rounded-image" alt="Logo" />
+
+                  <LazyLoadImage effect="blur" src={`/uploads/kitchen-logos/${chef.kitchen.logo}`} className="card-img-top rounded-image" alt="Logo" />
                   <div className="row px-3  justify-content-sm-center">
                     <div className="card-body">
 
@@ -173,11 +179,15 @@ const Home = ({ addToCart }) => {
                       </div>
                     </div>
                   </div>
+
+
                 </div>
 
               </div>
             ))
+
           }
+
 
 
 
@@ -189,11 +199,11 @@ const Home = ({ addToCart }) => {
           <div className="review-heading d-inline"> Select by<span className="color-white"> Cuisine</span> </div>
         </div>
         <div className="row justify-content-center px-lg-5 ">
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -205,11 +215,11 @@ const Home = ({ addToCart }) => {
             </div>
 
           </div>
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -222,11 +232,11 @@ const Home = ({ addToCart }) => {
             </div>
           </div>
 
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -238,11 +248,11 @@ const Home = ({ addToCart }) => {
             </div>
           </div>
 
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -254,11 +264,11 @@ const Home = ({ addToCart }) => {
             </div>
           </div>
 
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -270,11 +280,11 @@ const Home = ({ addToCart }) => {
             </div>
           </div>
 
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -286,11 +296,11 @@ const Home = ({ addToCart }) => {
             </div>
           </div>
 
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -303,11 +313,11 @@ const Home = ({ addToCart }) => {
           </div>
 
 
-          <div className="col d-flex justify-content-center pb-4" >
+          <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <img className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -323,10 +333,11 @@ const Home = ({ addToCart }) => {
       </div>
 
       <div className="container-fluid pt-5 pb-5 bg-white" >
-        <div className="row justify-content-sm-center pb-5">
+
+        {byHistory.length !== 0 && <div className="row justify-content-sm-center pb-5">
           <div className="review-heading d-inline"> You might<span className="color-orange"> also like...</span> </div>
         </div>
-
+        }
         <div className="row dish-card-row px-5  pb-4 justify-content-center ">
 
 
@@ -338,7 +349,7 @@ const Home = ({ addToCart }) => {
               <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
                 <div className="card dish-card">
                   <div className="image-container">
-                    <img className="dish-image2" src="appetizer.jpg" alt="Dish preview" />
+                    <LazyLoadImage effect="blur" className="dish-image2" src="appetizer.jpg" alt="Dish preview" />
                   </div>
                   <div className="row align-items-end justify-content-center height-80">
                     <div className="row justify-content-between">

@@ -2,18 +2,19 @@ import { ACTIVE_ORDERS_CUSTOMER_FAIL, ACTIVE_ORDERS_CUSTOMER_SUCCESS, COMPLETE_O
 
 const initialState = {
     activeOrders: [],
-    completeOrders: []
+    completeOrders: [],
+    loading: true
 }
 
 const customerReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTIVE_ORDERS_CUSTOMER_SUCCESS:
             return {
-                ...state, activeOrders: action.payload
+                ...state, activeOrders: action.payload, loading: false
             }
         case COMPLETE_ORDERS_CUSTOMER_SUCCESS:
             return {
-                ...state, completeOrders: action.payload
+                ...state, completeOrders: action.payload, loading: false
             }
         case COMPLETE_ORDERS_CUSTOMER_FAIL:
         case ACTIVE_ORDERS_CUSTOMER_FAIL:

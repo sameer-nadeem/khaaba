@@ -27,6 +27,7 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
 
     return (
         <div className="dropdown">
+            {/* <i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i> */}
             <input type="image" className="icon" src="/img/icons/cart.png" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
             <div className="dropdown-menu dropdown-menu-end drpdown" aria-labelledby="dropdownMenuButton1">
                 <div className=" card cart-card" aria-labelledby="dropdownMenuButton1">

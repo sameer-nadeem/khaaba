@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middlewares/auth')
+const { auth, chefAuth } = require('../middlewares/auth')
 const Order = require('../models/order')
 
 const {
@@ -9,7 +9,7 @@ const {
 } = require('../utils/errors')
 
 // chef accept order
-router.get('/accept/:id', auth, async (req, res) => {
+router.get('/accept/:id', chefAuth, async (req, res) => {
 
     try {
 
@@ -40,7 +40,7 @@ router.get('/accept/:id', auth, async (req, res) => {
 
 
 //chef update order status ready
-router.get('/ready/:id', auth, async (req, res) => {
+router.get('/ready/:id', chefAuth, async (req, res) => {
 
     try {
 
