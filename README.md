@@ -6,4 +6,6 @@
 
 ### 2. cd khaaba
 
-### 3. npm i && npm start
+### 3. npm i && npm run server
+
+### 4. cd client && npm start
