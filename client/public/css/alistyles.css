@@ -2,11 +2,15 @@
     width: auto;
     background: #ff6433;
     /* Orange1 */
-    color: #fff;
   
     border: 1px solid #ff6433;
     box-sizing: border-box;
     border-radius: 999px;
+  }
+  .detail-btn:hover{
+    background: #fff;
+    color: #ff6433;
+
   }
   .person-icon {
     box-sizing: border-box;

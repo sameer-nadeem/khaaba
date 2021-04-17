@@ -3,7 +3,7 @@ const router = express.Router()
 const config = require('config')
 const axios = require('axios')
 const Chef = require('../models/chef')
-const auth = require('../middlewares/auth')
+const { auth, customerAuth } = require('../middlewares/auth')
 const Order = require('../models/order')
 const {
     SERVER_ERROR
@@ -57,9 +57,12 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
 
         chefs = chefs.filter(chef => getDistance(coords, chef.address.coords) < config.get('recommendation_radius_km'))
 
+
         chefs.sort((c1, c2) => {
-            return c2.avgRating - c1.avgRating
+            return c2.kitchen.avgRating - c1.kitchen.avgRating
         })
+
+        console.log("..", chefs)
 
         return res.status(200).json({
             chefs: chefs.slice(0, 4)
@@ -74,7 +77,7 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
 
 })
 
-router.get('/byhistory', auth, async (req, res) => {
+router.get('/byhistory', customerAuth, async (req, res) => {
     try {
 
         const orders = await Order.find({

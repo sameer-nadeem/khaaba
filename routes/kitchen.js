@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Khaaba = require("../models/khaaba");
-const auth = require("../middlewares/auth");
+const { auth, chefAuth } = require("../middlewares/auth");
 const { SERVER_ERROR } = require("../utils/errors");
 
 
@@ -9,7 +9,7 @@ const { SERVER_ERROR } = require("../utils/errors");
 
 
 // ADD Menu item
-router.post("/add-khaaba", auth, async (req, res) => {
+router.post("/add-khaaba", chefAuth, async (req, res) => {
 
   let khaabaFields = {};
 
@@ -42,7 +42,7 @@ router.post("/add-khaaba", auth, async (req, res) => {
 });
 
 
-router.post("/edit-khaaba/:id", auth, async (req, res) => {
+router.post("/edit-khaaba/:id", chefAuth, async (req, res) => {
   try {
     const id = req.params.id
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middlewares/auth')
+const { auth, chefAuth, customerAuth } = require('../middlewares/auth')
 const User = require('../models/user')
 const Chef = require('../models/chef')
 const config = require('config')
@@ -36,7 +36,7 @@ const upload = multer({
 
 ////// change Password
 //         Chef 
-router.post('/change-pass/chef', auth, async (req, res) => { // for testing without token
+router.post('/change-pass/chef', chefAuth, async (req, res) => { // for testing without token
     const {
         password,
     } = req.body
@@ -78,7 +78,7 @@ router.post('/change-pass/chef', auth, async (req, res) => { // for testing with
 
 ////// change Password
 //         customer 
-router.post('/change-pass/customer', auth, async (req, res) => { // for testing without token
+router.post('/change-pass/customer', customerAuth, async (req, res) => { // for testing without token
     const {
         password,
     } = req.body
@@ -120,7 +120,7 @@ router.post('/change-pass/customer', auth, async (req, res) => { // for testing 
 
 
 //////////          Change Chef profile (excluding kitchen logo)
-router.post('/change-profile/chef', [auth, upload.single('logo')], async (req, res) => { // final
+router.post('/change-profile/chef', [chefAuth, upload.single('logo')], async (req, res) => { // final
     //router.post('/change-profile/chef',  async (req, res) => { // for testing without token
     const {
         email,
@@ -214,7 +214,7 @@ router.post('/change-profile/chef', [auth, upload.single('logo')], async (req, r
 
 
 /////////           Change Customer Profile
-router.post('/change-profile/customer', auth, async (req, res) => {
+router.post('/change-profile/customer', customerAuth, async (req, res) => {
 
     const {
         email,

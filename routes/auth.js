@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middlewares/auth')
+const { auth } = require('../middlewares/auth')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
@@ -10,7 +10,7 @@ const config = require('config')
 const axios = require('axios')
 const multer = require('multer')
 const uuid = require('uuid').v4
-
+const Admin = require('../models/admin')
 const {
     USER_ALREADY_EXISTS,
     SERVER_ERROR,
@@ -45,6 +45,9 @@ router.get('/', auth, async (req, res) => {
             user = await Chef.findById(req.user.id).select('-password').populate('kitchen')
         } else if (req.user.type === 'customer') {
             user = await User.findById(req.user.id).select('-password')
+        }
+        else if (req.user.type === 'admin') {
+            user = await Admin.findById(req.user.id).select('-password')
         }
         res.status(200).json({
             user: {
@@ -348,5 +351,110 @@ router.post('/login/chef', async (req, res) => {
 
 })
 
+router.post('/login/admin', async (req, res) => {
+    let user;
+
+    const {
+        email,
+        password
+    } = req.body;
+
+    try {
+
+        user = await Admin.findOne({ email });
+
+        if (!user) {
+            return res
+                .status(400)
+                .json({ errors: [INVALID_CREDITS] });
+        }
+
+        //check for password
+        var match = await bcrypt.compare(password, user.password)
+
+        if (!match) {
+            return res
+                .status(400)
+                .json({ errors: [INVALID_CREDITS] });
+        }
+
+        //JWT Auth
+
+        const jwtpayload = {
+            user: {
+                id: user.id,
+                type: 'admin'
+            },
+        };
+
+        jwt.sign(jwtpayload, config.get("token-secret"), { expiresIn: 360000 }, (err, token) => {
+            if (err) throw err
+            res.json({ token })
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
+})
+
+router.post('/create-admin', async (req, res) => {
+    const {
+        email,
+        password,
+        phone,
+        firstName,
+        lastName,
+    } = req.body
+    console.log(req.body)
+    try {
+        const isUserReg = await Admin.exists({
+            email
+        })
+
+        if (isUserReg) {
+            return res.status(400).json({
+                errors: [USER_ALREADY_EXISTS]
+            })
+        }
+
+
+        const user = new Admin({
+            email,
+            password,
+            phone,
+            firstName,
+            lastName
+        })
+
+        const salt = await bcrypt.genSalt(10)
+
+        user.password = await bcrypt.hash(password, salt)
+
+
+        await user.save()
+
+        const jwtpayload = {
+            user: {
+                id: user.id,
+                type: 'admin'
+            }
+        }
+
+        jwt.sign(jwtpayload, config.get('token-secret'), { expiresIn: 360000 }, (err, token) => {
+            if (err) throw err
+            return res.json({
+                token
+            })
+        })
+    } catch (err) {
+        console.error(err.message)
+        res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
+
+})
 
 module.exports = router
