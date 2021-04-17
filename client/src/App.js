@@ -18,19 +18,15 @@ import { ToastContainer } from 'react-toastify';
 import Spinner from './components/layout/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
 import history from './util/history'
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 import CustomerOrders from "./components/layout/CustomerOrders";
-=======
+
 import {addToCart,loadCart} from './actions/customer'
-=======
+
 import CheckoutSuccess from './components/layout/Checkout'
 
->>>>>>> 6370a37174af95e4dec34a398a4fb13a52effae1
 
->>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
-
-// import { toast } from 'react-toastify'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -40,7 +36,7 @@ if (!localStorage.cart){
   localStorage.setItem('cart',JSON.stringify({kitchenID:0,
                                               khaabay:[]}))
 }
-<<<<<<< HEAD
+
 
 
 
@@ -51,8 +47,7 @@ if (localStorage.token) {
 
 
 
-=======
->>>>>>> 0c7bfa17daa8a11c5a6a3b3a4b12406297cbd995
+
 
 const Dashboard = () => (<h1>Hello</h1>)
 
