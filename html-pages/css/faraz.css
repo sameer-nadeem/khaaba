@@ -535,7 +535,7 @@ line-height: 130%;
 }
 
 .dishname{
-  
+  width:200;
 font-family: Poppins;
 font-style: normal;
 font-weight: 600;
@@ -554,7 +554,7 @@ color: #000000;
   /* Orange1 */
   color: #fff;
 
-  margin-top: 30px;
+  margin-top: 40px;
   margin-left: 10px;
 
   border: 1px solid #ff6433;
@@ -573,6 +573,7 @@ color: #000000;
   background: #ff6433;
   /* Orange1 */
   color: #fff;
+  margin-top: 10px;
 
 
 
@@ -591,6 +592,7 @@ color: #000000;
   box-sizing: border-box;
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
+  margin-top: 10px;
 }
 
 .number-box{
@@ -600,6 +602,7 @@ color: #000000;
   /* Orange1 */
   border: 1px solid #ff6433;
   box-sizing: border-box;
+  margin-top: 10px;
 
 
   
@@ -616,13 +619,15 @@ color: #000000;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 130%;
+  margin-top: 10px;
+  margin-bottom: 8px;
+
   /* or 16px */
-margin-top: 10px;
-margin-left: 12px;
+
+
   width: 120px;
   
-  text-align: center;
+  text-align: start;
   
   /* Orange1 */
   
@@ -632,4 +637,34 @@ border: 1px solid #FF6433;
 box-sizing: border-box;
 border-radius: 87px;
 
+}
+.available-serving{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 25px;
+  /* or 18px */
+  
+  text-align: start;
+  
+  /* Text / Normal */
+  
+  color: #111111;
+}
+
+.dish-description{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 130%;
+  /* or 18px */
+  
+  text-align: start;
+  margin-top: 4px;
+  
+  /* Grey */
+  
+  color: #8E8E8E;
 }
