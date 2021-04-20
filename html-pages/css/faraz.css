@@ -118,16 +118,19 @@ a:hover {
 
 .edit-dish-btn {
   
-  width: 50%;
+  width: 82%;
   background: #ff6433;
   /* Orange1 */
   color: #fff;
 
-  margin-top: 30px;
+  margin-top: 50px;
+
+
+
 
   border: 1px solid #ff6433;
   box-sizing: border-box;
-  border-radius: 999px;
+  border-radius: 6px;
 }
 
 .edit-dish-btn:hover {
@@ -668,3 +671,50 @@ border-radius: 87px;
   
   color: #8E8E8E;
 }
+
+.edit-pencil{
+  margin-right: 10px;
+  height:13px;
+  width: 13px;
+}
+
+.add-dish-card{
+
+  width: 280px;
+  height: 380px;
+  
+  
+  background: #FFFFFF;
+  /* Orange1 */
+  
+  border: 2px dashed #FF6433;
+  box-sizing: border-box;
+  box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  
+  }
+
+  .plus-image{
+    width: 200px;
+    height: 200px;
+text-align: center;
+    
+margin-left: 40px;
+    
+    border-radius: 50%;
+    
+    border: 4px dashed #FF6433;
+  }
+
+  .text-addDish{
+    font-family: Poppins;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 130%;
+/* or 23px */
+
+text-align: center;
+
+color: #FF6433;
+  }
