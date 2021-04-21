@@ -40,6 +40,11 @@ const kitchenSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'order'
         }
+    ],
+    tags: [
+        {
+            type: String
+        }
     ]
 }, opts);
 

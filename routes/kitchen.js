@@ -3,6 +3,7 @@ const router = express.Router();
 const Khaaba = require("../models/khaaba");
 const { auth, chefAuth } = require("../middlewares/auth");
 const { SERVER_ERROR } = require("../utils/errors");
+const kitchen = require("../models/kitchen");
 
 
 
@@ -31,6 +32,10 @@ router.post("/add-khaaba", chefAuth, async (req, res) => {
       khaaba.instantKhaaba.availableServings = req.body.servings;
     }
     await khaaba.save();
+
+    let kit = await kitchen.findById(req.user.kitchen)
+    kit.tags.push(khaaba.title, ...khaaba.category)
+    await kit.save()
 
     return res.status(200).json({ khaaba });
   } catch (error) {
