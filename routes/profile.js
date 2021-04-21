@@ -7,6 +7,7 @@ const config = require('config')
 const axios = require('axios')
 const multer = require('multer')
 const Kitchen = require('../models/kitchen')
+const bcrypt =require("bcryptjs")
 
 const {
     USER_ALREADY_EXISTS,
@@ -82,36 +83,40 @@ router.post('/change-pass/customer', customerAuth, async (req, res) => { // for 
     const {
         password,
     } = req.body
-
+    console.log(`Password Recieved`,password)
 
     try {
-
+        //console.log(`h1`)
+      
         const salt = await bcrypt.genSalt(10)
-
+        //console.log(`h2`)
         const newPassword = await bcrypt.hash(password, salt)
 
+        //console.log(`h3`,newPassword)
         User.updateOne({ _id: req.user.id },//"60573d5785214d0bc5b0f9b7"},//req.user.id},//  
             {
                 $set:
                 {
                     password: newPassword,
-
                 }
             },
             function (err) {
                 if (err) {
+                    //console.log(`new error`,err)
                     res.status(400).json({
                         error: [SERVER_ERROR]
                     })
                 }
                 else {
-
                     // let something = User.findOne({_id:req.user.id});
-                    res.status(400).end()
+                    //console.log(`else case`,err)
+                    res.status(200).end()
                 }
-            });
+            }
+            );
 
     } catch (err) {
+        //console.log(`this is the error`,err)
         return res
             .status(400)
             .json({ errors: [INVALID_CREDITS] });
@@ -153,10 +158,10 @@ router.post('/change-profile/chef', [chefAuth, upload.single('logo')], async (re
             }
         }
 
-        const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+        // const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
-        const result = await axios.get(mapuri)
-        const coords = result.data.results[0].geometry.location
+        // const result = await axios.get(mapuri)
+        // const coords = result.data.results[0].geometry.location
 
         Chef.updateOne({ _id: req.user.id },//"60573d5785214d0bc5b0f9b7"},//req.user.id},//  
             {
@@ -166,7 +171,7 @@ router.post('/change-profile/chef', [chefAuth, upload.single('logo')], async (re
                     firstName: firstName,
                     lastName: lastName,
                     phone: phone,
-                    address: { addr: address, city: toString(city).toUpperCase(), coords: coords },
+                    address: { addr: address, city: city.toUpperCase()},
                     city: city,
 
                 }
@@ -190,7 +195,7 @@ router.post('/change-profile/chef', [chefAuth, upload.single('logo')], async (re
                     logo: req.file.path
                 }
             },
-            function (err, docs) {
+            (err, docs) => {
                 if (err) {
                     res.status(400).json({
                         error: [SERVER_ERROR]
@@ -198,7 +203,7 @@ router.post('/change-profile/chef', [chefAuth, upload.single('logo')], async (re
                 }
                 else {
                     const updObj = Chef.findOne({ _id: req.user.id }).populate('kitchen');
-                    return res.status(200).json(updObj);
+                    return res.status(200).json({updObj});
 
                 }
             });
@@ -225,13 +230,15 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
         lastName,
 
     } = req.body
-
+    console.log(`REQ BODY`,req.body)
     try {
 
         // retrive obect
-        const retProfile = User.findOne({ _id: req.user.id })
+        const retProfile = await User.findOne({ _id: req.user.id })
+        console.log(`retprofile`,retProfile.email)
+        console.log(email)
 
-        if (email != (await retProfile).email) {
+        if (email !==  retProfile.email) {
             const isUserReg = await User.exists({   // check if the new email is already in use (also appliesto using the same one again)
                 email
             })
@@ -242,10 +249,10 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
                 })
             }
         }
-        const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+        // const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
-        const result = await axios.get(mapuri)
-        const coords = result.data.results[0].geometry.location
+        // const result = await axios.get(mapuri)
+        // const coords = result.data.results[0].geometry.location
 
         User.updateOne({ _id: req.user.id },
             {
@@ -256,18 +263,18 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
                     lastName: lastName,
                     city: city,
                     phone: phone,
-                    address: { addr: toString(address).toLowerCase(), city: toString(city).toLowerCase(), coords: coords }
+                    address: { addr: address, city: city.toUpperCase() } 
                 }
             },
-            function (err) {
+             async (err) => {
                 if (err) {
                     res.status(400).json({
                         error: [SERVER_ERROR]
                     })
                 }
                 else {
-                    const updObj = User.findOne({ _id: req.user.id }).populate('kitchen');
-                    return res.status(200).json(updObj);
+                    const updObj = await User.findOne({ _id: req.user.id });
+                    return res.status(200).json({updObj});
                 }
             });
 

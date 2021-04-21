@@ -1,3 +1,46 @@
+/*HAMZAA////////////////////////////////////////*/
+.edit-form-btn {
+  margin-top: 5%;
+  width: 70%;
+
+  background: #32CD32;
+  /* Orange1 */
+  color: #fff;
+
+  border: 1px solid #32CD32;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+
+.edit-cancel-btn {
+  margin-top: 5%;
+  width: 70%;
+   background: #FF0000;
+  color: #fff;
+
+  border: 1px solid #FF0000;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+
+.edit-form-btn:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.edit-form-btn:hover {
+  background: #fff;
+  color: #32CD32;
+}
+
+.edit-cancel-btn:hover {
+  background: #fff;
+  color: #FF0000;
+}
+
+
+/*HAMZAA////////////////////////////////////////*/
 /* FARAZ/////////////////////////////////////////*/
 .dish-count {
   margin-top: 30px;

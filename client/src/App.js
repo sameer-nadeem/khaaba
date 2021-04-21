@@ -8,6 +8,9 @@ import Register from "./components/layout/Register";
 
 import Home from "./components/layout/Home";
 
+import EditProfileChef from "./components/layout/EditProfileChef";
+import EditProfileCust from "./components/layout/EditProfileCust";
+
 
 import ChefOrder from './components/layout/ChefOrders'
 import ChefOrderHistory from './components/layout/ChefOrderHistory'
@@ -67,9 +70,11 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/chef/orders" component={ChefOrder} />
+          <Route exact path="/chef/edit-profile" component={EditProfileChef} />
+          
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
-
+          <PrivateRoute exact path="/customer/edit-profile" component={EditProfileCust} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
         </Switch>
