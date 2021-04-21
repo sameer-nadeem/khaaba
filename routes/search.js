@@ -4,9 +4,10 @@ const Kitchen = require('../models/kitchen')
 const { SERVER_ERROR } = require('../utils/errors')
 
 
-router.get('/:q', async (req, res) => {
+router.get('/:q/:page', async (req, res) => {
     try {
 
+        const pageNumber = req.params.page
         const query = req.params.q.split(',')
         console.log(query)
 
@@ -31,7 +32,7 @@ router.get('/:q', async (req, res) => {
                 }
             ]
         }
-        )
+        ).skip((pageNumber - 1) * 8).limit(8)
 
         return res.status(200).json({
             kitchens

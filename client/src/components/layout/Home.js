@@ -5,8 +5,9 @@ import { toast } from 'react-toastify'
 import { addToCart } from '../../actions/customer'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
-const Home = ({ addToCart }) => {
+import { setQuery, setPageNumber } from '../../actions/search'
+import history from '../../util/history'
+const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
   const [byHistory, sethistory] = React.useState([])
 
@@ -78,6 +79,15 @@ const Home = ({ addToCart }) => {
   }
 
 
+  function handleSearch(e) {
+    setQuery(e.target.value)
+    setPageNumber(1)
+  }
+
+  const onSearch = () => {
+    if (query !== '')
+      history.push('/search')
+  }
 
 
 
@@ -101,9 +111,9 @@ const Home = ({ addToCart }) => {
           <div className="row">
             <div className="col-md-5">
               <div className="input-group ">
-                <input style={{ zIndex: "1" }} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
+                <input style={{ zIndex: "1" }} value={query} onChange={handleSearch} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
                   aria-describedby="search-addon" />
-                <button type="button" className="btn findfood-btn find-heading" onClick={() => toast.error(`Feature underconstruction`)}>Find Food</button>
+                <button type="button" onClick={onSearch} className="btn findfood-btn find-heading">Find Food</button>
               </div>
             </div>
           </div>
@@ -160,7 +170,7 @@ const Home = ({ addToCart }) => {
           {
 
             !popLoading && popkitchens.map((chef, index) => (
-              <div key={`${index}`} className="col-lg-3 pb-2 d-flex justify-content-center">
+              <div key={`${index}`} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
 
                 <div className="card justify-content-md-center kitchen-card">
 
@@ -390,5 +400,11 @@ const Home = ({ addToCart }) => {
   )
 }
 
-export default connect(null, { addToCart })(Home)
+const mapStateToProps = state => (
+  {
+    query: state.search.query
+  }
+)
+
+export default connect(mapStateToProps, { addToCart, setQuery, setPageNumber })(Home)
 
