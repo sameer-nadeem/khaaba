@@ -64,7 +64,7 @@ a:hover {
 .nav-link-active {
   padding-bottom: 0.5em;
   border-bottom: 4px solid #ffffff;
-  padding-right: 15px
+  padding-right: 15px;
 }
 
 .menu {
@@ -77,7 +77,6 @@ a:hover {
   padding-bottom: 0.5em;
   border-bottom: 4px solid #ffffff;
 }
-
 
 .cart-icon {
   border: 2px solid #ffffff;
@@ -114,10 +113,7 @@ a:hover {
   color: #ff6433;
 }
 
-
-
 .edit-dish-btn {
-  
   width: 50%;
   background: #ff6433;
   /* Orange1 */
@@ -134,7 +130,6 @@ a:hover {
   background: #fff;
   color: #ff6433;
 }
-
 
 .login-btn {
   background: #ffffff;
@@ -246,15 +241,15 @@ a:hover {
   padding-top: 10px;
   font-size: 10pt;
   line-height: 0px;
-} 
+}
 
 .AddDish-field-subheadings {
   /* font-weight: bold; */
   padding-left: 13px;
   font-size: 8pt;
   line-height: 0px;
-  color: #8E8E8E;
-} 
+  color: #8e8e8e;
+}
 
 .login-fields {
   border: 1px solid #ff6433;
@@ -278,80 +273,67 @@ a:hover {
   min-height: 100vh;
 }
 
-
-
-.menu-top-container{
-
-
-
+.menu-top-container {
   background-size: cover;
   background-repeat: no-repeat;
   height: 290px;
-  
-  background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url("../img/backgrounds/lily-banse--YHSwy6uqvk-unsplash.jpg");
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url("../img/backgrounds/lily-banse--YHSwy6uqvk-unsplash.jpg");
 }
 
+.address {
+  /* address*/
 
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 15px;
+  /* or 225% */
 
-.address{
-/* address*/
+  /* display: flex; */
+  align-items: end;
+  text-align: end;
 
-font-family: Poppins;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 15px;
-/* or 225% */
-
-/* display: flex; */
-align-items: end;
-text-align: end;
-
-color: #FFFFFF;
+  color: #ffffff;
 }
 
-
-.shopname{
+.shopname {
   /* Aloo Shop */
 
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 37px;
+  /* or 42% */
 
-
-
-font-family: Poppins;
-font-style: normal;
-font-weight: bold;
-font-size: 48px;
-line-height: 37px;
-/* or 42% */
-
-
-color: #FFFFFF;
+  color: #ffffff;
 }
 
 .overlay-dark {
   background-color: rgba(black, 0.4);
 }
 
-.my-row{
+.my-row {
   height: 290px;
   margin-top: 25px;
 }
 
-.dish-card-row{
-
+.dish-card-row {
   margin-top: 15px;
 }
 
-.tags-row{
+.tags-row {
   /* height: 58px; */
-  text-align:center;
+  text-align: center;
   /* margin:0 auto; */
   vertical-align: middle;
   float: none;
-/* 
+  /* 
     overflow-x: scroll;
     overflow-y:hidden */
-
 }
 /* .menu-mid-container{
 
@@ -362,7 +344,6 @@ color: #FFFFFF;
   bottom:0;
   right:0;
 } */
-
 
 .AddDish-container {
   background-image: url("../img/backgrounds/kate-hliznitsova-ZIGxIQ4gzBU-unsplash.jpg");
@@ -395,30 +376,30 @@ input:checked + .slider:before {
 }
 
 div label input {
-  margin-right:100px;
+  margin-right: 100px;
 }
 body {
-   font-family:sans-serif;
+  font-family: sans-serif;
 }
-.image-container{
+.image-container {
   text-align: center;
-  }
-.camera-container{
+}
+.camera-container {
   text-align: center;
   padding-left: 5px;
-  }
+}
 
 .image {
-/* position: absolute; */
-width: 120px;
-height: 120px;
+  /* position: absolute; */
+  width: 120px;
+  height: 120px;
 
-text-align: center;
+  text-align: center;
 
-border-radius: 50%;
+  border-radius: 50%;
 
-border: 4px solid #FF6433;
-box-sizing: border-box;
+  border: 4px solid #ff6433;
+  box-sizing: border-box;
 }
 .dish-image {
   /* position: absolute; */
@@ -427,26 +408,27 @@ box-sizing: border-box;
   margin-right: 1%;
   width: 200px;
   height: 200px;
-  
+
   text-align: center;
-  
+
   border-radius: 50%;
-  
-  border: 4px solid #FF6433;
+
+  border: 4px solid #ff6433;
   box-sizing: border-box;
-  }
+}
 
 .camera {
   width: 40px;
-height: 40px;
- 
+  height: 40px;
 }
 
-
-.hidden {position:absolute;visibility:hidden;opacity:0;}
-input[type=checkbox] + label {
-
-  margin-left:8px;
+.hidden {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+input[type="checkbox"] + label {
+  margin-left: 8px;
   font-size: 10pt;
 
   width: 22%;
@@ -457,16 +439,11 @@ input[type=checkbox] + label {
   border: 1px solid #ff6433;
   box-sizing: border-box;
   border-radius: 500px;
-
-
-} 
-input[type=checkbox]:checked + label {
-  
+}
+input[type="checkbox"]:checked + label {
   font-size: 10pt;
-  
 
   width: 22%;
-
 
   background: #ff6433;
   /* Orange1 */
@@ -477,78 +454,61 @@ input[type=checkbox]:checked + label {
   border-radius: 500px;
 }
 
-
 .menu-categories-btn {
   margin-top: 1%;
 
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
 
-font-family: Poppins;
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
+  /* or 83% */
 
-
-
-/* or 83% */
-
-
-color: #000000;
-
+  color: #000000;
 }
 
 .menu-categories-btn:hover {
-
-  
   /* Orange1 */
-  color: #FF6433;
-  border: 1px solid #FF6433;
+  color: #ff6433;
+  border: 1px solid #ff6433;
   box-sizing: border-box;
   border-radius: 10px;
-  
-  
 }
 
-.dish-card{
+.dish-card {
+  width: 280px;
+  height: 380px;
 
-width: 280px;
-height: 380px;
+  background: #ffffff;
+  /* Orange1 */
 
-
-background: #FFFFFF;
-/* Orange1 */
-
-border: 2px solid #FF6433;
-box-sizing: border-box;
-box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.25);
-border-radius: 16px;
-
+  border: 2px solid #ff6433;
+  box-sizing: border-box;
+  box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
 }
 
-.price
-{
-width: 100px;
+.price {
+  width: 100px;
   font-family: Poppins;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 130%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 130%;
 }
 
-.dishname{
-  
-font-family: Poppins;
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 130%;
-/* or 23px */
+.dishname {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 130%;
+  /* or 23px */
 
-color: #000000;
+  color: #000000;
 }
-
 
 .add-to-cart-btn {
-  
   width: 80%;
   background: #ff6433;
   /* Orange1 */
@@ -562,19 +522,14 @@ color: #000000;
   border-radius: 6px;
 }
 
-
-.dish-count{
+.dish-count {
   margin-top: 30px;
 }
 
-
-.counter-button-left{
-
+.counter-button-left {
   background: #ff6433;
   /* Orange1 */
   color: #fff;
-
-
 
   border: 1px solid #ff6433;
   box-sizing: border-box;
@@ -582,8 +537,7 @@ color: #000000;
   border-top-left-radius: 6px;
 }
 
-.counter-button-right{
-
+.counter-button-right {
   background: #ff6433;
   /* Orange1 */
   color: #fff;
@@ -593,18 +547,14 @@ color: #000000;
   border-top-right-radius: 6px;
 }
 
-.number-box{
-
-  background: #fff; 
-  color:#ff6433;
+.number-box {
+  background: #fff;
+  color: #ff6433;
   /* Orange1 */
   border: 1px solid #ff6433;
   box-sizing: border-box;
-
-
-  
 }
 
-.height-80{
-  height:80px;
+.height-80 {
+  height: 80px;
 }
