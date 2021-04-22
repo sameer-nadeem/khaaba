@@ -39,6 +39,28 @@
   color: #FF0000;
 }
 
+.upload-logo {
+  max-height: 200px;
+  max-width: 200px;
+   border-radius: 20px;
+
+}
+.file-input2 label {
+ 
+  width: 160px;
+  height: 35px;
+  border-radius: 25px;
+  padding-top: 5px;
+  background: linear-gradient(40deg, #ff6433, #ff6433);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+}
 
 /*HAMZAA////////////////////////////////////////*/
 /* FARAZ/////////////////////////////////////////*/

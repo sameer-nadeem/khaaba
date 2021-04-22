@@ -8,7 +8,9 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS,
     LOGOUT,
-    CUSTOMER_EDITPROFILE_SUCCESS
+    CUSTOMER_EDITPROFILE_SUCCESS,
+    CHEF_EDITPROFILE_SUCCESS
+
 } from '../actions/types'
 const initialState = {
     token: null,
@@ -31,6 +33,14 @@ const authReducer = (state = initialState, action) => {
             ...state,
             isAuthenticated: true,
             user: {type:'customer', profile:action.payload},
+            loading: false
+        }
+        case CHEF_EDITPROFILE_SUCCESS:
+            //console.log(`payload`,action.payload)
+            return {
+            ...state,
+            isAuthenticated: true,
+            user: {type:'chef', profile:action.payload},
             loading: false
         }
 
