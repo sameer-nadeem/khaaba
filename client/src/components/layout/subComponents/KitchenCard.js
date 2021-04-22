@@ -2,7 +2,7 @@ import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { toast } from 'react-toastify'
-
+import history from '../../../util/history'
 const KitchenCard = ({ kitchen }) => {
     let ratingcheck = (avgRating) => {
 
@@ -23,7 +23,7 @@ const KitchenCard = ({ kitchen }) => {
                             <i className="fa fa-star checked star1"> </i>
                             <span className="d-inline-block text-align-center rating-font">{ratingcheck(kitchen.avgRating)}</span>
                         </span>
-                        <a className="btn pull-right orange-btn" style={{ color: "white" }} onClick={() => toast.error(`Feature underconstruction`)}>Menu </a>
+                        <a className="btn pull-right orange-btn" style={{ color: "white" }} onClick={() => history.push(`/kitchen/${kitchen._id}`)}>Menu </a>
                     </div>
                 </div>
             </div>

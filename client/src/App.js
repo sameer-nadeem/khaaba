@@ -24,6 +24,7 @@ import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
 import SearchResults from './components/layout/SearchResults'
 import Kitchen from './components/layout/Kitchen'
+import Search from './components/layout/Search'
 
 // import { toast } from 'react-toastify'
 
@@ -71,7 +72,7 @@ const App = () => {
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
-          <Route exaxt path='/search' component={SearchResults} />
+          <Route exaxt path='/search' component={Search} />
           <Route exaxt path='/kitchen/:id' component={Kitchen} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 

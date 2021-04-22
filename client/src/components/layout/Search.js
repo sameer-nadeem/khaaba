@@ -11,20 +11,10 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
     const [kitchens, setKitchens] = useState([])
     const [hasMore, setHasMore] = useState(false)
 
-    const observer = useRef()
-    const lastElementRef = useCallback(node => {
-        if (loading) return
-        if (observer.current) observer.current.disconnect()
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && hasMore) {
-                setPageNumber(pageNumber + 1)
-            }
-        })
-        if (node) observer.current.observe(node)
-    }, [loading, hasMore])
-
-    const fetchData = () => {
-        axios.get(`/api/search/${query.split(" ").join()}/${pageNumber}`)
+    const fetchData = (newReq = false) => {
+        setLoading(true)
+        let page = newReq ? 1 : pageNumber
+        axios.get(`/api/search/${query.split(" ").join()}/${page}`)
             .then(res => {
                 console.log(res.data)
                 setKitchens(prevKitchens => {
@@ -32,12 +22,16 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
                 })
                 setLoading(false)
                 setHasMore(res.data.kitchens.length > 0)
+                setPageNumber(page + 1)
+
             }).catch(e => {
                 setLoading(false)
             })
     }
 
-
+    useEffect(() => {
+        fetchData(true)
+    }, [])
 
 
     function handleSearch(e) {
@@ -48,7 +42,8 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
 
     const onSearch = () => {
         setKitchens([])
-        fetchData()
+        setPageNumber(1)
+        fetchData(true)
     }
 
 
@@ -68,31 +63,24 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
                 dataLength={kitchens.length}
                 next={fetchData}
                 hasMore={hasMore}
+                className="row px-5"
             >
-                <div className="row px-5">
 
-                    {
-                        kitchens.map((kitchen, index) => {
-                            if (kitchens.length === index + 1) {
-                                return (
-                                    <div ref={lastElementRef} key={index} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
-                                        <KitchenCard kitchen={kitchen} />
-                                    </div>
-                                )
-                            } else {
-                                return (
-                                    <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
-                                        <KitchenCard kitchen={kitchen} />
-                                    </div>
-                                )
-                            }
+                {
+                    kitchens.map((kitchen, index) => {
 
-                        })
-                    }
-                    {
-                        !loading && kitchens.length === 0 && <h1>Sorry nothing found..</h1>
-                    }
-                </div>
+                        return (
+                            <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
+                                <KitchenCard kitchen={kitchen} />
+                            </div>
+                        )
+
+
+                    })
+                }
+                {
+                    !loading && kitchens.length === 0 && <h1>Sorry nothing found..</h1>
+                }
 
             </InfiniteScroll>
 
