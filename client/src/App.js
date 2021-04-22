@@ -8,6 +8,9 @@ import Register from "./components/layout/Register";
 
 import Home from "./components/layout/Home";
 
+import ChefMenu from "./components/layout/ChefMenu";
+import AddDish from "./components/layout/AddDish";
+
 
 import ChefOrder from './components/layout/ChefOrders'
 import ChefOrderHistory from './components/layout/ChefOrderHistory'
@@ -24,7 +27,7 @@ import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
 
 
-// import { toast } from 'react-toastify'
+
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -70,6 +73,8 @@ const App = () => {
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
+          <Route exaxt path='/chef/menu' component={ChefMenu} />
+          <Route exaxt path='/chef/adddish' component={AddDish} />
 
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 

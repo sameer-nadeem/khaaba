@@ -565,6 +565,11 @@ color: #000000;
   border-radius: 6px;
 }
 
+.add-to-cart-btn:hover {
+  background: #fff;
+  /* Orange1 */
+  color: #ff6433;
+}
 
 .dish-count{
   margin-top: 30px;
@@ -697,14 +702,24 @@ border-radius: 87px;
   .plus-image{
     width: 200px;
     height: 200px;
-text-align: center;
-    
-margin-left: 40px;
-    
+    margin-left: 35px;
+     
     border-radius: 50%;
     
     border: 4px dashed #FF6433;
   }
+  .plus-image:hover {
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.4); 
+  }
+
+  .plus-container{
+    margin-top: 15px;
+    margin-left: -2px;
+    width: 200px;
+    height: 150px;
+  }
+
+
 
   .text-addDish{
     font-family: Poppins;
@@ -768,7 +783,7 @@ color: #FF6433;
 
 .dimage-container{
   text-align: center;
-  width: 200;
+  
   }
 
 
@@ -785,7 +800,7 @@ color: #FF6433;
   box-sizing: border-box;
   }
   .edit-cam-txt{
-
+    margin-top: 0px;
   }
   .chef-menu-nav-link-active {
     padding-bottom: 0.5em;
@@ -793,3 +808,28 @@ color: #FF6433;
     padding-right: 7px;
     padding-left: 4px;
   }
+
+  .menu-top-info{
+    width: 330px;
+  }
+
+  .menu-tags{
+    width:150px;
+  }
+
+  .roweighty{
+    height:80px;
+  }
+  .coltwo{
+width: 200;
+  }
+
+  .colone{
+    width: 100;
+      }
+
+.dimage-formatter{
+  width: 130px;
+  text-align:center;
+  margin-left: 20%;
+}
