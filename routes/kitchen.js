@@ -3,24 +3,57 @@ const router = express.Router();
 const Khaaba = require("../models/khaaba");
 const { auth, chefAuth } = require("../middlewares/auth");
 const { SERVER_ERROR } = require("../utils/errors");
+const config = require('config')
+const uuid = require('uuid').v4
 
+const multer = require('multer');
+const category = require("../models/category");
 
+const storage = multer.diskStorage({
+  destination: `${config.get('kitchen_logo_path')}`,
+  filename: function (req, file, callback) {
+      callback(null, `${uuid()}_` + file.originalname);
+  },
+  onError: function (err, next) {
+      console.log('error', err);
+      next(err);
+  }
+});
 
-
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+});
 
 // ADD Menu item
-router.post("/add-khaaba", chefAuth, async (req, res) => {
+router.post("/add-khaaba", chefAuth, upload.single('logo') ,async (req, res) => {
+  
+  
 
+  const {
+    title,
+    expiryTime,
+    description,
+    price,
+    categories,
+    isInstantKhaaba,
+    servings
+} = req.body
+  
+  
+  
+  
   let khaabaFields = {};
 
   if (req.body.title) khaabaFields.title = req.body.title;
   if (req.body.price) khaabaFields.price = req.body.price;
   if (req.body.description) khaabaFields.description = req.body.description;
-  if (req.body.category) khaabaFields.category = req.body.category;
+
 
   // khaabaFields.kitchen = req.user.kitchen
 
-  console.log(req.user)
+  console.log(req.body.categories)
+  console.log(req.body.categories.split(","))
 
   try {
 
@@ -30,10 +63,19 @@ router.post("/add-khaaba", chefAuth, async (req, res) => {
       khaaba.instantKhaaba.isInstant = true
       khaaba.instantKhaaba.availableServings = req.body.servings;
     }
+
+    
+    if (req.body.categories) {
+      let cat1 = new category
+      cat1.title = req.body.categories.split(",")[0]
+      cat1.expiry = 0
+      khaaba.category.push(cat1)  
+    }
     await khaaba.save();
 
     return res.status(200).json({ khaaba });
   } catch (error) {
+    
     console.error(error.message);
     return res
       .status(400)
