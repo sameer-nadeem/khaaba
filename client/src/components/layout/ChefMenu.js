@@ -133,8 +133,10 @@ ADD DISH
                   {
                     dish.instantKhaaba.isInstant &&
                     <div className="instant-khaaba-tag ">Instant Khaaba</div>
+                  
                   }
                   {
+                    
                     
                     
                       dish.instantKhaaba.isInstant &&
