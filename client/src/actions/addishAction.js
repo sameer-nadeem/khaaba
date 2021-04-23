@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../util/history'
 import {
     DISH_ADDED_SUCCESSFULLY,
     FAILED_TO_ADD_DISH
@@ -68,7 +69,7 @@ export const addNormal = (formData) => async dispatch => {
         })
         toast.success('Dish added to menu. Happy Khaaba!')
         // dispatch(loadUser())
-        // history.push('/')
+        history.push('/chef/menu')
     } catch (error) {
 
 

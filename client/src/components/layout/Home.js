@@ -66,6 +66,11 @@ const Home = ({ addToCart }) => {
     // getPopularKitchens()
   }, []
   )
+
+
+
+
+  
   console.log(popkitchens)
 
   let ratingcheck = (avgRating) => {

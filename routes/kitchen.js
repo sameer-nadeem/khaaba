@@ -64,7 +64,13 @@ router.post("/add-khaaba", chefAuth, upload.single('logo') ,async (req, res) => 
       khaaba.instantKhaaba.availableServings = req.body.servings;
     }
 
-    
+    let logoPath = ''
+
+    if (req.file) {
+      logoPath = req.file.filename
+  }
+    khaaba.thumbnail = `${logoPath}`
+
     if (req.body.categories) {
       let cat1 = new category
       cat1.title = req.body.categories.split(",")[0]
@@ -113,6 +119,9 @@ router.post("/edit-khaaba/:id", chefAuth, async (req, res) => {
 });
 
 router.get("/get-menu/:id", async (req, res) => {
+
+  console.log(`got a messageeeee!!!!!!!!!: ${req.params.id}`)
+
   const id = req.params.id
   try {
     const khaabas = await Khaaba.find({
@@ -124,6 +133,9 @@ router.get("/get-menu/:id", async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log("error:  ", error)
+    
     return res
       .status(400)
       .json({ errors: SERVER_ERROR });

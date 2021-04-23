@@ -73,7 +73,7 @@ const App = () => {
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
-          <Route exaxt path='/chef/menu' component={ChefMenu} />
+          <PrivateRoute exaxt path='/chef/menu' component={ChefMenu} />
           <Route exaxt path='/chef/adddish' component={AddDish} />
 
           <PrivateRoute exact path='/dashboard' component={Dashboard} />

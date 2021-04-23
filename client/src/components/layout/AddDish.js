@@ -230,7 +230,10 @@ const AddDish = ({addInstant, addNormal}) =>{
 
 
                         <div className="row justify-content-center">
-                            <button type="submit" className="btn login-form-btn">Save</button>
+                       
+                        <button type="submit" className="btn login-form-btn">Save</button>
+              
+                            
                         </div>
 
 
