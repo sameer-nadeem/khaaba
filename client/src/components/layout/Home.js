@@ -6,6 +6,7 @@ import { addToCart } from '../../actions/customer'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { setQuery, setPageNumber } from '../../actions/search'
+import DishCard from './subComponents/DishCard'
 import history from '../../util/history'
 const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
@@ -357,7 +358,10 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
 
               <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
-                <div className="card dish-card">
+
+                <DishCard khaaba={khaabay.khaaba} />
+
+                {/* <div className="card dish-card">
                   <div className="image-container">
                     <LazyLoadImage effect="blur" className="dish-image-small2" src="appetizer.jpg" alt="Dish preview" />
                   </div>
@@ -383,7 +387,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
                         </div>  </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             ))
           }

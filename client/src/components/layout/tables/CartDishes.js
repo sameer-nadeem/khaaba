@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 // import moment from 'moment'
 import axios from 'axios'
 
-const CartDishes = ({ cart, postCheckout, auth }) => {
+const CartDishes = ({ cart, postCheckout, isAuthenticated }) => {
 
     const totalCalc = (cart) => {
         let total = 0
@@ -18,7 +18,7 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
 
     const clickFunc = () => {
 
-        postCheckout(auth)
+        postCheckout(isAuthenticated)
     }
 
 
@@ -87,7 +87,8 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
 
 const mapStatesToProps = (state) => {
     return {
-        cart: state.cart
+        cart: state.cart,
+        isAuthenticated: state.auth.isAuthenticated
     }
 }
 

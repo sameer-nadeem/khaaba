@@ -11,7 +11,10 @@ const Kitchen = () => {
     const [loading2, setLoading2] = useState(true)
     const [chef, setChef] = useState({
         kitchen: {
-            activeHours: {}
+            activeHours: {
+                start: '--',
+                end: '--'
+            }
         },
         address: {}
     })
@@ -122,14 +125,14 @@ const Kitchen = () => {
                 </div>
 
 
-                <div className="row dish-card-row pb-4">
+                <div className="row dish-card-row px-5 pb-4">
                     {
                         console.log(khaabay)
                     }
                     {
                         khaabay.map((khaaba, i) => (
 
-                            <div key={i} className="col-md-4 col-sm-10 d-flex justify-content-center pb-2">
+                            <div key={i} className="col-md-3 col-sm-10 d-flex justify-content-center pb-4">
                                 <DishCard khaaba={khaaba} />
                             </div>
                         ))

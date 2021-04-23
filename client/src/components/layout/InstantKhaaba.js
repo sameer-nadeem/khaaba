@@ -75,7 +75,7 @@ const InstantKhaaba = () => {
                     khaabay.map((khaaba, index) => {
 
                         return (
-                            <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
+                            <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-5 d-flex justify-content-center">
                                 <DishCard khaaba={khaaba} />
                             </div>
                         )

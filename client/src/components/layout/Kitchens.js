@@ -29,6 +29,7 @@ const Kitchens = () => {
     }
 
     useEffect(() => {
+        setKitchens([])
         fetchData(true)
     }, [])
 
@@ -70,14 +71,14 @@ const Kitchens = () => {
                 dataLength={kitchens.length}
                 next={fetchData}
                 hasMore={hasMore}
-                className="row px-5"
+                className="row px-5 pb-5"
             >
 
                 {
                     kitchens.map((kitchen, index) => {
 
                         return (
-                            <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
+                            <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-5 d-flex justify-content-center">
                                 <KitchenCard kitchen={kitchen} />
                             </div>
                         )
