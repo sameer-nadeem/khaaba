@@ -133,7 +133,7 @@ router.get('/bypopularity/:lat/:lng', async (req, res) => {
 
 
         chefs.sort((c1, c2) => {
-            return c2.avgRating - c1.avgRating
+            return c2.kitchen.avgRating - c1.kitchen.avgRating
         })
 
         return res.status(200).json({

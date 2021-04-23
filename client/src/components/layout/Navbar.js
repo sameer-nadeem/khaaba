@@ -31,7 +31,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/kitchens">
+                <Link to='/all-kitchens' className="nav-link">
                   Kitchens
                 </Link>
               </li>

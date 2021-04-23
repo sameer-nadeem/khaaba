@@ -51,15 +51,17 @@ const kitchenSchema = mongoose.Schema({
 kitchenSchema.virtual('avgRating').get(function () {
     let avg = 0
     let count = this.reviews.length
+    let r = 0
     for (var i = 0; i < count; i++) {
         if (this.reviews[i].rating) {
             avg += this.reviews[i].rating
+            r++;
         }
     }
-    if (count === 0) {
+    if (count === 0 || r === 0) {
         return 0
     }
-    avg = avg / count
+    avg = avg / r
     return avg.toFixed(2)
 
 

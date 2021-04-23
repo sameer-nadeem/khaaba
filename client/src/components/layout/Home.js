@@ -213,7 +213,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <LazyLoadImage className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -229,7 +229,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -246,7 +246,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -262,7 +262,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -278,7 +278,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -294,7 +294,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -310,7 +310,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -327,7 +327,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body">
@@ -359,7 +359,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
               <div className="col-md-3 col-sm-10 d-flex justify-content-center  pb-2">
                 <div className="card dish-card">
                   <div className="image-container">
-                    <LazyLoadImage effect="blur" className="dish-image2" src="appetizer.jpg" alt="Dish preview" />
+                    <LazyLoadImage effect="blur" className="dish-image-small2" src="appetizer.jpg" alt="Dish preview" />
                   </div>
                   <div className="row align-items-end justify-content-center height-80">
                     <div className="row justify-content-between">

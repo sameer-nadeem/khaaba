@@ -1,28 +1,25 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
-import KitchenCard from './subComponents/KitchenCard'
-import KitchenSearch from './subComponents/KitchenSearch'
-import { connect } from 'react-redux'
-import { setQuery, setPageNumber } from '../../actions/search'
-import InfiniteScroll from "react-infinite-scroll-component";
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
+import InfiniteScroll from 'react-infinite-scroll-component'
+import DishCard from './subComponents/DishCard'
+const InstantKhaaba = () => {
     const [loading, setLoading] = useState(true)
-    const [kitchens, setKitchens] = useState([])
+    const [khaabay, setKhaabay] = useState([])
     const [hasMore, setHasMore] = useState(false)
-    const [sort, setSort] = useState('rating')
+    const [pageNumber, setPageNumber] = useState(1)
+    const [sort, setSort] = useState('def')
 
     const fetchData = (newReq = false, sortby = sort) => {
-        setLoading(true)
         let page = newReq ? 1 : pageNumber
-        axios.get(`/api/search/${query.split(" ").join()}/${page}/${sortby}`)
+        setLoading(true)
+        axios.get(`/api/search/all-instant/${page}/${sortby}`)
             .then(res => {
                 console.log(res.data)
-                setKitchens(prevKitchens => {
-                    return [...new Set([...prevKitchens, ...res.data.kitchens])]
+                setKhaabay(prevKhaabay => {
+                    return [...new Set([...prevKhaabay, ...res.data.khaabay])]
                 })
                 setLoading(false)
-                setHasMore(res.data.kitchens.length > 0)
+                setHasMore(res.data.khaabay.length > 0)
                 setPageNumber(page + 1)
 
             }).catch(e => {
@@ -33,30 +30,15 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
     useEffect(() => {
         fetchData(true)
     }, [])
-
-
-    function handleSearch(e) {
-        setQuery(e.target.value)
-        setPageNumber(1)
-
-    }
-
-    const onSearch = () => {
-        setKitchens([])
-        setPageNumber(1)
-        fetchData(true)
-    }
-
     const onSort = (sortby) => {
-        setKitchens([])
+        setKhaabay([])
         setSort(sortby)
         fetchData(true, sortby)
     }
-
     return (
         <div className="container-fluid pb-5 bg-white pt-5" >
             <div className="row justify-content-center mb-5">
-                <div className="col-md-6 col-lg-6">
+                {/* <div className="col-md-6 col-lg-6">
                     <div className="input-group">
                         <input style={{ zIndex: "1" }} value={query} onChange={handleSearch} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
                             aria-describedby="search-addon" />
@@ -64,8 +46,8 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
 
 
                     </div>
-                </div>
-                <div className="col-md-2 col-lg-2">
+                </div> */}
+                <div className="col-1">
                     <div className="dropdown">
                         <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
                             style={{ borderColor: "#ff6433", color: "#ff6433" }}
@@ -74,26 +56,27 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
                             </button>
                         <ul className="dropdown-menu"
                             aria-labelledby="dropdownMenuButton1">
-                            <li><button onClick={() => onSort('ratingd')} style={{ color: "#ff6433" }} className="dropdown-item" >Rating Dsc</button></li>
-                            <li><button onClick={() => onSort('ratinga')} style={{ color: "#ff6433" }} className="dropdown-item" >Rating Asc</button></li>
+                            <li><button onClick={() => onSort('pricea')} style={{ color: "#ff6433" }} className="dropdown-item" >Price Asc</button></li>
+                            <li><button onClick={() => onSort('priced')} style={{ color: "#ff6433" }} className="dropdown-item" >Price Desc</button></li>
+                            <li><button onClick={() => onSort('serving')} style={{ color: "#ff6433" }} className="dropdown-item" >Available Servings</button></li>
+
                         </ul>
                     </div>
                 </div>
             </div>
-
             <InfiniteScroll
-                dataLength={kitchens.length}
+                dataLength={khaabay.length}
                 next={fetchData}
                 hasMore={hasMore}
                 className="row px-5"
             >
 
                 {
-                    kitchens.map((kitchen, index) => {
+                    khaabay.map((khaaba, index) => {
 
                         return (
                             <div key={index} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
-                                <KitchenCard kitchen={kitchen} />
+                                <DishCard khaaba={khaaba} />
                             </div>
                         )
 
@@ -101,7 +84,7 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
                     })
                 }
                 {
-                    !loading && kitchens.length === 0 && <h1>Sorry nothing found..</h1>
+                    !loading && khaabay.length === 0 && <h1>Sorry nothing found..</h1>
                 }
 
             </InfiniteScroll>
@@ -117,13 +100,8 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
             </div>
         </div>
 
+
     )
 }
 
-const mapStateToProps = state => ({
-    query: state.search.query,
-    pageNumber: state.search.pageNumber
-}
-)
-
-export default connect(mapStateToProps, { setQuery, setPageNumber })(Search)
+export default InstantKhaaba

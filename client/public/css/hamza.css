@@ -3,27 +3,6 @@
   margin-top: 30px;
 }
 
-.counter-button-left {
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
-}
-
-.counter-button-right {
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-bottom-right-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
 .number-box {
   background: #fff;
   color: #ff6433;
@@ -53,27 +32,6 @@
   margin-top: 30px;
 }
 
-.counter-button-left {
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
-}
-
-.counter-button-right {
-  background: #ff6433;
-  /* Orange1 */
-  color: #fff;
-  border: 1px solid #ff6433;
-  box-sizing: border-box;
-  border-bottom-right-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
 .number-box {
   background: #fff;
   color: #ff6433;
@@ -86,7 +44,7 @@
   height: 80px;
 }
 
-.dish-image {
+.dish-image-small {
   /* position: absolute; */
 
   width: 110px;

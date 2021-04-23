@@ -4,6 +4,7 @@ const Khaaba = require("../models/khaaba");
 const { auth, chefAuth } = require("../middlewares/auth");
 const { SERVER_ERROR } = require("../utils/errors");
 const kitchen = require("../models/kitchen");
+const Chef = require("../models/chef");
 
 
 
@@ -94,5 +95,25 @@ router.get("/get-menu/:id", async (req, res) => {
 
 
 });
+
+router.get("/:id", async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const chef = await Chef.findOne({
+      kitchen: id
+    }).populate('kitchen')
+    return res.status(200).json({
+      kitchen: chef
+    })
+
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ errors: SERVER_ERROR });
+  }
+
+
+})
 
 module.exports = router
