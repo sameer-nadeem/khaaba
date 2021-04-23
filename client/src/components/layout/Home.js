@@ -143,7 +143,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
             <div className="row justify-content-end">
               <div className="col-md-4 form-group">
 
-                <button className="btn pull-right orange-btn" type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
+                <button className="btn pull-right orange-btn" type="submit" onClick={() => history.push('/instant-khaaba')}>Try Now</button>
               </div>
 
             </div>
