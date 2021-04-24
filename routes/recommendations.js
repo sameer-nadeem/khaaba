@@ -114,7 +114,7 @@ router.get('/byhistory', customerAuth, async (req, res) => {
 
 })
 
-router.get('/bypopularity/:lat/:lng', async (req, res) => {
+router.get('/bypopularity', async (req, res) => {
     try {
         const coords = {
             lat: req.params.lat,
@@ -126,14 +126,14 @@ router.get('/bypopularity/:lat/:lng', async (req, res) => {
         const response = await axios.get(mapUri)
 
         const city = response.data.results[0].address_components[0].long_name.toUpperCase()
-
+        const cityLahore = "lahore".toUpperCase()
         const chefs = await Chef.find({
-            'address.city': city,
+            'address.city': cityLahore,
         }).sort({ avgRating: 'desc' }).limit(4).populate('kitchen')
 
 
         chefs.sort((c1, c2) => {
-            return c2.avgRating - c1.avgRating
+            return c2.kitchen.avgRating - c1.kitchen.avgRating
         })
 
         return res.status(200).json({

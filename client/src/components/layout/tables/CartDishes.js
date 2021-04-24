@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { postCheckout } from '../../../actions/customer'
+import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 
 
 // import moment from 'moment'
 import axios from 'axios'
 
-const CartDishes = ({ cart, postCheckout, auth }) => {
+const CartDishes = ({ cart, postCheckout, isAuthenticated }) => {
 
     const totalCalc = (cart) => {
         let total = 0
@@ -18,7 +19,7 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
 
     const clickFunc = () => {
 
-        postCheckout(auth)
+        postCheckout(isAuthenticated)
     }
 
 
@@ -71,7 +72,10 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <button className="button button-checkout button-sm" onClick={clickFunc} >Done</button>
+                            <Link to={`/customer/confirm-checkout`}>
+                            <button className="button button-checkout button-sm" >Checkout</button>
+                            </Link>
+                            {/* <button className="button button-checkout button-sm" onClick={clickFunc} >Checkout</button> */}
                         </div>
                     </div>
                 </div>
@@ -87,7 +91,8 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
 
 const mapStatesToProps = (state) => {
     return {
-        cart: state.cart
+        cart: state.cart,
+        isAuthenticated: state.auth.isAuthenticated
     }
 }
 

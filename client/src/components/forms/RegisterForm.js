@@ -2,6 +2,8 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { register, registerChef } from '../../actions/auth'
+import { toast } from 'react-toastify'
+
 const Register = ({ register, registerChef }) => {
 
     const [registerFields, setRegisterFields] = useState({
@@ -91,6 +93,12 @@ const Register = ({ register, registerChef }) => {
             }
             if (!logo) {
                 errs.logo = 'Please select an image'
+            }
+            if (logo) {
+                if (logo.size > 500000) {
+                    toast.error('Logo size must be smaller than 500KB')
+                    errs.logo = 'file size too large'
+                }
             }
         }
 
@@ -263,7 +271,7 @@ const Register = ({ register, registerChef }) => {
                 </div>
                 <div className="col m-1">
                     <label className="login-field-headings">City</label>
-                    <input onChange={onChange} type="text" className="form-control login-fields" name='city'
+                    <input disabled value='Lahore' onChange={onChange} type="text" className="form-control login-fields" name='city'
                         placeholder="etc. Lahore" />
                     <span className='text-danger'>{errors.city}</span>
 

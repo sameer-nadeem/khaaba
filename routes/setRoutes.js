@@ -5,9 +5,10 @@ const chefRoute = require('./chef')
 const recomRoutes = require('./recommendations')
 const orderRoutes = require('./order')
 const profileRoutes = require('./profile')
-
+const searchRoutes = require('./search')
 module.exports = (app) => {
     app.use('/api/auth', authRoutes)
+    app.use('/api/search', searchRoutes)
     app.use('/api/kitchen', kitchenRoutes)
     app.use('/api/user', userRoute)
     app.use('/api/chef', chefRoute)

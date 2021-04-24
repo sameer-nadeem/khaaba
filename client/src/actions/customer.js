@@ -56,7 +56,7 @@ export const postCheckout = (isAuthenticated) => async dispatch => {
     }
     if (cart.kitchenID !== 0) {
         try {
-            const res = await axios.post('api/user/order', cart,
+            const res = await axios.post('/api/user/order', cart,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -74,6 +74,7 @@ export const postCheckout = (isAuthenticated) => async dispatch => {
 
         }
         catch (error) {
+            console.log(error)
             dispatch({
                 type: CHECKOUT_FAIL,
             })
@@ -89,15 +90,31 @@ export const postCheckout = (isAuthenticated) => async dispatch => {
 export const addToCart = (kitchenID, khaabaID, quantity, price, title) => dispatch => {
 
     let cart = JSON.parse(localStorage.cart)
+    let check=false
+    for(let i=0; i<cart.khaabay.length; i++)
+    {
+        if (cart.khaabay[i].khaaba===khaabaID)
+        {
+            check=true
+            
+        }
+    }
 
     if (kitchenID !== cart.kitchenID && cart.kitchenID !== 0) {
         toast.error('You can only order from one kitchen at a time')
         return
     }
+
+    if(check===true)
+    {
+        toast.error('Item already in Cart')
+        return
+
+    }
     cart.kitchenID = kitchenID
     cart.khaabay.push({
         khaaba: khaabaID,
-        price: price * quantity,
+        price: price ,
         title,
         quantity
     })
@@ -110,6 +127,94 @@ export const addToCart = (kitchenID, khaabaID, quantity, price, title) => dispat
     return
 
 }
+
+export const removekhaaba = (khaabaID) => dispatch => {
+
+    let cart = JSON.parse(localStorage.cart)
+
+
+    for(let i=0; i<cart.khaabay.length; i++)
+    {
+        if (cart.khaabay[i].khaaba===khaabaID)
+        {
+            cart.khaabay.splice(i,1)
+            
+        }
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart))
+    dispatch({
+        type: ADD_CART,
+        payload: cart
+    })
+
+    return
+}
+
+
+export const decreasecounter = (khaabaID) => dispatch => {
+
+    let cart = JSON.parse(localStorage.cart)
+
+
+    for(let i=0; i<cart.khaabay.length; i++)
+    {
+        if (cart.khaabay[i].khaaba===khaabaID)
+        {
+            if(cart.khaabay[i].quantity>1)
+            {cart.khaabay[i].quantity=cart.khaabay[i].quantity-1
+            
+            
+            }
+            
+            
+        }
+
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart))
+   
+    dispatch({
+        type: ADD_CART,
+        payload: cart
+    })
+    
+    return
+
+
+}
+
+
+
+
+export const increasecounter = (khaabaID) => dispatch => {
+
+    let cart = JSON.parse(localStorage.cart)
+
+
+    for(let i=0; i<cart.khaabay.length; i++)
+    {
+        if (cart.khaabay[i].khaaba===khaabaID)
+        {
+            cart.khaabay[i].quantity=cart.khaabay[i].quantity+1
+            console.log(`REACHED`)
+            
+        }
+
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart))
+    dispatch({
+        type: ADD_CART,
+        payload: cart
+    })
+    return
+
+
+}
+
+
+
 
 export const loadCart = () => dispatch => {
     let cart = JSON.parse(localStorage.cart)

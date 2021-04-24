@@ -1,10 +1,11 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from '../../actions/auth'
-import CartDishes from './tables/CartDishes'
+import { logout } from "../../actions/auth";
+import CartDishes from "./tables/CartDishes";
 
 const Navbar = ({ isAuthenticated, type, logout }) => {
+  const location = useLocation();
   return (
     <div className="mb-5">
       <nav className="navbar navbar-expand-md navbar-dark fixed-top">
@@ -25,19 +26,35 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0 text-center">
-              <li className="nav-item">
+              <li className="nav-item ">
                 <Link className="nav-link" to="/">
-                  <span className="">Home</span>
+                  <span
+                    className={location.pathname === "/" && "nav-link-active"}
+                  >
+                    Home
+                  </span>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/kitchens">
-                  Kitchens
+                <Link to="/all-kitchens" className="nav-link">
+                  <span
+                    className={
+                      location.pathname === "/all-kitchens" && "nav-link-active"
+                    }
+                  >
+                    Kitchens
+                  </span>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact-us">
-                  Contact Us
+                <Link className="nav-link" to="/about-us">
+                  <span
+                    className={
+                      location.pathname === "/about-us" && "nav-link-active"
+                    }
+                  >
+                    About Us
+                  </span>
                 </Link>
               </li>
 
@@ -46,7 +63,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                   className="nav-link instant-khaaba-link"
                   to="instant-khaaba"
                 >
-                  <span className="">Instant Khaaba</span>
+                  <span>Instant Khaaba</span>
                 </Link>
               </li>
             </ul>
@@ -68,7 +85,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
 
               {type !== "chef" && (
                 <li className="nav-item">
-                  <span className="nav-link" >
+                  <span className="nav-link">
                     <CartDishes auth={isAuthenticated} />
                   </span>
                 </li>
@@ -98,7 +115,11 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <img className="icon-dropdown" src="/img/icons/man.png" alt="" />
+                      <img
+                        className="icon-dropdown"
+                        src="/img/icons/man.png"
+                        alt=""
+                      />
                     </Link>
                     <ul
                       className="dropdown-menu dropdown-menu-start"
@@ -128,9 +149,12 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                         </Link>
                       </li>
 
-
                       <li>
-                        <Link onClick={() => logout()} className="dropdown-item" to="">
+                        <Link
+                          onClick={() => logout()}
+                          className="dropdown-item"
+                          to=""
+                        >
                           <img
                             className="icon-dropdown pe-2"
                             src="/img/icons/logout.png"
@@ -147,7 +171,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
           </div>
         </div>
       </nav>
-    </div >
+    </div>
   );
 };
 

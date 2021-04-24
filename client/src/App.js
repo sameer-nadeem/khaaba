@@ -8,9 +8,14 @@ import Register from "./components/layout/Register";
 
 import Home from "./components/layout/Home";
 
+
 import ChefMenu from "./components/layout/ChefMenu";
 import AddDish from "./components/layout/AddDish";
 import EditDish from "./components/layout/EditDish";
+
+
+import EditProfileChef from "./components/layout/EditProfileChef";
+import EditProfileCust from "./components/layout/EditProfileCust";
 
 
 
@@ -27,6 +32,14 @@ import history from './util/history'
 import CustomerOrders from "./components/layout/CustomerOrders";
 import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
+
+import SearchResults from './components/layout/SearchResults'
+import Kitchen from './components/layout/Kitchen'
+import Kitchens from './components/layout/Kitchens'
+import InstantKhaaba from './components/layout/InstantKhaaba'
+import Search from './components/layout/Search'
+
+import ConfirmCheckout from './components/layout/ConfirmCheckout'
 
 
 
@@ -79,7 +92,20 @@ const App = () => {
           <Route exaxt path='/chef/adddish' component={AddDish} />
           <Route exaxt path='/chef/editdish' component={EditDish} />
 
+          <Route exaxt path='/search' component={Search} />
+          <Route exact path='/all-kitchens' component={Kitchens} />
+          <Route exact path='/instant-khaaba' component={InstantKhaaba} />
+          <Route exaxt path='/kitchen/:id' component={Kitchen} />
+
+
+          <PrivateRoute exaxt path='/customer/confirm-checkout' component={ConfirmCheckout} />
+          
+
+          <PrivateRoute exact path="/chef/edit-profile" component={EditProfileChef} />
+          <PrivateRoute exact path="/customer/edit-profile" component={EditProfileCust} />
+
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+
 
         </Switch>
       </Router>
