@@ -282,7 +282,7 @@ if(SaveAllow===false)
 }
 const mapStatesToProps = (state) => {
   return {
-    isAuthenticated: state.auth.isAuthenticated,
+    //isAuthenticated: state.auth.isAuthenticated,
     profile: state.auth.user ? state.auth.user.profile : null,
   };
 };

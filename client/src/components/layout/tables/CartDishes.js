@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { postCheckout } from '../../../actions/customer'
+import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 
 
@@ -71,7 +72,10 @@ const CartDishes = ({ cart, postCheckout, auth }) => {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <button className="button button-checkout button-sm" onClick={clickFunc} >Done</button>
+                            <Link to={`/customer/confirm-checkout`}>
+                            <button className="button button-checkout button-sm" >Checkout</button>
+                            </Link>
+                            {/* <button className="button button-checkout button-sm" onClick={clickFunc} >Checkout</button> */}
                         </div>
                     </div>
                 </div>
