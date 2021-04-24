@@ -21,7 +21,7 @@ const {
 const storage = multer.diskStorage({
     destination: `${config.get('kitchen_logo_path')}`,
     filename: function (req, file, callback) {
-        callback(null, `${uuid()}_` + file.originalname);
+        callback(null, `${uuid()}_` + file.originalname.split(' ').join('-'));
     },
     onError: function (err, next) {
         console.log('error', err);

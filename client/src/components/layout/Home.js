@@ -7,6 +7,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { setQuery, setPageNumber } from '../../actions/search'
 import DishCard from './subComponents/DishCard'
+import KitchenCard from './subComponents/KitchenCard'
 import history from '../../util/history'
 const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
@@ -103,28 +104,28 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col-12 col-sm-5 align-bottom ">
 
-            <h5 className="search-heading "> All your favourite Kitchens under <br/>one roof</h5>
+            <h5 className="search-heading "> All your favourite Kitchens under <br />one roof</h5>
 
           </div>
-          </div>
-          <div className="row">
+        </div>
+        <div className="row">
           <div className="col-12 col-sm-6">
             <h4 className="search-subheading ">Khaaba is the place to satisfy all your <br></br>cravings for delicious homecooked food  </h4>
           </div>
-          </div>
-          <div className="row">
-            <div className="col-12 col-sm-6">
-              <div className="input-group ">
-                <input style={{ zIndex: "1" }} value={query} onChange={handleSearch} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
-                  aria-describedby="search-addon" />
-                <button type="button" onClick={onSearch} className="btn findfood-btn find-heading">Find Food</button>
-              </div>
+        </div>
+        <div className="row">
+          <div className="col-12 col-sm-6">
+            <div className="input-group ">
+              <input style={{ zIndex: "1" }} value={query} onChange={handleSearch} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
+                aria-describedby="search-addon" />
+              <button type="button" onClick={onSearch} className="btn findfood-btn find-heading">Find Food</button>
             </div>
           </div>
         </div>
+      </div>
 
 
-     
+
 
 
 
@@ -160,7 +161,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
       <div className="container-fluid pb-5 bg-white" >
         <div className="row justify-content-sm-center pb-5">
-          <div className=" review-heading d-inline "> Popular<span className="color-orange semibold"> Kitchens</span> </div>
+          <div className=" review-heading d-inline "> Popular Kitc<span className="color-orange semibold">hens Near You</span> </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-4 text-center">
@@ -177,8 +178,8 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             !popLoading && popkitchens.map((chef, index) => (
               <div key={`${index}`} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
-
-                <div className="card justify-content-md-center kitchen-card">
+                <KitchenCard kitchen={chef.kitchen} />
+                {/* <div className="card justify-content-md-center kitchen-card">
 
                   <LazyLoadImage effect="blur" src={`/uploads/kitchen-logos/${chef.kitchen.logo}`} className="card-img-top rounded-image" alt="Logo" />
                   <div className="row px-3  justify-content-sm-center">
@@ -197,7 +198,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
                   </div>
 
 
-                </div>
+                </div> */}
 
               </div>
             ))

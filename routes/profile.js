@@ -8,7 +8,7 @@ const axios = require('axios')
 const uuid = require('uuid').v4
 const multer = require('multer')
 const Kitchen = require('../models/kitchen')
-const bcrypt =require("bcryptjs")
+const bcrypt = require("bcryptjs")
 
 const {
     USER_ALREADY_EXISTS,
@@ -20,7 +20,7 @@ const {
 const storage = multer.diskStorage({
     destination: `${config.get('kitchen_logo_path')}`,
     filename: function (req, file, callback) {
-        callback(null, `${uuid()}_` + file.originalname);
+        callback(null, `${uuid()}_` + file.originalname.split(' ').join('-'));
     },
     onError: function (err, next) {
         console.log('error', err);
@@ -84,11 +84,11 @@ router.post('/change-pass/customer', customerAuth, async (req, res) => { // for 
     const {
         password,
     } = req.body
-    console.log(`Password Recieved`,password)
+    console.log(`Password Recieved`, password)
 
     try {
         //console.log(`h1`)
-      
+
         const salt = await bcrypt.genSalt(10)
         //console.log(`h2`)
         const newPassword = await bcrypt.hash(password, salt)
@@ -114,7 +114,7 @@ router.post('/change-pass/customer', customerAuth, async (req, res) => { // for 
                     res.status(200).end()
                 }
             }
-            );
+        );
 
     } catch (err) {
         //console.log(`this is the error`,err)
@@ -126,9 +126,9 @@ router.post('/change-pass/customer', customerAuth, async (req, res) => { // for 
 
 //console.log(`in prof`)
 //////////          Change Chef profile (excluding kitchen logo)
-router.post('/change-profile/chef', chefAuth , async (req, res) => { // final
+router.post('/change-profile/chef', chefAuth, async (req, res) => { // final
     //router.post('/change-profile/chef',  async (req, res) => { // for testing without token
-    console.log(`Ova here`,req.body )
+    console.log(`Ova here`, req.body)
     const {
         email,
         address,
@@ -147,7 +147,7 @@ router.post('/change-profile/chef', chefAuth , async (req, res) => { // final
     try {
 
         const retProfile = await Chef.findOne({ _id: req.user.id }) //"60573d5785214d0bc5b0f9b7"})//req.user.id}) // get the chef object from db
-        console.log(`retprofile`,retProfile.email)
+        console.log(`retprofile`, retProfile.email)
         console.log(email)
         if (email !== retProfile.email) // check if new email is different from stored
         {
@@ -175,7 +175,7 @@ router.post('/change-profile/chef', chefAuth , async (req, res) => { // final
                     firstName: firstName,
                     lastName: lastName,
                     phone: phone,
-                    address: { addr: address, city: city.toUpperCase()},
+                    address: { addr: address, city: city.toUpperCase() },
                     city: city,
 
                 }
@@ -188,14 +188,14 @@ router.post('/change-profile/chef', chefAuth , async (req, res) => { // final
                 }
 
             });
-        
-       //console.log(`Active hours`,startingHour, endingHour)
+
+        //console.log(`Active hours`,startingHour, endingHour)
         Kitchen.updateOne({ _id: (retProfile.kitchen) },//req.user.id},  
             {
-                
+
 
                 $set:
-                { 
+                {
                     title: title,
                     activeHours: { start: start, end: end },
                     description: description,
@@ -210,7 +210,7 @@ router.post('/change-profile/chef', chefAuth , async (req, res) => { // final
                 }
                 else {
                     const updObj = await Chef.findOne({ _id: req.user.id }).populate('kitchen');
-                    return res.status(200).json({updObj});
+                    return res.status(200).json({ updObj });
 
                 }
             });
@@ -223,7 +223,7 @@ router.post('/change-profile/chef', chefAuth , async (req, res) => { // final
     }
 })
 
-router.post('/change-profile/cheflogo', [chefAuth, upload.single('logo')] , async (req, res) => { // final
+router.post('/change-profile/cheflogo', [chefAuth, upload.single('logo')], async (req, res) => { // final
     //router.post('/change-profile/chef',  async (req, res) => { // for testing without token
     // console.log(`Ova here`,req.body )
     const {
@@ -244,15 +244,15 @@ router.post('/change-profile/cheflogo', [chefAuth, upload.single('logo')] , asyn
     try {
 
         const retProfile = await Chef.findOne({ _id: req.user.id }) //"60573d5785214d0bc5b0f9b7"})//req.user.id}) // get the chef object from db
-  
-        
-       //console.log(`Active hours`,startingHour, endingHour)profile.kitchen.logo
+
+
+        //console.log(`Active hours`,startingHour, endingHour)profile.kitchen.logo
         Kitchen.updateOne({ _id: (retProfile.kitchen) },//req.user.id},  
             {
-                
+
 
                 $set:
-                { 
+                {
                     // title: title,
                     // activeHours: { start: start, end: end },
                     // description: description,
@@ -267,7 +267,7 @@ router.post('/change-profile/cheflogo', [chefAuth, upload.single('logo')] , asyn
                 }
                 else {
                     const updObj = await Chef.findOne({ _id: req.user.id }).populate('kitchen');
-                    return res.status(200).json({updObj});
+                    return res.status(200).json({ updObj });
 
                 }
             });
@@ -294,15 +294,15 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
         lastName,
 
     } = req.body
-    console.log(`REQ BODY`,req.body)
+    console.log(`REQ BODY`, req.body)
     try {
 
         // retrive obect
         const retProfile = await User.findOne({ _id: req.user.id })
-        console.log(`retprofile`,retProfile.email)
+        console.log(`retprofile`, retProfile.email)
         console.log(email)
 
-        if (email !==  retProfile.email) {
+        if (email !== retProfile.email) {
             const isUserReg = await User.exists({   // check if the new email is already in use (also appliesto using the same one again)
                 email
             })
@@ -327,10 +327,10 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
                     lastName: lastName,
                     city: city,
                     phone: phone,
-                    address: { addr: address, city: city.toUpperCase() } 
+                    address: { addr: address, city: city.toUpperCase() }
                 }
             },
-             async (err) => {
+            async (err) => {
                 if (err) {
                     res.status(400).json({
                         error: [SERVER_ERROR]
@@ -338,7 +338,7 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
                 }
                 else {
                     const updObj = await User.findOne({ _id: req.user.id });
-                    return res.status(200).json({updObj});
+                    return res.status(200).json({ updObj });
                 }
             });
 
