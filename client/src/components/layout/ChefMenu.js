@@ -133,7 +133,7 @@ ADD DISH
             <div className="col-md-4 col-sm-10 d-flex justify-content-center justify-content-md-center pb-2">
             <div className = "card dish-card">                             
                 <div className="image-container">
-                <img className="dish-image" src={`/uploads/dish-thumbnails/${dish.thumbnail}`} alt="Dish preview"/>
+                <img className="dish-image" src={`/uploads/dish-logos/${dish.thumbnail}`} alt="Dish preview"/>
                 </div> 
                 
                 <div className="row align-items-end  justify-content-center roweighty">

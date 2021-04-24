@@ -175,7 +175,7 @@ const EditDish = ({editInstant, editNormal}) =>{
                             <h5 className="card-title text-center adddish-heading mt-3">Edit Dish</h5>
                             <div className=" col-12 dimage-container ">
                                 
-                            <img className="dishimage" src={`/uploads/dish-thumbnails/${dish.thumbnail}`} alt="Dish preview"/>
+                            <img className="dishimage" src={`/uploads/dish-logos/${dish.thumbnail}`} alt="Dish preview"/>
                             
 
                             <div className="middle">
