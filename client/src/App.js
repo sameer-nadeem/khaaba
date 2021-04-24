@@ -5,6 +5,8 @@ import { Switch, Router, Route } from "react-router-dom";
 import PrivateRoute from './components/routing/PrivateRoute'
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/layout/Register";
+import ChefHome from "./components/layout/ChefHome";
+import  BarChart from "./components/layout/tables/barChartFirst"
 
 import Home from "./components/layout/Home";
 
@@ -22,6 +24,7 @@ import history from './util/history'
 import CustomerOrders from "./components/layout/CustomerOrders";
 import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
+import BarChartFirst from "./components/layout/tables/barChartFirst";
 
 
 // import { toast } from 'react-toastify'
@@ -68,6 +71,8 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/chef/orders" component={ChefOrder} />
+          <Route exact path="/chef" component={ChefHome} />
+          <Route exact path="/bcf" component={BarChartFirst} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
 

@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const { auth, chefAuth } = require('../middlewares/auth')
 const Order = require('../models/order')
+const Kitchen = require('../models/kitchen')
+const Chef= require('../models/chef')
+
 
 const {
     SERVER_ERROR
@@ -34,6 +37,75 @@ router.get('/active-orders', chefAuth, async (req, res) => {
             .filter(order => order.status !== 'Completed' && order.status !== "Cancelled" && order.status !== "Ready")
     })
 
+})
+
+router.get('/analytics', chefAuth, async (req, res) => {
+
+    let numOrders = await Order.countDocuments({
+        kitchen: req.user.kitchen,
+        status: 'Completed'
+    })
+
+    let KitchenObject = await Kitchen.findOne({
+        _id: req.user.kitchen
+    })
+
+    let kitchenAvgRating = KitchenObject.avgRating
+
+    // console.log(numOrders)
+    // console.log(kitchenAvgRating)
+    return res.status(200).json({
+        numOrders,
+        kitchenAvgRating
+    })
+    
+
+})
+
+router.get('/chef-details', chefAuth, async (req, res) => {
+
+    let chefObject = await Chef.findOne({
+        _id : req.user.id,
+    })
+
+    let KitchenObject = await Kitchen.findOne({
+        _id: req.user.kitchen
+    })
+
+    
+
+    // console.log(numOrders)
+    // console.log(kitchenAvgRating)
+    return res.status(200).json({
+        kitchenName: KitchenObject.title,
+        kitchenLogo: KitchenObject.logo,
+        kitchenAddress: chefObject.address.addr,
+        kitchenPhone: chefObject.phone,
+        kitchenhours: KitchenObject.activeHours,
+    })
+    
+
+})
+
+router.get('/view-reviews', chefAuth, async (req, res) => {
+
+
+
+    let KitchenObject = await Kitchen.findOne({
+        _id: req.user.kitchen
+    })
+    if (!KitchenObject) {
+        return res.status(400).json({
+            errors: [SERVER_ERROR]
+        })
+    }
+
+    let kitchenReviews = KitchenObject.reviews
+
+    return res.status(200).json({
+        kitchenReviews,
+        avgRating: KitchenObject.avgRating
+    })
 })
 
 

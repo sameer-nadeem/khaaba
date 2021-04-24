@@ -594,3 +594,7 @@ input:focus + label {
   box-sizing: border-box;
   border-radius: 10px;
 }
+.table-wrap {
+  height: 40vh;
+  overflow-y: auto;
+}
