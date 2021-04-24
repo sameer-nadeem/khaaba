@@ -50,8 +50,7 @@ const CustomerOrderTable = ({ orders }) => {
                                 <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
-                                {order.status === 'Pending' && <td className="text-dark"><button type="submit" className="btn detail-btn">Cancel</button></td>
-                                }
+                                <td className="text-dark">--</td>
                             </tr>
 
                         ))
@@ -67,7 +66,7 @@ const CustomerOrderTable = ({ orders }) => {
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
                                 {order.status === 'Completed' && <td className="text-dark"><button type="submit" className="btn login-btn">Feedback</button></td>}
-                                {order.status === 'Ready' && <td className="text-dark"><button type="submit" className="btn login-btn">Pickup</button></td>}
+                                {order.status === 'Ready' && <td className="text-dark"><button onClick={() => onPickup(order._id)} type="submit" className="btn login-btn">Pickup</button></td>}
                                 {}
                             </tr>
 
@@ -76,13 +75,13 @@ const CustomerOrderTable = ({ orders }) => {
                 </tbody>
             </table>
             <div className="row justify-content-center">
-          <div className="col-4 text-center">
-            {
-              orders.loading && <img className='float-center' width="15%" src="/img/Ellipsis-1s-200px.gif" />
+                <div className="col-4 text-center">
+                    {
+                        orders.loading && <img className='float-center' width="15%" src="/img/Ellipsis-1s-200px.gif" />
 
-            }
-          </div>
-        </div>
+                    }
+                </div>
+            </div>
         </>
     )
 }

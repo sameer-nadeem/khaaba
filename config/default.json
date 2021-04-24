@@ -4,7 +4,7 @@
     "db_password":"root",
     "db_uri": "mongodb+srv://root:root@khaba-testdb.5akj7.mongodb.net/khaaba-test?retryWrites=true&w=majority",
     "google_maps_api_key":"AIzaSyBguLLtEzYz5QErRoHcv3GxClylengx0nY",
-    "recommendation_radius_km":"50",
+    "recommendation_radius_km":"5",
     "kitchen_logo_path":"./client/public/uploads/kitchen-logos",
     "dish_thumbnail_path":"./client/public/uploads/dish-logos"
 }
