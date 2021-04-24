@@ -8,8 +8,15 @@ import Register from "./components/layout/Register";
 
 import Home from "./components/layout/Home";
 
+
+import ChefMenu from "./components/layout/ChefMenu";
+import AddDish from "./components/layout/AddDish";
+import EditDish from "./components/layout/EditDish";
+
+
 import EditProfileChef from "./components/layout/EditProfileChef";
 import EditProfileCust from "./components/layout/EditProfileCust";
+
 
 
 import ChefOrder from './components/layout/ChefOrders'
@@ -33,6 +40,7 @@ import InstantKhaaba from './components/layout/InstantKhaaba'
 import Search from './components/layout/Search'
 
 import ConfirmCheckout from './components/layout/ConfirmCheckout'
+
 
 
 
@@ -80,6 +88,9 @@ const App = () => {
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
+          <PrivateRoute exaxt path='/chef/menu' component={ChefMenu} />
+          <Route exaxt path='/chef/adddish' component={AddDish} />
+          <Route exaxt path='/chef/editdish' component={EditDish} />
 
           <Route exaxt path='/search' component={Search} />
           <Route exact path='/all-kitchens' component={Kitchens} />

@@ -14,54 +14,55 @@
     
     
     <link rel="stylesheet" href="./css/faraz.css">
-    <link rel="stylesheet" href="./css/hamza.css">
 
 </head>
 
 <body>
 
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">KHAABA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ms-auto mt-2 mt-lg-0 text-center">
+          <li class="nav-item">
+            <a class="nav-link " href="#"><span class="nav-link-active">Home</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Kitchens</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
 
+          <li class="nav-item">
+            <a class="nav-link instant-khaaba-link" href="#"><span class="">Instant
+                Khaaba</span></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mt-2 mt-lg-0 text-center align-items-center">
 
-    <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">KHAABA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav ms-auto mt-2 mt-lg-0 text-center">
-                    <li class="nav-item">
-                        <a class="nav-link " href="#"><span class="nav-link-active">Home</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
-                    </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#row"><span class="login-btn">Login</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span class="signup-btn">
+                Signup</span></a>
+          </li>
+          <li class="nav-item cart-icon">
+            <a class="nav-link" href="#">
+              <img class="icon" src="./img/icons/cart.png" alt="" srcset="">
+            </a>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span class="">Analytics</span></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto mt-2 mt-lg-0 text-center align-items-center">
-
-                    <li class="nav-item">
-                        <a class="menu" href="#">Menu</a>
-                    </li>
-
-                    <li class="nav-item cart-icon">
-                        <a class="nav-link" href="#">
-                            <img class="icon" src="./img/icons/man.png" alt="" srcset="">
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+        </ul>
+      </div>
+    </div>
+  </nav>
 
         <div class="menu-top-container" >
 
@@ -98,6 +99,9 @@
 
                 <div class="row tags-row justify-content-center pb-4">
                     
+                <div class=" col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center pb-1" style= "width:150px">
+                    Just for you
+                    </div>
                     
                   <div class=" col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center pb-1" style= "width:150px">
                     Appetizers
@@ -132,21 +136,6 @@
 
                     <div class="col-md-4 col-sm-10 d-flex justify-content-center justify-content-md-end pb-2">
                         
-                        <div class = "card add-dish-card justify-content-center">                             
-                            <div class="image-container">
-                                <img  src="./img/icons/plus.png" alt="Dish preview">
-                                <div class="text-addDish">
-
-                                    ADD DISH
-        
-                                </div>
-                                </div> 
-
-                        </div>
-
-                      </div>
-    
-                      <div class="col-md-4 col-sm-10 d-flex justify-content-center pb-2">
                         <div class = "card dish-card">                             
                             <div class="image-container">
                             <img class="dish-image" src="./img/icons/white.png" alt="Dish preview">
@@ -170,11 +159,49 @@
                                 
                             </div>
      
+                            <div class="row justify-content-start">
                         
-                                <div class="row justify-content-center">
-                                    <button type="submit" class=" edit-dish-btn "><img class="edit-pencil" src="./img/icons/pencil.png" alt="Dish preview">Edit</button>
+                                <div class = "row justify-content-between">
+                                    <div class = "col dishname"><button type="submit" class=" add-to-cart-btn ">Add to cart</button></div>
+                                    <div class = "col-2 text-end price dish-count" >
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="counter-button-left">+</button>
+                                        <button type="button" class="number-box">00</button>
+                                        <button type="button" class="counter-button-right">-</button>
+                                      </div>  </div>
                                 </div>
-                      
+                            </div>
+                        </div>
+                      </div>
+    
+                      <div class="col-md-4 col-sm-10 d-flex justify-content-center pb-2">
+                        <div class = "card dish-card">                             
+                            <div class="image-container">
+                                <img class="dish-image" src="./img/icons/white.png" alt="Dish preview">
+                                </div> 
+                                <div class="row align-items-end justify-content-center " style="height:80px">
+                                        
+                                    <div class = "row justify-content-between">
+                                        <div class = "col dishname" style = "width: 200px;">chicken karahi </div>
+                                        <div class = "col-2 text-end price" style = "width: 100px;"> Rs 0000 </div>
+                                    </div>
+                                    <div class = "row">
+    
+                                        <div class = "col"> steam cooked </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-start">
+                        
+                                    <div class = "row justify-content-between">
+                                        <div class = "col dishname"><button type="submit" class=" add-to-cart-btn ">Add to cart</button></div>
+                                        <div class = "col-2 text-end price dish-count" >
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="counter-button-left">+</button>
+                                            <button type="button" class="number-box">00</button>
+                                            <button type="button" class="counter-button-right">-</button>
+                                          </div>  </div>
+                                    </div>
+                                </div>
                         </div>
                       </div>
     
@@ -193,8 +220,17 @@
                                         <div class = "col"> steam cooked </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <button type="submit" class=" edit-dish-btn "> <img class="edit-pencil" src="./img/icons/pencil.png" alt="Dish preview"> Edit</button>
+                                <div class="row justify-content-start">
+                        
+                                    <div class = "row justify-content-between">
+                                        <div class = "col dishname"><button type="submit" class=" add-to-cart-btn ">Add to cart</button></div>
+                                        <div class = "col-2 text-end price dish-count" >
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="counter-button-left">+</button>
+                                            <button type="button" class="number-box">00</button>
+                                            <button type="button" class="counter-button-right">-</button>
+                                          </div>  </div>
+                                    </div>
                                 </div>
                         </div>
                       </div>
@@ -218,8 +254,17 @@
                                         <div class = "col"> steam cooked </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <button type="submit" class=" edit-dish-btn "> <img class="edit-pencil" src="./img/icons/pencil.png" alt="Dish preview"> Edit</button>
+                                <div class="row justify-content-start">
+                        
+                                    <div class = "row justify-content-between">
+                                        <div class = "col dishname"><button type="submit" class=" add-to-cart-btn ">Add to cart</button></div>
+                                        <div class = "col-2 text-end price dish-count" >
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="counter-button-left">+</button>
+                                            <button type="button" class="number-box">00</button>
+                                            <button type="button" class="counter-button-right">-</button>
+                                          </div>  </div>
+                                    </div>
                                 </div>
                         </div>
                       </div>
@@ -239,8 +284,17 @@
                                         <div class = "col"> steam cooked </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <button type="submit" class=" edit-dish-btn ">Edit</button>
+                                <div class="row justify-content-start">
+                        
+                                    <div class = "row justify-content-between">
+                                        <div class = "col dishname"><button type="submit" class=" add-to-cart-btn ">Add to cart</button></div>
+                                        <div class = "col-2 text-end price dish-count" >
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="counter-button-left">+</button>
+                                            <button type="button" class="number-box">00</button>
+                                            <button type="button" class="counter-button-right">-</button>
+                                          </div>  </div>
+                                    </div>
                                 </div>
                         </div>
                       </div>
@@ -260,32 +314,22 @@
                                         <div class = "col"> steam cooked </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <button type="submit" class=" edit-dish-btn "> <img class="edit-pencil" src="./img/icons/pencil.png" alt="Dish preview"> Edit</button>
+                                <div class="row justify-content-start">
+                        
+                                    <div class = "row justify-content-between">
+                                        <div class = "col dishname"><button type="submit" class=" add-to-cart-btn ">Add to cart</button></div>
+                                        <div class = "col-2 text-end price dish-count" >
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="counter-button-left">+</button>
+                                            <button type="button" class="number-box">00</button>
+                                            <button type="button" class="counter-button-right">-</button>
+                                          </div>  </div>
+                                    </div>
                                 </div>
                         </div>
                       </div>
                     
-                </div>
-
-                <!-- <div class="row my-row align-items-end pb-2">
-
-                    <div class="col-md-2 ">
-                        cards
-                      </div>
-    
-                      <div class="col-md-2 ">
-                        cards
-                      </div>
-    
-                      <div class="col-md-2">
-                        cards
-                      </div>
-                    
-                </div> -->
-
-
-                
+                </div>           
         </div>
         
  
