@@ -436,6 +436,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           {
 
+
             byHistory.map((khaabay, index) => (
 
 
