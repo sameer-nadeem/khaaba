@@ -88,18 +88,21 @@ const Home = ({ addToCart }) => {
 
       <div className="container-fluid home-container fitted justify-content-center">
 
-        <div className="row-md-8">
+        <div className="row">
 
-          <div className="col-md-4 align-bottom ">
+          <div className="col-12 col-sm-5 align-bottom ">
 
-            <h5 className="search-heading "> All your favourite Kitchens under one roof</h5>
+            <h5 className="search-heading "> All your favourite Kitchens under <br/>one roof</h5>
 
           </div>
-          <div className="col-md-4">
-            <h4 className="search-subheading ">Khaaba is the place to satisfy all your cravings for delicious homecooked food  </h4>
           </div>
           <div className="row">
-            <div className="col-md-5">
+          <div className="col-12 col-sm-6">
+            <h4 className="search-subheading ">Khaaba is the place to satisfy all your <br></br>cravings for delicious homecooked food  </h4>
+          </div>
+          </div>
+          <div className="row">
+            <div className="col-12 col-sm-6">
               <div className="input-group ">
                 <input style={{ zIndex: "1" }} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
                   aria-describedby="search-addon" />
@@ -110,7 +113,7 @@ const Home = ({ addToCart }) => {
         </div>
 
 
-      </div>
+     
 
 
 
@@ -124,15 +127,15 @@ const Home = ({ addToCart }) => {
         <div className="col-md-5">
 
 
-          <div className="khaabatry-card fitted">
-            <div className="row"> <h3 className="color-orange"> Instant Khaaba</h3></div>
+          <div className="khaabatry-card p-5">
+            <div className="row"> <h3 className="color-orange semibold"> Instant Khaaba</h3></div>
             <div className="row">
               <h4> Instant Khaaba is a quick way to find your nearest ready made meals.  Select from a list ready to eat servings in your area</h4>
             </div>
             <div className="row justify-content-end">
               <div className="col-md-4 form-group">
 
-                <button className="btn pull-right orange-btn" type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
+                <button className="btn pull-right orange-btn color-white bold" style={{width: "150px" }}type="submit" onClick={() => toast.error(`Feature underconstruction`)}>Try Now</button>
               </div>
 
             </div>
@@ -144,7 +147,7 @@ const Home = ({ addToCart }) => {
 
       <div className="container-fluid pb-5 bg-white" >
         <div className="row justify-content-sm-center pb-5">
-          <div className="review-heading d-inline"> Popular<span className="color-orange"> Kitchens</span> </div>
+          <div className=" review-heading d-inline "> Popular<span className="color-orange semibold"> Kitchens</span> </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-4 text-center">
@@ -196,7 +199,7 @@ const Home = ({ addToCart }) => {
       </div>
       <div className="container-fluid pt-5 pb-5 bg-orange" >
         <div className="row justify-content-sm-center pb-5">
-          <div className="review-heading d-inline"> Select by<span className="color-white"> Cuisine</span> </div>
+          <div className="review-heading d-inline "> Select by<span className="color-white semibold"> Cuisine</span> </div>
         </div>
         <div className="row justify-content-center px-lg-5 ">
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
@@ -335,7 +338,7 @@ const Home = ({ addToCart }) => {
       <div className="container-fluid pt-5 pb-5 bg-white" >
 
         {byHistory.length !== 0 && <div className="row justify-content-sm-center pb-5">
-          <div className="review-heading d-inline"> You might<span className="color-orange"> also like...</span> </div>
+          <div className="review-heading d-inline"> Loved it?<span className="color-orange semibold"> Order again...</span> </div>
         </div>
         }
         <div className="row dish-card-row px-5  pb-4 justify-content-center ">
@@ -351,7 +354,7 @@ const Home = ({ addToCart }) => {
                   <div className="image-container">
                     <LazyLoadImage effect="blur" className="dish-image2" src="appetizer.jpg" alt="Dish preview" />
                   </div>
-                  <div className="row align-items-end justify-content-center height-80">
+                  <div className="row align-items-end justify-content-center height-80 px-1">
                     <div className="row justify-content-between">
                       <div className="col dishname">{`${khaabay.khaaba.title}`} </div>
                       <div className="col-2 text-end price" > {`Rs ${khaabay.khaaba.price}`} </div>
@@ -361,14 +364,14 @@ const Home = ({ addToCart }) => {
                       <div className="col"> {`${khaabay.khaaba.description}`} </div>
                     </div>
                   </div>
-                  <div className="row justify-content-start">
+                  <div className="row justify-content-start px-1">
 
                     <div className="row justify-content-between">
                       <div className="col dishname"><button onClick={() => addToCart(khaabay.khaaba.kitchen, khaabay.khaaba._id, dishcounter[index], khaabay.khaaba.price, khaabay.khaaba.title)} type="submit" className=" add-to-cart-btn " >Add to cart</button></div>
                       <div className="col-2 text-end price dish-count" >
                         <div className="btn-group" role="group" aria-label="Basic example">
                           <button type="button" className="counter-button-left" onClick={() => decreasecounter(index)} >-</button>
-                          <button type="button" className="number-box">{`${dishcounter[index]}`}</button>
+                          <button type="button" className="number-box text-center"> { `${dishcounter[index]}`}</button>
                           <button type="button" className="counter-button-right" onClick={() => increasecounter(index)}>+</button>
                         </div>  </div>
                     </div>

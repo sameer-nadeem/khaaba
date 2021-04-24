@@ -1,3 +1,163 @@
+@font-face {
+  font-family: poppins-bold;
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: poppins-semibold;
+  src: url("../fonts/Poppins-SemiBold.ttf");
+  font-weight: semibold;
+}
+
+.bold{
+  font-family: poppins-bold;
+}
+
+.semibold{
+  font-family: poppins-semibold;
+}
+/* Hamza_Checkout ///////////////*/
+.close-button{
+  position: absolute;
+  max-width: 40px;
+  top: 0;
+  right: 0;
+  padding-top: 8px;
+  cursor: pointer;
+
+}
+
+
+/* Hamza_Checkout ///////////////*/
+
+
+/* Sameer_Checkout ///////////////*/
+
+th {
+  color: #ff6433;
+}
+
+.checkout-card {
+  border: 2px solid #ff6433;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14pt;
+  line-height: 130%;
+  font-family: Poppins;
+}
+
+.checkout-radio {
+  border-color: #ff6433;
+}
+.checkout-radio:checked {
+  background-color: #ff6433;
+  border-color: #ff6433;
+}
+.checkout-fields {
+  border: 2px solid #ff6433;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.checkout-confirm-btn {
+  background: #ff6433;
+  /* Orange1 */
+  color: #fff;
+  width: 40%;
+  border: 1px solid #ff6433;
+  box-sizing: border-box;
+  border-radius: 999px;
+  font-size: 18px;
+  line-height: 36px;
+  outline: none;
+}
+
+.checkout-confirm-btn:hover {
+  background: #fff;
+  /* Orange1 */
+  color: #ff6433;
+}
+.checkout-item-card {
+  max-width: 75%;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14pt;
+  line-height: 130%;
+  font-family: Poppins;
+  border: 2px solid #ff6433;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+/* Sameer_Checkout ///////////////*
+/*HAMZAA////////////////////////////////////////*/
+.edit-form-btn {
+  margin-top: 5%;
+  width: 70%;
+
+  background: #32CD32;
+  /* Orange1 */
+  color: #fff;
+
+  border: 1px solid #32CD32;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+
+.edit-cancel-btn {
+  margin-top: 5%;
+  width: 70%;
+   background: #FF0000;
+  color: #fff;
+
+  border: 1px solid #FF0000;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+
+.edit-form-btn:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.edit-form-btn:hover {
+  background: #fff;
+  color: #32CD32;
+}
+
+.edit-cancel-btn:hover {
+  background: #fff;
+  color: #FF0000;
+}
+
+.upload-logo {
+  max-height: 200px;
+  max-width: 200px;
+   border-radius: 20px;
+
+}
+.file-input2 label {
+ 
+  width: 160px;
+  height: 35px;
+  border-radius: 25px;
+  padding-top: 5px;
+  background: linear-gradient(40deg, #ff6433, #ff6433);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+}
+
+/*HAMZAA////////////////////////////////////////*/
 /* FARAZ/////////////////////////////////////////*/
 .dish-count {
   margin-top: 30px;
@@ -7,7 +167,8 @@
   background: #ff6433;
   /* Orange1 */
   color: #fff;
-
+width: 30px;
+height: 25px;
   border: 1px solid #ff6433;
   box-sizing: border-box;
   border-bottom-left-radius: 6px;
@@ -20,6 +181,8 @@
   color: #fff;
   border: 1px solid #ff6433;
   box-sizing: border-box;
+  width: 30px;
+  height: 25px;
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -27,6 +190,8 @@
 .number-box {
   background: #fff;
   color: #ff6433;
+  height: 25px;
+  width: 30px;
   /*Orange1 */
   border: 1px solid #ff6433;
   box-sizing: border-box;
@@ -36,7 +201,10 @@
   height: 80px;
 }
 .add-to-cart-btn {
-  width: 80%;
+  width: auto;
+  height:auto;
+  padding: auto;
+  font-size: 1rem;
   background: #ff6433;
   /* Orange1 */
   color: #fff;
@@ -664,17 +832,17 @@ input[type="checkbox"]:checked + label {
 .carousel-control-next-icon {
   src: url ("./img/icons/cart.png");
 }
-@font-face {
+/* @font-face {
   font-family: poppins;
   src: url("../fonts/Poppins-Bold.ttf");
   font-weight: bold;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: poppins;
   src: url("../fonts/Poppins-SemiBold.ttf");
   font-weight: semibold;
-}
+} */
 .orange-btn {
   /* Orange1 */
 
@@ -687,7 +855,7 @@ input[type="checkbox"]:checked + label {
   border-radius: 20px;
 }
 .review-card {
-  position: absolute;
+ 
   width: 20pc;
   height: 305px;
   margin: auto;
@@ -722,9 +890,9 @@ input[type="checkbox"]:checked + label {
   color: #ff6433;
 }
 .review-heading {
-  font-family: Poppins;
+  font-family: Poppins-semibold;
 
-  font-weight: semibold;
+ 
   font-size: 48px;
   line-height: 36px;
   /* or 75% */
@@ -760,7 +928,11 @@ input[type="checkbox"]:checked + label {
 }
 
 .fitted {
-  padding: 120px 70px;
+ margin-left:1rem;
+ margin-right:1rem;
+ padding-bottom: 10%;
+ padding-top: 8% ;
+
 }
 .strip {
   position: relative;
@@ -800,10 +972,10 @@ input[type="checkbox"]:checked + label {
   border-radius: 135px;
 }
 .search-heading {
-  font-family: Poppins;
+  font-family: Poppins-semibold;
   font-style: normal;
-  font-weight: 600;
-  font-size: 80px;
+
+  font-size: 6em;
   line-height: 90px;
   /* or 108% */
 
@@ -818,7 +990,7 @@ input[type="checkbox"]:checked + label {
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 1.3em;
   line-height: 32px;
   /* or 178% */
 
@@ -855,5 +1027,5 @@ input[type="checkbox"]:checked + label {
   background-image: url("../img/backgrounds/Group_231.png");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  max-height:max-content;
 }

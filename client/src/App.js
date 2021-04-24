@@ -8,6 +8,9 @@ import Register from "./components/layout/Register";
 
 import Home from "./components/layout/Home";
 
+import EditProfileChef from "./components/layout/EditProfileChef";
+import EditProfileCust from "./components/layout/EditProfileCust";
+
 
 import ChefOrder from './components/layout/ChefOrders'
 import ChefOrderHistory from './components/layout/ChefOrderHistory'
@@ -22,9 +25,9 @@ import history from './util/history'
 import CustomerOrders from "./components/layout/CustomerOrders";
 import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
+import ConfirmCheckout from './components/layout/ConfirmCheckout'
 
 
-// import { toast } from 'react-toastify'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -71,6 +74,11 @@ const App = () => {
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
 
+          <PrivateRoute exaxt path='/customer/confirm-checkout' component={ConfirmCheckout} />
+          
+
+          <PrivateRoute exact path="/chef/edit-profile" component={EditProfileChef} />
+          <PrivateRoute exact path="/customer/edit-profile" component={EditProfileCust} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
         </Switch>
