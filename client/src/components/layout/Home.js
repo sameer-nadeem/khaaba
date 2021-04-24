@@ -37,6 +37,8 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
   }
   const [popkitchens, setpopkitchens] = useState([])
   const [popLoading, setPopLoading] = useState(true)
+  const [popkitchensCity, setPopkitchensCity] = useState([])
+  const [popLoadingCity, setPopLoadingCity] = useState(true)
   useEffect(async () => {
     try {
       const res = await axios.get('/api/recommendations/byhistory')
@@ -52,6 +54,23 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
       //toast error something went wrong please try again
     }
 
+
+    try {
+      const res = await axios.get('/api/recommendations/bypopularity')
+
+      setPopkitchensCity(res.data.chefs)
+      setPopLoadingCity(false)
+
+    }
+    catch (error) {
+      console.log(error);
+
+      //toast error something went wrong please try again
+    }
+
+
+
+
     let nav = await navigator.geolocation.getCurrentPosition(async (position) => {
       const res = await axios.get(`/api/recommendations/bylocation/${position.coords.latitude}/${position.coords.longitude}`)
       setpopkitchens(res.data.chefs)
@@ -62,6 +81,8 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
     function showError(error) {
       toast.error("Geolocation Error");
+      setPopLoading(false)
+
     }
 
     // const res= await axios.get('/api/recommendations/bylocation/31.401068715387026/74.26103820925032')
@@ -161,7 +182,9 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
       <div className="container-fluid pb-5 bg-white" >
         <div className="row justify-content-sm-center pb-5">
-          <div className=" review-heading d-inline "> Popular Kitc<span className="color-orange semibold">hens Near You</span> </div>
+          {
+            popkitchens.length !== 0 && <div className=" review-heading d-inline "> Kitchens<span className="color-orange semibold"> Near You</span> </div>
+          }
         </div>
         <div className="row justify-content-center">
           <div className="col-4 text-center">
@@ -213,12 +236,12 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
       </div>
       <div className="container-fluid pt-5 pb-5 bg-orange" >
         <div className="row justify-content-sm-center pb-5">
-          <div className="review-heading d-inline "> Select by<span className="color-white semibold"> Cuisine</span> </div>
+          <div className="review-heading d-inline "> Available<span className="color-white semibold"> Cuisines</span> </div>
         </div>
         <div className="row justify-content-center px-lg-5 ">
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
+            <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -234,7 +257,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
           </div>
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
+            <div className="card cusine-card" >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -251,7 +274,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
+            <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -267,7 +290,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
+            <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -283,7 +306,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
+            <div className="card cusine-card" >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -299,7 +322,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
+            <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -315,7 +338,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)}>
+            <div className="card cusine-card" >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -332,7 +355,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col col-md-3 d-flex justify-content-center pb-4" >
 
-            <div className="card cusine-card" onClick={() => toast.error(`Feature underconstruction`)} >
+            <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
@@ -349,10 +372,63 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
         </div>
       </div>
 
+
       <div className="container-fluid pt-5 pb-5 bg-white" >
+        <div className="row justify-content-sm-center pb-5">
+          <div className=" review-heading d-inline "> Popular Kitchens<span className="color-orange semibold"> in your City</span> </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-4 text-center">
+            {
+              popLoadingCity && <img className='float-center' src="/img/Ellipsis-1s-200px.gif" />
+
+            }
+          </div>
+        </div>
+        <div className="row justify-content-sm-evenly px-5 ">
+
+
+          {
+
+            !popLoadingCity && popkitchensCity.map((chef, index) => (
+              <div key={`${index}`} className="col-sm-12 col-md-6 col-lg-3 pb-2 d-flex justify-content-center">
+                <KitchenCard kitchen={chef.kitchen} />
+                {/* <div className="card justify-content-md-center kitchen-card">
+
+                  <LazyLoadImage effect="blur" src={`/uploads/kitchen-logos/${chef.kitchen.logo}`} className="card-img-top rounded-image" alt="Logo" />
+                  <div className="row px-3  justify-content-sm-center">
+                    <div className="card-body">
+
+                      <h5 className="card-title text-center pb-2">{`${chef.kitchen.title}`}</h5>
+                      <div className="bottom-0 ">
+                        <span className="d-inline-block bottom-0">
+                          <i className="fa fa-star checked star1"> </i>
+                          <span className="d-inline-block text-align-center rating-font">{ratingcheck(chef.kitchen.avgRating)}</span>
+                        </span>
+                        <a className="btn pull-right orange-btn" style={{ color: "white" }} onClick={() => toast.error(`Feature underconstruction`)}>Menu </a>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div> */}
+
+              </div>
+            ))
+
+          }
+
+
+
+
+
+        </div>
+      </div>
+      <div className="container-fluid pt-5 pb-5 bg-orange" >
 
         {byHistory.length !== 0 && <div className="row justify-content-sm-center pb-5">
-          <div className="review-heading d-inline"> Loved it?<span className="color-orange semibold"> Order again...</span> </div>
+          <div className="review-heading d-inline"> Loved it?<span className="color-white semibold"> Order again...</span> </div>
         </div>
         }
         <div className="row dish-card-row px-5  pb-4 justify-content-center ">

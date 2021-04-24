@@ -162,11 +162,17 @@ router.post('/change-profile/chef', chefAuth, async (req, res) => { // final
             }
         }
 
-        // const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+        const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
-        // const result = await axios.get(mapuri)
-        // const coords = result.data.results[0].geometry.location
+        const result = await axios.get(mapuri)
+        let coords = {
+            lat: 31.5203696,
+            lng: 74.35874729999999
+        }
 
+        if (result.data.status !== "ZERO_RESULTS") {
+            coords = result.data.results[0].geometry.location
+        }
         Chef.updateOne({ _id: req.user.id },//"60573d5785214d0bc5b0f9b7"},//req.user.id},//  
             {
                 $set:
@@ -175,7 +181,7 @@ router.post('/change-profile/chef', chefAuth, async (req, res) => { // final
                     firstName: firstName,
                     lastName: lastName,
                     phone: phone,
-                    address: { addr: address, city: city.toUpperCase() },
+                    address: { addr: address, city: city.toUpperCase(), coords },
                     city: city,
 
                 }
@@ -313,11 +319,17 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
                 })
             }
         }
-        // const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
+        const mapuri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
-        // const result = await axios.get(mapuri)
-        // const coords = result.data.results[0].geometry.location
+        const result = await axios.get(mapuri)
+        let coords = {
+            lat: 31.5203696,
+            lng: 74.35874729999999
+        }
 
+        if (result.data.status !== "ZERO_RESULTS") {
+            coords = result.data.results[0].geometry.location
+        }
         User.updateOne({ _id: req.user.id },
             {
                 $set:
@@ -327,7 +339,7 @@ router.post('/change-profile/customer', customerAuth, async (req, res) => {
                     lastName: lastName,
                     city: city,
                     phone: phone,
-                    address: { addr: address, city: city.toUpperCase() }
+                    address: { addr: address, coords, city: city.toUpperCase() }
                 }
             },
             async (err) => {
