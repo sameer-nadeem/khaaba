@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { toast } from 'react-toastify'
 import { editprofile_chef, passchange_chef, editprofile_cheflogo } from '../../actions/editchefAction'
-import history from '../../util/history'
+
 const EditProfileChef = ({ profile, editprofile_chef, passchange_chef, editprofile_cheflogo }) => {
     console.log(`the profile`, profile)
     const [SaveAllow, setSaveAllow] = useState(true)
@@ -58,17 +58,14 @@ const EditProfileChef = ({ profile, editprofile_chef, passchange_chef, editprofi
     }
 
     const logoSelect = (e) => {
+        console.log(e.target.files[0].size)
+        setSaveAllow(false)
 
-        if (e.target.files.length > 0) {
-            setSaveAllow(false)
-
-            setFileName(e.target.files[0].name)
-            setlogoFields({
-                logo: e.target.files[0]
-            })
-            setLogoChangeFlag(true)
-        }
-
+        setFileName(e.target.files[0].name)
+        setlogoFields({
+            logo: e.target.files[0]
+        })
+        setLogoChangeFlag(true)
 
     }
 
@@ -456,7 +453,7 @@ const EditProfileChef = ({ profile, editprofile_chef, passchange_chef, editprofi
                                         <button type="submit" onClick={onSubmit} className="btn edit-form-btn" disabled={SaveAllow}>Save</button>
                                     </div>
                                     <div className="col-sm-6  col-md-4 m-1 d-flex justify-content-center">
-                                        <button type="submit" onClick={() => { history.push('/chef') }} className="btn edit-cancel-btn">Cancel</button>
+                                        <button type="submit" className="btn edit-cancel-btn">Cancel</button>
                                     </div>
 
                                 </div>

@@ -11,7 +11,7 @@ const Register = ({ register, registerChef }) => {
         logo: null,
         lastName: '',
         email: '',
-        city: 'Lahore',
+        city: '',
         phone: '',
         address: '',
         password: '',
