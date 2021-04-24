@@ -212,6 +212,8 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
             description
         })
 
+        kitchen.tags.push(title.toLowerCase())
+
         await kitchen.save()
 
         //

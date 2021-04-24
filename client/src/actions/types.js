@@ -42,3 +42,6 @@ export const ADD_CART = 'ADD_CART'
 export const REMOVE_CART = 'REMOVE_CART'
 export const CHECKOUT_FAIL = "CHECKOUT_FAIL"
 export const CHECKOUT_SUCCESS = "CHECKOUT_SUCCESS"
+
+export const SET_QUERY = 'SET_QUERY'
+export const SET_PAGENUMBER = 'SET_PAGENUMBER'
