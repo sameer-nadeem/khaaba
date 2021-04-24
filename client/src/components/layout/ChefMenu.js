@@ -142,7 +142,7 @@ ADD DISH
                     <div className="instant-khaaba-tag ">Instant Khaaba</div>
                   
                   }
-                  <div >{`/uploads/dish-thumbnails/${dish.thumbnail}`}</div>
+    
                   {
                     
                     

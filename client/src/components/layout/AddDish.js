@@ -32,8 +32,6 @@ const AddDish = ({addInstant, addNormal}) =>{
 
     const [fileName, setFileName] = useState('')
 
-
-
     const [errors, setErrors] = useState({})
 
     const onToggle = () => {
@@ -61,7 +59,7 @@ const AddDish = ({addInstant, addNormal}) =>{
 
 
 
-        // if (validateInputs()) {
+        if (validateInputs()) {
             if (toggle) {
                 console.log(dishDetails)
                 addInstant(dishDetails)
@@ -70,13 +68,63 @@ const AddDish = ({addInstant, addNormal}) =>{
                 console.log(dishDetails)
                 addNormal(dishDetails)
             }
-        // }
+        }
+    }
+
+    const validateInputs = ()=>{
+        setErrors({})
+        function isNumeric(str) {
+            if (typeof str != "string") return false // we only process strings!  
+            return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+                !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+        }
+
+        const errs = {}
+
+        if (dishDetails.title === '') {
+            errs.title = 'Dish name cannot be left empty'
+
+        }
+
+        if (dishDetails.price === 0 || !isNumeric(dishDetails.price)) {
+            errs.price = 'Price field cannot be left empty and must be a number'
+
+        }
+
+
+
+        if ((toggle && dishDetails.servings === 0) ||(toggle && isNumeric(dishDetails.servings))) {
+            errs.servings = 'servings field cannot be left empty and must be a number'
+        }
+
+        if (!dishDetails.dishPicture ) {
+            errs.dishPicture = 'Please select an image'
+        }
+
+        if (!dishDetails.description ) {
+            errs.description = 'Description field cannot be left empty '
+        }
+
+        console.log(errs)
+
+        if (Object.keys(errs).length === 0) {
+            console.log('nn')
+            return true;
+        }
+
+        setErrors({
+            ...errs
+        })
+
+
+        return false
+
     }
 
     const logoSelect = (e) => {
         console.log('selecting new pic for dish!!!!')
         // setFileName(e.target.files[0].name)
-        // setFileName(e.target.files[0].name)
+        setFileName(e.target.files[0].name)
         setdishDetails({
             ...dishDetails, dishPicture: e.target.files[0]
         })
@@ -120,25 +168,21 @@ const AddDish = ({addInstant, addNormal}) =>{
 
                             <h5 className="card-title text-center adddish-heading mt-3">Add Dish</h5>
                             <div className=" col-12 dimage-container ">
-                                
-                            <img className="dishimage" src={`${picUrl}`} alt="Dish preview"/>
-                            
-
-                            <div className="middle">
-                                
-                                
-
+     
                             <input type="file" accept="image/*" id="file" name='logo' className="file" onChange={logoSelect} />
+
                             <label className="text-center" htmlFor="file">
                             <a >
                                        <img className="camera" src="/img/icons/camera.png" alt="" srcset=""/>
-                                      <div className="edit-cam-txt">Change</div> 
+                                      <div className="edit-cam-txt">Add Picture</div> 
                                    </a>
 
                             </label>
 
-                              </div>
+                              
 
+                              <div>{fileName}</div>
+                              <span className='text-danger'>{errors.dishPicture}</span>
                             </div>
 
                             <div className="row justify-content-center align-items-center pb-3">
@@ -162,6 +206,7 @@ const AddDish = ({addInstant, addNormal}) =>{
                                 <div className="col m-1">
                                     <label for="exampleInputEmail1" className="login-field-headings">Dish Name</label>
                                     <input type="text" className="form-control login-fields" onChange={onChange} name="title" placeholder="e.g. Beef Burger"/>
+                                    <span className='text-danger'>{errors.title}</span>
                                 </div>
 
                                 {
@@ -187,6 +232,7 @@ const AddDish = ({addInstant, addNormal}) =>{
                                         <span className="input-group-text" id="basic-addon1">PKR</span>
                                         <input name='price' onChange={onChange} type="text" className="form-control login-fields" id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="e.g. 500"/>
+                                            <span className='text-danger'>{errors.price}</span>
                                     </div>
                                 </div>
                                 {
@@ -197,6 +243,7 @@ const AddDish = ({addInstant, addNormal}) =>{
                                     <label for="exampleInputEmail1" className="login-field-headings">Servings</label>
                                     <input name='servings' onChange={onChange} type="text" className="form-control login-fields" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" placeholder="e.g. 4"/>
+                                        <span className='text-danger'>{errors.servings}</span>
 
                                 </div>
                                 </Fragment>
@@ -206,6 +253,7 @@ const AddDish = ({addInstant, addNormal}) =>{
                                 <label for="exampleInputPassword1" className="login-field-headings">Description</label>
                                 <input name='description' onChange={onChange} type="text" className="form-control login-fields" id="exampleInputPassword1"
                                     placeholder="e.g. The best burger you can find....."/>
+                                    <span className='text-danger'>{errors.description}</span>
                             </div>
                             <div className="form-group m-1 mb-3">
                                 <label className="AddDish-field-headings"> Categories <div className="row text-center mt-4">
