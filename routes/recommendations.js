@@ -35,7 +35,6 @@ const getDistance = (coords1, coords2) => {
 }
 
 router.get('/bylocation/:lat/:lng', async (req, res) => {
-
     try {
         const coords = {
             lat: req.params.lat,
@@ -43,32 +42,34 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
         }
         let chefs = []
 
-        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.lat},${coords.lng}&result_type=administrative_area_level_2&key=${config.get('google_maps_api_key')}`
+        // const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.lat},${coords.lng}&result_type=administrative_area_level_2&key=${config.get('google_maps_api_key')}`
 
-        const response = await axios.get(mapUri)
+        // const response = await axios.get(mapUri)
 
-        const city = response.data.results[0].address_components[0].long_name.toUpperCase()
+        // const city = response.data.results[0].address_components[0].long_name.toUpperCase()
+        const cityLahore = "lahore".toUpperCase()
 
-        console.log(city)
+        // console.log(city)
 
         chefs = await Chef.find({
-            'address.city': city
+            'address.city': cityLahore
         }).populate('kitchen')
 
         chefs = chefs.filter(chef => getDistance(coords, chef.address.coords) < config.get('recommendation_radius_km'))
 
 
         chefs.sort((c1, c2) => {
-            return c2.kitchen.avgRating - c1.kitchen.avgRating
+            return getDistance(coords, c1.address.coords) - getDistance(coords, c2.address.coords)
         })
 
-        console.log("..", chefs)
+        console.log("----------->", chefs)
 
         return res.status(200).json({
             chefs: chefs.slice(0, 4)
         })
 
     } catch (error) {
+        console.log(error)
         return res.status(400).json({
             errors: [SERVER_ERROR]
         })
@@ -116,25 +117,26 @@ router.get('/byhistory', customerAuth, async (req, res) => {
 
 router.get('/bypopularity', async (req, res) => {
     try {
-        const coords = {
-            lat: req.params.lat,
-            lng: req.params.lng
-        }
+        // const coords = {
+        //     lat: req.params.lat,
+        //     lng: req.params.lng
+        // }
 
-        const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.lat},${coords.lng}&result_type=administrative_area_level_2&key=${config.get('google_maps_api_key')}`
+        // const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.lat},${coords.lng}&result_type=administrative_area_level_2&key=${config.get('google_maps_api_key')}`
 
-        const response = await axios.get(mapUri)
+        // const response = await axios.get(mapUri)
 
-        const city = response.data.results[0].address_components[0].long_name.toUpperCase()
+        // const city = response.data.results[0].address_components[0].long_name.toUpperCase()
         const cityLahore = "lahore".toUpperCase()
         const chefs = await Chef.find({
             'address.city': cityLahore,
-        }).sort({ avgRating: 'desc' }).limit(4).populate('kitchen')
+        }).populate('kitchen')
 
 
         chefs.sort((c1, c2) => {
             return c2.kitchen.avgRating - c1.kitchen.avgRating
         })
+        console.log("----------->", chefs)
 
         return res.status(200).json({
             chefs: chefs.slice(0, 4)

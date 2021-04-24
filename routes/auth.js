@@ -88,7 +88,14 @@ router.post('/signup/customer', async (req, res) => {
         const mapUri = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.get('google_maps_api_key')}`
 
         const result = await axios.get(mapUri)
-        const coords = result.data.results[0].geometry.location
+        let coords = {
+            lat: 31.5203696,
+            lng: 74.35874729999999
+        }
+
+        if (result.data.status !== "ZERO_RESULTS") {
+            coords = result.data.results[0].geometry.location
+        }
 
         const user = new User({
             email,
@@ -176,8 +183,15 @@ router.post('/signup/chef', upload.single('logo'), async (req, res) => {
 
 
         const result = await axios.get(mapUri)
+        let coords = {
+            lat: 31.5203696,
+            lng: 74.35874729999999
+        }
 
-        const coords = result.data.results[0].geometry.location
+        if (result.data.status !== "ZERO_RESULTS") {
+            coords = result.data.results[0].geometry.location
+        }
+
 
         const chef = new Chef({
             email,
