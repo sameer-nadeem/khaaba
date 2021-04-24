@@ -73,6 +73,19 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                   </span>
                 </li>
               )}
+
+              {
+                type === "chef" &&
+                <li class="nav-item">
+                  <Link to = "/chef/menu">
+                <a class="menu">Menu</a>
+                </Link>
+            </li>
+              }
+
+
+
+
               {isAuthenticated && (
                 <Fragment>
                   {" "}

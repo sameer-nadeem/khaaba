@@ -10,6 +10,8 @@ import Home from "./components/layout/Home";
 
 import ChefMenu from "./components/layout/ChefMenu";
 import AddDish from "./components/layout/AddDish";
+import EditDish from "./components/layout/EditDish";
+
 
 
 import ChefOrder from './components/layout/ChefOrders'
@@ -75,6 +77,7 @@ const App = () => {
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
           <PrivateRoute exaxt path='/chef/menu' component={ChefMenu} />
           <Route exaxt path='/chef/adddish' component={AddDish} />
+          <Route exaxt path='/chef/editdish' component={EditDish} />
 
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 

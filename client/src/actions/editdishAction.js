@@ -1,16 +1,16 @@
 import axios from 'axios'
 import history from '../util/history'
 import {
-    DISH_ADDED_SUCCESSFULLY,
-    FAILED_TO_ADD_DISH
+    DISH_EDITED_SUCCESSFULLY,
+    FAILED_TO_EDIT_DISH
 } from './types'
 
 import { toast } from 'react-toastify'
 
-export const addInstant = (formData) => async dispatch => {
+export const editInstant = (formData) => async dispatch => {
 
     const form = new FormData()
-    form.append('logo', formData.dishPicture)
+    form.append('dishlogo', formData.dishPicture)
     form.append('title', formData.title)
     form.append('expiryTime', formData.expiryTime)
     form.append('price', formData.price)
@@ -20,10 +20,10 @@ export const addInstant = (formData) => async dispatch => {
     form.append('isInstantKhaaba', true)
     
     try {
-        const res = await axios.post('/api/kitchen/add-khaaba', form)
+        const res = await axios.post(`/api/kitchen//edit-khaaba/${formData.khaabaID}`, form)
         console.log(`WALAAAAHAAHAHAHAHAHAHA:  ${res.data}`)
         dispatch({
-            type: DISH_ADDED_SUCCESSFULLY,
+            type: DISH_EDITED_SUCCESSFULLY,
             // payload: res.data.token
         })
         toast.success('Dish added to menu. Happy Khaaba!')
@@ -36,19 +36,19 @@ export const addInstant = (formData) => async dispatch => {
         toast.error('Server error')
   
         dispatch({
-            type: FAILED_TO_ADD_DISH
+            type: FAILED_TO_EDIT_DISH
         })
     }
 }
 
 
 
-export const addNormal = (formData) => async dispatch => {
+export const editNormal = (formData) => async dispatch => {
 
    
     const form = new FormData()
     
-    form.append('logo', formData.dishPicture)
+    form.append('dishlogo', formData.dishPicture)
     form.append('title', formData.title)
 
     form.append('price', formData.price)
@@ -60,14 +60,15 @@ export const addNormal = (formData) => async dispatch => {
     // console.log(`Received this in the action handles: formData->${formData}`)
     
     try {
+        console.log("This is the logo name being sent to backend: ",formData.dishPicture)
 
-        const res = await axios.post('/api/kitchen/add-khaaba', form)
+        const res = await axios.post(`/api/kitchen/edit-khaaba/${formData.khaabaID}`, form)
         
         dispatch({
-            type: DISH_ADDED_SUCCESSFULLY,
+            type: DISH_EDITED_SUCCESSFULLY,
             // payload: res.data.token
         })
-        toast.success('Dish added to menu. Happy Khaaba!')
+        toast.success('Dish info updated, Happy Khaaba!')
         // dispatch(loadUser())
         history.push('/chef/menu')
     } catch (error) {
@@ -79,7 +80,7 @@ export const addNormal = (formData) => async dispatch => {
         toast.error('Server error')
 
         dispatch({
-            type: FAILED_TO_ADD_DISH
+            type: FAILED_TO_EDIT_DISH
         })
     }
 }

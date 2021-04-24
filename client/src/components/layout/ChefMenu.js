@@ -28,6 +28,13 @@ const ChefMenu = ({profile}) =>{
   }, []
   )
 
+  const EditCall = (editdishinfo) => {
+
+    console.log("this is the dish info to edit", editdishinfo)
+    sessionStorage.setItem("DISH", JSON.stringify(editdishinfo))
+    console.log("saved in session")    
+  }
+
 
 
 
@@ -126,7 +133,7 @@ ADD DISH
             <div className="col-md-4 col-sm-10 d-flex justify-content-center justify-content-md-center pb-2">
             <div className = "card dish-card">                             
                 <div className="image-container">
-                <img className="dish-image" src="/img/icons/white.png" alt="Dish preview"/>
+                <img className="dish-image" src={`/uploads/dish-thumbnails/${dish.thumbnail}`} alt="Dish preview"/>
                 </div> 
                 
                 <div className="row align-items-end  justify-content-center roweighty">
@@ -135,6 +142,7 @@ ADD DISH
                     <div className="instant-khaaba-tag ">Instant Khaaba</div>
                   
                   }
+                  <div >{`/uploads/dish-thumbnails/${dish.thumbnail}`}</div>
                   {
                     
                     
@@ -156,11 +164,12 @@ ADD DISH
                     
                 </div>
 
-            
-                    <div className="row justify-content-center">
-                        <button type="submit" className=" edit-dish-btn "><img className="edit-pencil" src="/img/icons/pencil.png" alt="Dish preview"/>Edit</button>
-                    </div>
-          
+                
+                    {/* <div className="row justify-content-center"> */}
+                    <Link to="/chef/editdish" className="row justify-content-center">
+                        <button type="submit" onClick={() => EditCall(dish)} className=" edit-dish-btn "><img className="edit-pencil" src="/img/icons/pencil.png" alt="Dish preview"/>Edit</button>
+                        </Link>
+                    {/* </div> */}
             </div>
           </div>
             
@@ -170,99 +179,15 @@ ADD DISH
 
 }
           
-{/* 
-          <div className="col-md-4 col-sm-10 d-flex justify-content-center justify-content-md-start pb-2">
-            <div className = "card dish-card">                             
-                <div className="image-container">
-                    <img className="dish-image" src="/img/icons/white.png" alt="Dish preview"/>
-                    </div> 
-                    <div className="row align-items-end justify-content-center roweighty" >
-                        <div className = "row justify-content-between">
-                            <div className = "col dishname coltwo" >chicken karahi </div>
-                            <div className = "col-2 text-end price colone" > Rs 0000 </div>
-                        </div>
-                        <div className = "row">
 
-                            <div className = "col"> steam cooked </div>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <button type="submit" className=" edit-dish-btn "> <img className="edit-pencil" src="/img/icons/pencil.png" alt="Dish preview"/> Edit</button>
-                    </div>
-            </div>
-          </div> */}
         
     </div>
-{/* 
-    <div className="row dish-card-row justify-content-center pb-2">
 
-        <div className="col-md-4 col-sm-10 d-flex justify-content-center justify-content-md-end pb-2">
-            <div className = "card dish-card">                             
-                <div className="image-container">
-                    <img className="dish-image" src="/img/icons/white.png" alt="Dish preview"/>
-                    </div> 
-                    <div className="row align-items-end justify-content-center coleighty" >
-                        <div className = "row justify-content-between">
-                            <div className = "col dishname coltwo" >chicken karahi </div>
-                            <div className = "col-2 text-end price colone" > Rs 0000 </div>
-                        </div>
-                        <div className = "row">
-
-                            <div className = "col"> steam cooked </div>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <button type="submit" className=" edit-dish-btn "> <img className="edit-pencil" src="/img/icons/pencil.png" alt="Dish preview"/> Edit</button>
-                    </div>
-            </div>
-          </div>
-
-          <div className="col-md-4 col-sm-10 d-flex justify-content-center pb-2">
-            <div className = "card  dish-card">                             
-                <div className="image-container">
-                    <img className="dish-image" src="/img/icons/white.png" alt="Dish preview"/>
-                    </div> 
-                    <div className="row align-items-end justify-content-center coleighty" >
-                        <div className = "row justify-content-between">
-                            <div className = "col dishname coltwo" >chicken karahi </div>
-                            <div className = "col-2 text-end price colone" > Rs 0000 </div>
-                        </div>
-                        <div className = "row">
-
-                            <div className = "col"> steam cooked </div>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <button type="submit" className=" edit-dish-btn ">Edit</button>
-                    </div>
-            </div>
-          </div>
-
-          <div className="col-md-4 col-sm-10 d-flex justify-content-center justify-content-md-start pb-2">
-            <div className = "card dish-card">                             
-                <div className="image-container">
-                    <img className="dish-image" src="/img/icons/white.png" alt="Dish preview"/>
-                    </div> 
-                    <div className="row align-items-end justify-content-center coleighty" >
-                        <div className = "row justify-content-between">
-                            <div className = "col dishname coltwo" >chicken karahi </div>
-                            <div className = "col-2 text-end price colone" > Rs 0000 </div>
-                        </div>
-                        <div className = "row">
-
-                            <div className = "col"> steam cooked </div>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <button type="submit" className=" edit-dish-btn "> <img className="edit-pencil" src="/img/icons/pencil.png" alt="Dish preview"/> Edit</button>
-                    </div>
-            </div>
-          </div>
-        
-    </div> */}
 
     
 </div>
+
+
 
         </div>
 

@@ -10,9 +10,9 @@ const multer = require('multer');
 const category = require("../models/category");
 
 const storage = multer.diskStorage({
-  destination: `${config.get('kitchen_logo_path')}`,
+  destination: `${config.get('dish_thumbnail_path')}`,
   filename: function (req, file, callback) {
-      callback(null, `${uuid()}_` + file.originalname);
+      callback(null, `${uuid()}_` + file.originalname.split(" ").join("-"));
   },
   onError: function (err, next) {
       console.log('error', err);
@@ -90,7 +90,7 @@ router.post("/add-khaaba", chefAuth, upload.single('logo') ,async (req, res) => 
 });
 
 
-router.post("/edit-khaaba/:id", chefAuth, async (req, res) => {
+router.post("/edit-khaaba/:id", chefAuth, upload.single('dishlogo'), async (req, res) => {
   try {
     const id = req.params.id
 
@@ -98,15 +98,32 @@ router.post("/edit-khaaba/:id", chefAuth, async (req, res) => {
       _id: id
     })
 
+    console.log(req.body.title)
+
     if (req.body.title) khaaba.title = req.body.title;
     if (req.body.price) khaaba.price = req.body.price;
     if (req.body.description) khaaba.description = req.body.description;
     if (req.body.category) khaaba.category = req.body.category;
 
     if (req.body.isInstantKhaaba == 'true') {
-      khaaba.instantKhaaba.isInstant = true
-      khaaba.instantKhaaba.availableServings = req.body.servings;
+      if (khaaba.instantKhaaba.availableServings)
+      {
+        khaaba.instantKhaaba.availableServings = req.body.servings;
+      } 
     }
+
+    let logoPath = ''
+
+    if (req.file) {
+      
+        logoPath = req.file.filename
+        console.log("it is setting thumbnail!!!!!: ",req.file.filename)
+        khaaba.thumbnail = `${logoPath}`
+        console.log("new  thumbnail!!!!!: ",khaaba.thumbnail)
+        }
+    
+
+
     await khaaba.save()
     return res.status(200).json({ khaaba });
 

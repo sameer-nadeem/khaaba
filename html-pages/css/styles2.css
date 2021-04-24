@@ -1,0 +1,203 @@
+/* ////////HAMZA //////////////////*/
+
+@font-face {
+    font-family: poppins;
+    src: url("../fonts/Poppins-Bold.ttf");
+    font-weight: bold;
+  }
+  
+  @font-face {
+    font-family: poppins;
+    src: url("../fonts/Poppins-SemiBold.ttf");
+    font-weight: semibold;
+  }
+  .review-card{
+   
+    position: absolute;
+  width: 20pc;
+  height: 305px;
+  margin: auto;
+  
+  
+  background: #FFFFFF;
+  border-radius: 30px;
+    background: #FFFFFF;
+    border-radius: 30px;
+  
+  }
+  .img-fill {
+   
+  object-fit: fill;
+    background-image: url("appetizer.jpg");
+    background-size: cover;
+  
+    background-position: 0% 0%;
+  }
+  
+  .cuisine {
+  
+    left: 0%;
+    right: 0%;
+    top: 13.26%;
+    bottom: 11.6%;
+    
+    background: #FFFFFF;
+    /* Orange1 */
+    
+    border: 1px solid #FF6433;
+    box-sizing: border-box;
+    border-radius: 16px;
+  }
+  .checked {
+    color: #FF6433;
+    
+  }
+  .review-heading{
+    font-family: Poppins;
+   
+    font-weight: semibold;
+    font-size: 48px;
+    line-height: 36px;
+    /* or 75% */
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.25px;
+    
+    color: #000000;
+  
+  }
+  
+  .carousel-multi-item .controls-top {
+    margin-bottom: 1.88rem;
+    text-align: center;
+  }
+  
+  .carousel-item {
+    height: 350px;
+  }
+  
+  .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+  }
+  .carousel-indicators {
+    bottom: -30px;
+  }
+  .searchbar-center{
+  position: relative;
+  top: 200px;
+  
+  }
+  
+  .fitted {
+      padding: 120px 70px;
+  }
+  .strip{
+    position: relative;
+    background-image: url(../img/backgrounds/strip.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+  
+  }
+  .khaabatry-card{
+    position: relative;  
+    top: -150px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+  }
+  
+  .rounded-edges{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    
+    /* Orange1 */
+    
+    border: 3px solid #FF6433;
+    box-sizing: border-box;
+    border-radius: 16px;
+  
+  }
+  .findfood-btn {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    
+    background: #FF6433;
+    border-radius: 135px;
+  } 
+  .search-heading {
+  
+  
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 90px;
+  /* or 108% */
+  
+  font-feature-settings: 'liga' off;
+  
+  /* Text / Gray 900 */
+  
+  color: #18191F;
+  
+  }
+  
+  .search-subheading {
+  
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    /* or 178% */
+    
+    font-feature-settings: 'liga' off;
+    
+    /* Text / Gray 900 */
+    
+    color: #18191F;
+    
+    
+    /* Inside Auto Layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 16px 0px;
+  
+  
+  
+  }
+  .find-heading {
+  
+   
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    
+    /* White */
+    
+    color: #FFFFFF;
+  
+  
+  }
+  /* /////////////////////////HAMZA */
