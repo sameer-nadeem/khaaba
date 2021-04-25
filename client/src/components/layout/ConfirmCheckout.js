@@ -1,33 +1,94 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
+import { toast } from 'react-toastify'
 import { postCheckout,increasecounter,decreasecounter,removekhaaba} from '../../actions/customer'
+import {editprofile_customer } from '../../actions/editcustAction'
+const Displaycheckout = ({cart, postCheckout,isAuthenticated,increasecounter,decreasecounter,removekhaaba,profile,editprofile_customer}) => {
+    
 
-const Displaycheckout = ({cart, postCheckout,isAuthenticated,increasecounter,decreasecounter,removekhaaba,profile}) => {
 
-    const clickFunc = () => {
-
-        postCheckout(isAuthenticated)
- 
-    }
-    const [profileAddress, setprofileAddress] = React.useState('')
+    
+  // [profileAddress, setprofileAddress] = React.useState('')
     const [checked, setchecked] = React.useState(false)
+    const [SaveAllow, setSaveAllow] = useState(true)
+    const [totalcost, settotal] = useState(true)
+    const [defcheck, setdefcheck] = useState(false)
+    const [error_address, seterror_address] = useState('')
+    const [registerFields, setRegisterFields] = useState({
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        email: profile.email,
+        city: profile.address.city,
+        phone: profile.phone,
+        address: '',
+        //password: profile.password,
+    })
+    const {
+        firstName,
+        lastName,
+        email,
+        city,
+        phone,
+        address,
+        //password,
+    } = registerFields
+
+
+
+    const clickFunc = (e) => {
+        if(address!='' && totalCalc(cart)!==0)
+        {
+    
+            editprofile_customer(registerFields)
+        postCheckout(isAuthenticated)
+        }
+        else if (totalCalc(cart) <=0)
+        {
+            
+            toast.error(`Cart Empty`)
+        }
+        else{
+            seterror_address(`Address can not be empty`)
+
+        }
+
+    }
+
+    const totalCalc = (cart) => {
+        let total = 0
+        cart.khaabay.forEach(element => {
+            total += (element.price*element.quantity)
+        });
+        //settotal(total)
+        return total
+    }
 
     const DefaultAddress= (e) => {
-        
-        if(e.target.checked)
-        {
-            setprofileAddress(profile.address.addr)
-        }
-        
+        if(e.target.checked){
+            setdefcheck(true)
+        setRegisterFields({
+            ...registerFields,
+            address: profile.address.addr
+        })
+    }
+    else {setdefcheck(false)}
 
     }
     const editAddress= (e) => {
-        
-        console.log(`value`,e.value)
-       setprofileAddress(e.target.value)
 
-       console.log(profileAddress)
+        seterror_address('')
+        //console.log(`value`,e.value)
+        console.log(`profile address`, address)
+        setRegisterFields({
+            ...registerFields,
+            [e.target.name]: e.target.value
+        })
+        
+    console.log(`here is address`,registerFields.address)
+       
+      
+       //console.log(profileAddress)
 
     }
 
@@ -79,9 +140,18 @@ const Displaycheckout = ({cart, postCheckout,isAuthenticated,increasecounter,dec
                                     <td>{khaaba.title}</td>
                                     <td>{khaaba.quantity}</td>
                                     <td>{khaaba.price*khaaba.quantity}</td>
+                                    
                                 </tr>
             
-            ))}
+            )
+            )}
+            <br/>
+                            <tr>
+                                    
+                                    <td>{}</td>
+                                    <td className="bold color-orange">Total:</td>
+                                    <td>{totalCalc(cart)}</td>
+                                </tr>
                             </tbody>
          
                         </table>
@@ -109,12 +179,14 @@ const Displaycheckout = ({cart, postCheckout,isAuthenticated,increasecounter,dec
                                         Same as profile address.
                                     </span>
                                 </div>
-                                <input type="email" className="form-control checkout-fields" id="exampleFormControlInput1"
-                                    placeholder="" onChange={editAddress} value={profileAddress}/>
+                                <input type="text" className="form-control checkout-fields"
+                                    placeholder="" name='address' onChange={editAddress} value={address} disabled={defcheck}/>
+                                    <span className='text-danger '>{error_address}</span>
                             </div>
+                            
                         </div>
                        
-                        <input type="button" className="checkout-confirm-btn" onClick={clickFunc} value="Confirm"/>
+                        <input type="button"  className="checkout-confirm-btn" onClick={clickFunc} value="Confirm" />
       
                         
                     </div>
@@ -138,4 +210,4 @@ const mapStatesToProps = (state) => {
     }
 }
 
-export default connect(mapStatesToProps, { postCheckout,increasecounter,decreasecounter,removekhaaba })(Displaycheckout)
+export default connect(mapStatesToProps, { postCheckout,increasecounter,decreasecounter,removekhaaba,editprofile_customer })(Displaycheckout)
