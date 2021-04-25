@@ -130,7 +130,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
           <div className="col-11 col-sm-5 align-bottom ">
 
-            <span className="search-heading "> All your favourite Kitchens under <br />one roof</span>
+            <span className="search-heading "> All your favourite Kitchens under <br /><span className="semibold color-orange">one roof</span></span>
 
           </div>
         </div>

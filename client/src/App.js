@@ -13,6 +13,8 @@ import ChefMenu from "./components/layout/ChefMenu";
 import AddDish from "./components/layout/AddDish";
 import EditDish from "./components/layout/EditDish";
 
+import AboutUs from "./components/layout/AboutUs";
+
 
 import EditProfileChef from "./components/layout/EditProfileChef";
 import EditProfileCust from "./components/layout/EditProfileCust";
@@ -85,6 +87,7 @@ const App = () => {
           <Route exact path="/signup" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
+          <Route exact path="/about-us" component={AboutUs} />
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
