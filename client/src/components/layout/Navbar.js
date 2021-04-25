@@ -93,11 +93,17 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
 
               {
                 type === "chef" &&
-                <li class="nav-item">
-                  <Link to = "/chef/menu">
-                <a class="menu">Menu</a>
+                <li className="nav-item">
+                <Link className="nav-link" to="/chef/menu">
+                  <span
+                    className={
+                      location.pathname === "/chef/menu" && "nav-link-active"
+                    }
+                  >
+                    Menu
+                  </span>
                 </Link>
-            </li>
+              </li>
               }
 
 
