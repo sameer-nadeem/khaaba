@@ -15,6 +15,7 @@ const {
     USER_ALREADY_EXISTS,
     SERVER_ERROR,
     INVALID_CREDITS,
+    ADMIN_ALREADY_EXISTS,
 } = require('../utils/errors')
 
 
@@ -414,8 +415,10 @@ router.post('/create-admin', async (req, res) => {
         })
 
         if (isUserReg) {
+            console.log('user is registered')
             return res.status(400).json({
-                errors: [USER_ALREADY_EXISTS]
+                
+                errors: ["ADMIN_ALREADY_EXISTS"]
             })
         }
 
@@ -428,13 +431,15 @@ router.post('/create-admin', async (req, res) => {
             lastName
         })
 
-        const salt = await bcrypt.genSalt(10)
+        
 
+        const salt = await bcrypt.genSalt(10)
+        
         user.password = await bcrypt.hash(password, salt)
 
-
+        
         await user.save()
-
+      
         const jwtpayload = {
             user: {
                 id: user.id,

@@ -2,6 +2,8 @@ import axios from 'axios'
 import {
     CUSTOMER_REGISTER_SUCCESS,
     CUSTOMER_REGISTER_FAIL,
+    ADMIN_REGISTER_FAIL,
+    ADMIN_REGISTER_SUCCESS,
     AUTH_ERROR,
     USER_LOADED,
     CHEF_REGISTER_FAIL,
@@ -58,7 +60,14 @@ export const login = (formData) => async dispatch => {
         })
         dispatch(loadUser())
         toast.success('Successfully logged in. Happy eating!')
-        history.push('/')
+        if(type === 'admin')
+        {
+            history.push('/signup/admin')
+        }
+        else{
+
+            history.push('/')
+        }
     } catch (error) {
 
         const err = error.response.data.errors[0]
@@ -124,6 +133,40 @@ export const registerChef = (formData) => async dispatch => {
         }
         dispatch({
             type: CHEF_REGISTER_FAIL
+        })
+    }
+
+
+}
+
+export const registerAdmin = (formData) => async dispatch => {
+    
+    try {
+
+        console.log(formData,'in action')
+        const res = await axios.post('/api/auth/create-admin', formData)
+        console.log(res.data)
+        dispatch({
+            type: ADMIN_REGISTER_SUCCESS,
+            payload: res.data.token
+        })
+        toast.success('Admin added successfully')
+        dispatch(loadUser())
+        history.push('/')
+    } catch (error) {
+        console.log(error.response.data.errors)
+        console.log(error.response.data)
+        const errors = error.response.data.errors
+        console.log()
+        if (errors[0] === "ADMIN_ALREADY_EXISTS") {
+            toast.error('Admin with such email already exists')
+        }
+        else {
+            console.log('testing',errors)
+            toast.error('Server error')
+        }
+        dispatch({
+            type: ADMIN_REGISTER_FAIL
         })
     }
 

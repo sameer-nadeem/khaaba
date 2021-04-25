@@ -6,6 +6,7 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/layout/Register";
 
+import AdminRegister from "./components/forms/AdminRegister";
 import Home from "./components/layout/Home";
 
 
@@ -22,6 +23,7 @@ import history from './util/history'
 import CustomerOrders from "./components/layout/CustomerOrders";
 import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
+import AdminLogin from './components/layout/AdminLogin'
 
 
 // import { toast } from 'react-toastify'
@@ -65,12 +67,13 @@ const App = () => {
         <Switch>
           <Route exact path='/checkout/success' component={CheckoutSuccess} />
           <Route exact path="/signup" component={Register} />
+          <Route exact path="/signup/admin" component={AdminRegister} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/chef/orders" component={ChefOrder} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
-
+          <Route exaxt path='/login/admin' component={AdminLogin} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
         </Switch>

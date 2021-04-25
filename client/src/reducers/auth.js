@@ -7,7 +7,9 @@ import {
     CHEF_REGISTER_SUCCESS,
     LOGIN_FAIL,
     LOGIN_SUCCESS,
-    LOGOUT
+    LOGOUT,
+    ADMIN_REGISTER_SUCCESS,
+    ADMIN_REGISTER_FAIL
 } from '../actions/types'
 const initialState = {
     token: null,
@@ -17,6 +19,7 @@ const initialState = {
 }
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ADMIN_REGISTER_SUCCESS:
         case CHEF_REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
         case CUSTOMER_REGISTER_SUCCESS:
@@ -33,6 +36,7 @@ const authReducer = (state = initialState, action) => {
             }
         case AUTH_ERROR:
         case LOGIN_FAIL:
+        case ADMIN_REGISTER_FAIL:
         case CUSTOMER_REGISTER_FAIL:
         case LOGOUT:
         case CHEF_REGISTER_FAIL:
