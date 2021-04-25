@@ -249,7 +249,7 @@ height: 25px;
 }
 .cuisine-font {
   
-  font-size: 1.1 vw;
+  font-size: 1. vw;
   word-wrap:normal;
 }
 .r-circle {
@@ -792,11 +792,16 @@ input[type="checkbox"]:checked + label {
 .kitchen-card {
   width: 18rem;
   border-radius: 16px;
+  
 }
 
 .rounded-image {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  max-width: 283px;
+  max-height: 283px;
+
+  top: 0;
 }
 
 .star1 {
