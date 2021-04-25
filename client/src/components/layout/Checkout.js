@@ -14,7 +14,7 @@ const CheckoutSuccess = () => {
                                 <img className="tick-icon" src="/img/icons/tick.png" alt="" srcset=""></img>
                             </div>
                             <h2 className="text-center pt-2">Your order has <br />been placed </h2>
-                            <h5 className="card-title text-center pt-5"> You can keep track of you order<br /> through <h2 class="card-title text-center login-heading"><Link to="/customer/orders"> My orders </Link></h2></h5>
+                            <h5 className="card-title text-center pt-5"> You can keep track of you order<br /> through <span class="card-title text-center "><Link to="/customer/orders" className="semibold"> My orders </Link></span></h5>
                         </div>
 
                     </div>

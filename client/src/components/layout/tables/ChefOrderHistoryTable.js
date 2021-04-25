@@ -31,8 +31,9 @@ const ChefOrderHsitoryTable = ({ chefOrders }) => {
                             <th className="table-heading">Customer</th>
                             <th className="table-heading">Items</th>
                             <th className="table-heading">Quantity</th>
-
                             <th className="table-heading">Total(Pkr)</th>
+                            <th className="table-heading">Status</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +65,8 @@ const ChefOrderHsitoryTable = ({ chefOrders }) => {
                                         </ul>
                                     </td>
                                     < td className="table-heading text-break" > {order.totalPrice}</td>
+                                    < td className="table-heading text-break" > {order.status}</td>
+
                                     {/* <td className="table-heading text-break">x</td> */}
 
                                 </tr>

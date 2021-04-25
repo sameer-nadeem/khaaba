@@ -16,7 +16,7 @@ router.post('/review/:id', customerAuth, async (req, res) => {
         rating,
         review
     } = req.body
-
+    console.log(review)
     kitchenID = req.params.id
     try {
         await Kitchen.updateOne(
@@ -168,7 +168,26 @@ router.post('/order', customerAuth, async (req, res) => {
             }
         })
 
+
+
         orderKhaabay.forEach(k => {
+            if (k.instantKhaaba.isInstant) {
+                if (k.instantKhaaba.availableServings < khaabaMapQ[k.id]) {
+                    return res.status(400).json({
+                        errors: ['CHECKOUT_MESSAGE'],
+                        message: `${k.title} does not have that much available servings.`
+                    })
+                } else {
+                    Khaaba.findOne({
+                        _id: k.id
+                    }).then(instantKhaaba => {
+                        instantKhaaba.instantKhaaba.availableServings -= khaabaMapQ[k.id]
+                        instantKhaaba.save()
+                    })
+
+                }
+            }
+
             totalPrice += (k.price * khaabaMapQ[k.id])
         })
 
@@ -199,5 +218,6 @@ router.post('/order', customerAuth, async (req, res) => {
 
 
 })
+
 
 module.exports = router

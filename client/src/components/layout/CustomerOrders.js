@@ -29,9 +29,14 @@ const CustomerOrders = ({
               </h5>
               <div
                 className="table-responsive"
-                // style="filter: blur(0px) brightness(100%)"
+              // style="filter: blur(0px) brightness(100%)"
               >
-                <CustomerOrderTable orders={orders} />
+                <CustomerOrderTable
+
+                  orders={orders}
+                  getCustomerActiveOrders={getCustomerActiveOrders}
+                  getCustomerCompleteOrders={getCustomerCompleteOrders}
+                />
               </div>
             </div>
           </div>

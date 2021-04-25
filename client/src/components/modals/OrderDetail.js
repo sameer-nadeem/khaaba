@@ -13,7 +13,7 @@ const OrderDetail = ({ order, show, handleClose }) => {
             </Button> */}
       {order && (
         <Modal
-          show={show}
+          show={(show === 'modal-one')}
           onHide={handleClose}
           // aria-labelledby="contained-modal-title-vcenter"
           // style={{ border: "5px solid green" }}

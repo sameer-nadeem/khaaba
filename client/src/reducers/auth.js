@@ -10,6 +10,9 @@ import {
     LOGOUT,
     ADMIN_REGISTER_SUCCESS,
     ADMIN_REGISTER_FAIL
+    CUSTOMER_EDITPROFILE_SUCCESS,
+    CHEF_EDITPROFILE_SUCCESS
+
 } from '../actions/types'
 const initialState = {
     token: null,
@@ -27,6 +30,23 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state, token: action.payload, isAuthenticated: true, loading: false
             }
+        case CUSTOMER_EDITPROFILE_SUCCESS:
+            //console.log(`payload`,action.payload)
+            return {
+            ...state,
+            isAuthenticated: true,
+            user: {type:'customer', profile:action.payload},
+            loading: false
+        }
+        case CHEF_EDITPROFILE_SUCCESS:
+            //console.log(`payload`,action.payload)
+            return {
+            ...state,
+            isAuthenticated: true,
+            user: {type:'chef', profile:action.payload},
+            loading: false
+        }
+
         case USER_LOADED:
             return {
                 ...state,
@@ -34,6 +54,7 @@ const authReducer = (state = initialState, action) => {
                 user: action.payload,
                 loading: false
             }
+
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case ADMIN_REGISTER_FAIL:
