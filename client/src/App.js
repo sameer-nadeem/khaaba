@@ -8,6 +8,7 @@ import Register from "./components/layout/Register";
 import ChefHome from "./components/layout/ChefHome";
 import  BarChart from "./components/layout/tables/barChartFirst"
 
+import AdminRegister from "./components/forms/AdminRegister";
 import Home from "./components/layout/Home";
 
 
@@ -36,6 +37,7 @@ import history from './util/history'
 import CustomerOrders from "./components/layout/CustomerOrders";
 import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
+import AdminLogin from './components/layout/AdminLogin'
 import Reviewscrsl from "./components/layout/tables/reviewsBar";
 
 import SearchResults from './components/layout/SearchResults'
@@ -88,6 +90,7 @@ const App = () => {
         <Switch>
           <Route exact path='/checkout/success' component={CheckoutSuccess} />
           <Route exact path="/signup" component={Register} />
+          <Route exact path="/signup/admin" component={AdminRegister} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={AboutUs} />
@@ -96,6 +99,7 @@ const App = () => {
           <Route exact path="/rc" component={Reviewscrsl} />
           <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
           <Route exaxt path='/customer/orders' component={CustomerOrders} />
+          <Route exaxt path='/login/admin' component={AdminLogin} />
           <PrivateRoute exaxt path='/chef/menu' component={ChefMenu} />
           <Route exaxt path='/chef/adddish' component={AddDish} />
           <Route exaxt path='/chef/editdish' component={EditDish} />

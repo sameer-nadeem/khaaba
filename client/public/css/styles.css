@@ -30,6 +30,17 @@ body {
   padding-left:0px;
 } */
 
+.p-icon {
+  
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 50%;
+  width: 180px !important;
+}
+.admin-icon {
+  box-sizing: border-box;
+  width: 48px !important;
+}
 a {
   text-decoration: none;
   color: #ff6433;
@@ -92,7 +103,25 @@ a:hover {
   /* height: 20px !important; */
   width: 30px !important;
 }
+.khaaba-btn {
+  
+  background: #ffffff;
+  /* Orange1 */
+  color: #ff6433 !important;
+  border: 1px solid #ff6433 !important;
+  box-sizing: border-box;
+  border-radius: 999px;
+  width: auto;
+  color: #ff6433;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  /* 2 dp • Dark shadow */
 
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16),
+    0px 4px 8px rgba(38, 50, 56, 0.08);
+}
 .instant-khaaba-link {
   border: 2px solid #ffffff;
   box-sizing: border-box;
@@ -218,6 +247,7 @@ a:hover {
   padding-left: 5px;
   font-size: 10pt;
   line-height: 32px;
+  width: fit-content;
 }
 
 .login-fields {

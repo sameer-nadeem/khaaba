@@ -8,6 +8,8 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS,
     LOGOUT,
+    ADMIN_REGISTER_SUCCESS,
+    ADMIN_REGISTER_FAIL
     CUSTOMER_EDITPROFILE_SUCCESS,
     CHEF_EDITPROFILE_SUCCESS
 
@@ -20,6 +22,7 @@ const initialState = {
 }
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ADMIN_REGISTER_SUCCESS:
         case CHEF_REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
         case CUSTOMER_REGISTER_SUCCESS:
@@ -54,6 +57,7 @@ const authReducer = (state = initialState, action) => {
 
         case AUTH_ERROR:
         case LOGIN_FAIL:
+        case ADMIN_REGISTER_FAIL:
         case CUSTOMER_REGISTER_FAIL:
         case LOGOUT:
         case CHEF_REGISTER_FAIL:
