@@ -1,33 +1,53 @@
 import React, { useState } from 'react'
 import moment from 'moment'
 import OrderDetail from '../../modals/OrderDetail'
+import ReviewForm from '../../modals/reviewSubmit'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 const CustomerOrderTable = ({ orders, getCustomerActiveOrders, getCustomerCompleteOrders }) => {
     console.log(orders)
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [show, setShow] = useState("close");
+    const handleClose = () => setShow("close");
+    const handleShowOne = () => setShow("modal-one");
+    const handleShowTwo = () => setShow("modal-two");
+    
+    
     const [orderDetail, setOrderDetail] = useState(null)
+    const [kitchenID, setKitchenID] = useState(0)
+    
+
     const showOrderDetail = (order) => {
         setOrderDetail(order)
-        setShow(true)
+        handleShowOne()
     }
+
+    const showReviewForm = (order) => {
+        setKitchenID(order.kitchen._id)
+        handleShowTwo()
+    }
+
 
     const onCancel = async (id) => {
         await axios.get(`/api/order/cancel/${id}`)
     }
     const onPickup = async (id) => {
         await axios.get(`/api/user/pickup/${id}`)
+<<<<<<< HEAD
         getCustomerActiveOrders();
         getCustomerCompleteOrders();
+=======
+
+>>>>>>> 08b352b79b3bd606e71c3901f094aa79b39086ea
     }
 
     const onFeedback = (id) => { }
 
     return (
         <>
-            <OrderDetail order={orderDetail} show={show} handleClose={handleClose} handleShow={handleShow} />
+            <OrderDetail order={orderDetail} show= {show} handleClose={handleClose} />
+            <ReviewForm id={kitchenID} show= {show} handleClose={handleClose} />
+            
+            
 
             <table className="table table-hover text-center">
                 <thead>
@@ -67,10 +87,15 @@ const CustomerOrderTable = ({ orders, getCustomerActiveOrders, getCustomerComple
                                 <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
+<<<<<<< HEAD
                                 {order.status === 'Completed' && <td className="text-dark"><button className="btn login-btn">Feedback</button></td>}
                                 {order.status === 'Ready' && <td className="text-dark"><button onClick={() => onPickup(order._id)} type="submit" className="btn login-btn">Collect</button></td>}
                                 {order.status === 'Cancelled' && <td className="text-dark">--</td>}
 
+=======
+                                {order.status === 'Completed' && <td className="text-dark"><button onClick={() => showReviewForm(order)} className="btn login-btn">Feedback</button></td>}
+                                {order.status === 'Ready' && <td className="text-dark"><button className="btn login-btn">Pickup</button></td>}
+>>>>>>> 08b352b79b3bd606e71c3901f094aa79b39086ea
                                 {}
                             </tr>
 

@@ -16,7 +16,7 @@ router.post('/review/:id', customerAuth, async (req, res) => {
         rating,
         review
     } = req.body
-
+    console.log(review)
     kitchenID = req.params.id
     try {
         await Kitchen.updateOne(
@@ -218,5 +218,6 @@ router.post('/order', customerAuth, async (req, res) => {
 
 
 })
+
 
 module.exports = router

@@ -2,7 +2,9 @@ import {
     ACTIVE_ORDERS_CUSTOMER_FAIL,
     ACTIVE_ORDERS_CUSTOMER_SUCCESS,
     COMPLETE_ORDERS_CUSTOMER_FAIL,
-    COMPLETE_ORDERS_CUSTOMER_SUCCESS
+    COMPLETE_ORDERS_CUSTOMER_SUCCESS,
+    GET_KITCHEN_REVIEWS_SUCCESS ,
+    GET_KITCHEN_REVIEWS_FAIL 
 } from './types'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -221,4 +223,26 @@ export const loadCart = () => dispatch => {
         payload: cart
     })
 }
+
+export const getKitchenReviews = (id) => async dispatch => {
+
+    try {
+        const res = await axios.get(`/api/user/view-reviews/${id}`)
+        dispatch({
+            type: GET_KITCHEN_REVIEWS_SUCCESS,
+            payload: res.data,
+            kitchenID: id
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: GET_KITCHEN_REVIEWS_FAIL
+        })
+        console.log(error.message)
+        toast.error("Server error!")
+    }
+
+}
+
+
 

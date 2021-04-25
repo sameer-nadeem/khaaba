@@ -1,8 +1,9 @@
-import { ACTIVE_ORDERS_CHEF_FAIL, ACTIVE_ORDERS_CHEF_SUCCESS, COMPLETE_ORDERS_CHEF_FAIL, COMPLETE_ORDERS_CHEF_SUCCESS } from '../actions/types'
+import { ACTIVE_ORDERS_CHEF_FAIL, ACTIVE_ORDERS_CHEF_SUCCESS, COMPLETE_ORDERS_CHEF_FAIL, COMPLETE_ORDERS_CHEF_SUCCESS, } from '../actions/types'
 
 const initialState = {
     activeOrders: [],
     completeOrders: [],
+
     loading: true
 }
 

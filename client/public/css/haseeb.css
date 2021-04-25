@@ -7,6 +7,7 @@
   border-radius: 10px;
 }
 
+
 /* The slider */
 .slider {
   position: absolute;
@@ -61,44 +62,58 @@ input:checked + .slider:before {
   border: none;
   color: white;
   width: 90px;
-  cursor: pointer;
+  cursor: pointer; 
   border-radius: 101px;
 }
 
 .buttona {
-  background-color: #27ae60;
+background-color: #27AE60;
+
 }
 
 .buttonr {
-  background-color: #eb5757;
-}
+  background-color: #EB5757;
+  ;
+  
+  }
 
 .buttond {
   background-color: #ff6433;
-}
+  ;
+  
+  }
 
 .buttontop {
   border: none;
   width: 11vmax;
   height: 4vmax;
-  cursor: pointer;
+  cursor: pointer; 
   border-radius: 5px;
   /* margin-top: 30px;
-    margin-bottom: 20px; */
+  margin-bottom: 20px; */
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
+  
+
 }
 
 .buttonnow {
-  background-color: #ff6433;
-  color: white;
+background-color: #ff6433;
+color: white;
+
+
+
+
 }
 
 .buttonswitch {
-  background-color: white;
-  border: 2px solid #ff6433;
+background-color: white;
+border: 2px solid #ff6433;
+
+
+
 }
 
 .buttoninside {
@@ -106,7 +121,7 @@ input:checked + .slider:before {
   color: white;
   background-color: #ff6433;
   width: 90px;
-  cursor: pointer;
+  cursor: pointer; 
   border-radius: 101px;
 }
 
@@ -125,19 +140,20 @@ input:checked + .slider:before {
   font-weight: lighter;
   font-size: 10pt;
   line-height: 15px;
-  color: #8e8e8e;
+  color: #8E8E8E;
+  ;
 }
 
 .buttonadet {
   border: none;
   color: white;
-  cursor: pointer;
+  cursor: pointer; 
   border-radius: 101px;
   margin: 7pt;
 }
 
-.analytics-icons {
-  width: 70%;
+.analytics-icons{
+  width: 5vmax
 }
 
 .info-heading-big {
@@ -146,6 +162,17 @@ input:checked + .slider:before {
   font-weight: bold;
   font-size: 25pt;
   line-height: 32px;
+  color: #000000;
+  /* transform: translate(-40%, 70%); */
+  
+}
+
+.info-heading-medium {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20pt;
+  line-height: 26px;
   color: #000000;
   /* transform: translate(-40%, 70%); */
 }
@@ -239,7 +266,7 @@ input:checked + .slider:before {
   text-align: center;
   box-shadow: 0 0 10px 0 rgba(235, 167, 128, 0.63);
   transition: 0.5s;
-  transition-property: background, box-shadow;
+  transition-property:  box-shadow;
 }
 
 .bars .bar:hover {
@@ -278,4 +305,108 @@ input:checked + .slider:before {
   font-style: normal;
   font-weight: bold;
   font-size: 1.5vw;
+}
+
+.chef-analytics-card{
+  background: #ffffff;
+  /* Orange1 */
+  padding: 0.5em;
+  border: 2px solid #ff6433;
+  border-radius: 10px;
+  margin-top: 25pt;
+  text-align: center
+
+}
+
+.carousal-back{
+
+  background-color: #FF6433;
+}
+
+.fontclr-carousal{
+  color:white
+}
+
+.star-carousal{
+  font-size: 30px;
+   letter-spacing: 4px;
+}
+
+/* /////////////// */
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #ff6433;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+*{
+  margin: 0;
+  padding: 0;
+  
+}
+.rate {
+  float: middle;
+  height: 46px;
+  padding: 0px;
+  
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+  
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+  
+}
+.rate > input:checked ~ label {
+  color: #ff6433;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #ff6433;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #ff6433;
+}
+
+.starsDiv{
+
+  margin: 0 auto;
+}
+
+.crsl-heading{
+  color: #ff6433;
 }

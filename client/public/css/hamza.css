@@ -10,28 +10,25 @@
   font-weight: semibold;
 }
 
-.bold{
+.bold {
   font-family: poppins-bold;
 }
 
-.semibold{
+.semibold {
   font-family: poppins-semibold;
 }
 
 /* Hamza_Checkout ///////////////*/
-.close-button{
+.close-button {
   position: absolute;
   max-width: 40px;
   top: 0;
   right: 0;
   padding-top: 8px;
   cursor: pointer;
-
 }
 
-
 /* Hamza_Checkout ///////////////*/
-
 
 /* Sameer_Checkout ///////////////*/
 
@@ -99,11 +96,11 @@ th {
   margin-top: 5%;
   width: 70%;
 
-  background: #32CD32;
+  background: #32cd32;
   /* Orange1 */
   color: #fff;
 
-  border: 1px solid #32CD32;
+  border: 1px solid #32cd32;
   box-sizing: border-box;
   border-radius: 999px;
 }
@@ -111,15 +108,15 @@ th {
 .edit-cancel-btn {
   margin-top: 5%;
   width: 70%;
-   background: #FF0000;
+  background: #ff0000;
   color: #fff;
 
-  border: 1px solid #FF0000;
+  border: 1px solid #ff0000;
   box-sizing: border-box;
   border-radius: 999px;
 }
 
-.edit-form-btn:disabled{
+.edit-form-btn:disabled {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
@@ -127,22 +124,20 @@ th {
 
 .edit-form-btn:hover {
   background: #fff;
-  color: #32CD32;
+  color: #32cd32;
 }
 
 .edit-cancel-btn:hover {
   background: #fff;
-  color: #FF0000;
+  color: #ff0000;
 }
 
 .upload-logo {
   max-height: 200px;
   max-width: 200px;
-   border-radius: 20px;
-
+  border-radius: 20px;
 }
 .file-input2 label {
- 
   width: 160px;
   height: 35px;
   border-radius: 25px;
@@ -168,8 +163,8 @@ th {
   background: #ff6433;
   /* Orange1 */
   color: #fff;
-width: 30px;
-height: 25px;
+  width: 30px;
+  height: 25px;
   border: 1px solid #ff6433;
   box-sizing: border-box;
   border-bottom-left-radius: 6px;
@@ -203,7 +198,7 @@ height: 25px;
 }
 .add-to-cart-btn {
   width: auto;
-  height:auto;
+  height: auto;
   padding: auto;
   font-size: 1rem;
   background: #ff6433;
@@ -248,9 +243,8 @@ height: 25px;
   box-sizing: border-box;
 }
 .cuisine-font {
-  
-  font-size: 1. vw;
-  word-wrap:normal;
+  font-size: 1 vw;
+  word-wrap: normal;
 }
 .r-circle {
   border-radius: 50% !important;
@@ -792,7 +786,6 @@ input[type="checkbox"]:checked + label {
 .kitchen-card {
   width: 18rem;
   border-radius: 16px;
-  
 }
 
 .rounded-image {
@@ -844,7 +837,6 @@ input[type="checkbox"]:checked + label {
   border-radius: 20px;
 }
 .review-card {
- 
   width: 20pc;
   height: 305px;
   margin: auto;
@@ -881,7 +873,6 @@ input[type="checkbox"]:checked + label {
 .review-heading {
   font-family: Poppins-semibold;
 
- 
   font-size: 48px;
   line-height: 36px;
   /* or 75% */
@@ -917,11 +908,10 @@ input[type="checkbox"]:checked + label {
 }
 
 .fitted {
- margin-left:4vh;
+  margin-left: 4vh;
 
- padding-bottom: 10%;
- padding-top: 8% ;
-
+  padding-bottom: 10%;
+  padding-top: 8%;
 }
 .strip {
   position: relative;
@@ -962,9 +952,8 @@ input[type="checkbox"]:checked + label {
 }
 .search-heading {
   font-family: Poppins-semibold;
-  
 
-  font-size:11vh;
+  font-size: 11vh;
   line-height: 90px;
   /* or 108% */
 
