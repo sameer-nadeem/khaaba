@@ -93,14 +93,23 @@ const EditDish = ({editInstant, editNormal}) =>{
 
         }
 
-        if (dishDetails.price === 0 || dishDetails.price =='') {
+        if (dishDetails.price === 0 || dishDetails.price =='0') {
             errs.price = 'Price field cannot be left empty and must be a number'
 
         }
 
+        if (dishDetails.price =='' ) {
+            errs.price = 'Price field cannot be left empty'
 
-        if ((dish.instantKhaaba.isKhaaba && dishDetails.servings === 0) ||(dish.instantKhaaba.isKhaaba && isNumeric(dishDetails.servings))) {
-            errs.servings = 'servings field cannot be left empty and must be a number'
+        }
+
+
+        if (dish.instantKhaaba.isKhaaba && !isNumeric(dishDetails.servings)) {
+            errs.servings = 'servings field must be a number'
+        }
+
+        if ((dish.instantKhaaba.isKhaaba && dishDetails.servings === 0) || dishDetails.servings ==`0`) {
+            errs.servings = 'servings field cannot be left empty'
         }
 
         if (dishDetails.description == '') {
@@ -225,11 +234,11 @@ const EditDish = ({editInstant, editNormal}) =>{
                                     <label for="exampleInputEmail1" className="login-field-headings">Price</label>
 
                                     <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1">PKR</span>
-                                        <input name='price' defaultValue={dish.price} onChange={onChange} type="text" className="form-control login-fields" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="e.g. 500"/>
-                                            <span className='text-danger'>{errors.price}</span>
-                                    </div>
+                        <span className="input-group-text" id="basic-addon1">PKR</span>
+                        <input onChange={onChange} type="text" className="form-control login-fields" name='price'
+                            placeholder="eg. 500" />
+                    </div>
+                    <span className='text-danger'>{errors.phone}</span>
                                 </div>
                                 {
                                     dish.instantKhaaba.isInstant &&

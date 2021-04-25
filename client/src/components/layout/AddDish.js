@@ -93,8 +93,12 @@ const AddDish = ({addInstant, addNormal}) =>{
 
 
 
-        if ((toggle && dishDetails.servings === 0) ||(toggle && isNumeric(dishDetails.servings))) {
-            errs.servings = 'servings field cannot be left empty and must be a number'
+        if ((toggle && dishDetails.servings === 0)) {
+            errs.servings = 'servings field cannot be left empty '
+        }
+
+        if ((toggle && !isNumeric(dishDetails.servings))) {
+            errs.servings = 'servings field must be a number'
         }
 
         if (!dishDetails.dishPicture ) {
@@ -203,8 +207,8 @@ const AddDish = ({addInstant, addNormal}) =>{
                             <div className="form-group row ">
 
                                 
-                                <div className="col m-1">
-                                    <label for="exampleInputEmail1" className="login-field-headings">Dish Name</label>
+                                <div className="col m-2">
+                                    <label for="exampleInputEmail1" className="login-field-headings">DishName</label>
                                     <input type="text" className="form-control login-fields" onChange={onChange} name="title" placeholder="e.g. Beef Burger"/>
                                     <span className='text-danger'>{errors.title}</span>
                                 </div>
@@ -228,12 +232,20 @@ const AddDish = ({addInstant, addNormal}) =>{
                                 <div className="col m-1">
                                     <label for="exampleInputEmail1" className="login-field-headings">Price</label>
 
-                                    <div className="input-group">
+                                    {/* <div className="input-group">
                                         <span className="input-group-text" id="basic-addon1">PKR</span>
-                                        <input name='price' onChange={onChange} type="text" className="form-control login-fields" id="exampleInputEmail1"
+                                        <input name='price' onChange={onChange} type="text" className="price-addish form-control " id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="e.g. 500"/>
                                             <span className='text-danger'>{errors.price}</span>
-                                    </div>
+                                    </div> */}
+
+<div className="input-group">
+                        <span className="input-group-text" id="basic-addon1">PKR</span>
+                        <input onChange={onChange} type="text" className="form-control login-fields" name='price'
+                            placeholder="eg. 500" />
+                    </div>
+                    <span className='text-danger'>{errors.phone}</span>
+                    
                                 </div>
                                 {
                                 toggle &&
