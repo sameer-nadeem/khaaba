@@ -3,7 +3,7 @@ import moment from 'moment'
 import OrderDetail from '../../modals/OrderDetail'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-const CustomerOrderTable = ({ orders }) => {
+const CustomerOrderTable = ({ orders, getCustomerActiveOrders, getCustomerCompleteOrders }) => {
     console.log(orders)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -19,6 +19,8 @@ const CustomerOrderTable = ({ orders }) => {
     }
     const onPickup = async (id) => {
         await axios.get(`/api/user/pickup/${id}`)
+        getCustomerActiveOrders();
+        getCustomerCompleteOrders();
     }
 
     const onFeedback = (id) => { }
@@ -36,7 +38,7 @@ const CustomerOrderTable = ({ orders }) => {
                         <th className="text-dark">Order Details</th>
                         {/* <th className="text-dark">Order Type</th> */}
                         <th className="text-dark">Status</th>
-                        <th className="text-dark">Further Actions</th>
+                        <th className="text-dark">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,8 +67,10 @@ const CustomerOrderTable = ({ orders }) => {
                                 <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
-                                {order.status === 'Completed' && <td className="text-dark"><button type="submit" className="btn login-btn">Feedback</button></td>}
-                                {order.status === 'Ready' && <td className="text-dark"><button onClick={() => onPickup(order._id)} type="submit" className="btn login-btn">Pickup</button></td>}
+                                {order.status === 'Completed' && <td className="text-dark"><button className="btn login-btn">Feedback</button></td>}
+                                {order.status === 'Ready' && <td className="text-dark"><button onClick={() => onPickup(order._id)} type="submit" className="btn login-btn">Collect</button></td>}
+                                {order.status === 'Cancelled' && <td className="text-dark">--</td>}
+
                                 {}
                             </tr>
 

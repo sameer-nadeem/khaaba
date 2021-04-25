@@ -61,7 +61,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
               <li className="nav-item">
                 <Link
                   className="nav-link instant-khaaba-link"
-                  to="instant-khaaba"
+                  to="/instant-khaaba"
                 >
                   <span>Instant Khaaba</span>
                 </Link>
@@ -94,10 +94,10 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
               {
                 type === "chef" &&
                 <li class="nav-item">
-                  <Link to = "/chef/menu">
-                <a class="menu">Menu</a>
-                </Link>
-            </li>
+                  <Link to="/chef/menu">
+                    <a class="menu">Menu</a>
+                  </Link>
+                </li>
               }
 
 
