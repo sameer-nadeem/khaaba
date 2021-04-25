@@ -76,7 +76,7 @@ router.get('/all-instant/:page/:sort', async (req, res) => {
         }
         if (sortparam === 'servings') {
             sort = {
-                'instantKhaaba.isInstant.availableServings': -1
+                'instantKhaaba.availableServings': -1
             }
         }
         const khaabay = await Khaaba.aggregate(
