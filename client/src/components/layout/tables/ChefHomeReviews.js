@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
+import ReviewStar from './reviewStar'
 
-const reviewTable = ({chefDetails}) =>{
+const ReviewTable = ({chefDetails}) =>{
+
+
+
 return(
                       <div className="table-wrap">
                         <div className="table-responsive">
@@ -8,14 +12,26 @@ return(
                             <thead>
                               <tr>
                                 <th className="tble-heading">Rating</th>
+                                <th className="tble-heading">Subject</th>
                                 <th className="tble-heading">Reviews</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {chefDetails.reviews.map(review => (
+                              {
+                              chefDetails.reviews.map(review => (
+                               
                                 <tr key={review._id}>
-                                  <td>{review.rating}</td>
-                                  <td>{review.review}</td>
+                                  <td>
+                                    <ReviewStar rating = {review.rating}/>
+                                  {/* {setChecked(review.rating)}
+                                  <span className={`fa fa-star ${star1}`}></span>
+                                  <span className={`fa fa-star ${star2}`}></span>
+                                  <span className={`fa fa-star ${star3}`}></span>
+                                  <span className={`fa fa-star ${star4}`}></span>
+                                  <span className={`fa fa-star ${star5}`}></span> */}
+                                  </td>
+                                  <td>{review.review.heading}</td>
+                                  <td>{review.review.body}</td>
                                 </tr>
                               ))
                               
@@ -74,4 +90,4 @@ return(
 
 )}
 
-export default reviewTable
+export default ReviewTable

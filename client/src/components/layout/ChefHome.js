@@ -1,16 +1,65 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getChefAnalytics, getChefDetails, getOwnReviews } from '../../actions/chef'
+import { getChefAnalytics, getChefDetails, getOwnReviews, getMonthlyOrders, getDailyOrders } from '../../actions/chef'
 import ReviewTable from './tables/ChefHomeReviews'
+import BarChartDaily from './tables/barChartFirst'
+import BarChartMonthly from './tables/barChartSecond'
+import ChefOrders from './ChefOrders'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-const ChefHome =({getChefAnalytics,getChefDetails, getOwnReviews, chefDetails}) => {
+const ChefHome =({getChefAnalytics,getChefDetails, getOwnReviews, chefDetails,getMonthlyOrders, getDailyOrders, chefOrders}) => {
     useEffect(() => {
         getChefAnalytics()
         getChefDetails()
         getOwnReviews()
-        console.log(chefDetails)
+        getMonthlyOrders()
+        getDailyOrders()
+        // console.log(chefDetails)
+        // console.log(chefOrders)
     }, [])
+    const [toggle,toggleSet] = React.useState(1)
+    const [btn1, setBtn1] = React.useState("button buttontop buttonnow button-text")
+    const [btn2, setBtn2] = React.useState("button buttontop buttonswitch button-text")
+    const [btn3, setBtn3] = React.useState("button buttontop buttonswitch button-text")
+
+    const returnState =()=>{
+        if (toggle ===1) {
+            return(
+                <BarChartMonthly chartDataMonthly={chefDetails.MonthlyOrder}/>
+                
+            )}
+        if (toggle ===2) {
+            return(
+                <BarChartDaily chartDataDaily={chefDetails.dailyOrder}/>
+            )
+        }
+        if (toggle ===3) {
+            return(
+                <ReviewTable chefDetails={chefDetails} />
+            )
+        }
+    }
+    const toggleClick1 = ()=>{
+        toggleSet(1)
+        setBtn1("button buttontop buttonnow button-text")
+        setBtn2("button buttontop buttonswitch button-text")
+        setBtn3("button buttontop buttonswitch button-text")
+    }
+    const toggleClick2 = ()=>{
+        toggleSet(2)
+        setBtn1("button buttontop buttonswitch button-text")
+        setBtn2("button buttontop buttonnow button-text")
+        setBtn3("button buttontop buttonswitch button-text")
+
+    }
+    const toggleClick3 = ()=>{
+        toggleSet(3)
+        setBtn1("button buttontop buttonswitch button-text")
+        setBtn2("button buttontop buttonswitch button-text")
+        setBtn3("button buttontop buttonnow button-text")
+
+    }
 
 
 return (
@@ -20,9 +69,11 @@ return (
                 <div className="card login-card">
                     <div className="card-body">
                         <div className="col text-center">
-                            <img className="img-responsive img-circle" src="./img/icons/shopLogo.png" alt="" srcSet=""/>
-                            <div className="info-heading">{chefDetails.kitchenName}</div>
+                        <LazyLoadImage effect="blur" src={`/uploads/kitchen-logos/${chefDetails.kitchenLogo}`} className="card-img-top rounded-image" alt="Logo" />
+                            <div className="info-heading pt-2">{chefDetails.kitchenName}</div>
+                            <Link to='/chef/edit-profile'>
                             <button className="button buttonadet buttond btn-sm">Edit Details</button>
+                            </Link>
                             <div className="info-text">
                             <p>{chefDetails.phone}</p>
                             <p> {chefDetails.address}</p>
@@ -77,7 +128,7 @@ return (
                                 <img className="img-responsive analytics-icons"  src="./img/icons/watch.png" alt="" srcSet=""/>
                             </div>
                             <div className="col-md-8 col-lg-7 col-sm-7 text-center">
-                                <div className=" info-heading-medium pt-3"><p>75min</p></div>
+                                <div className=" info-heading-medium pt-3"><p></p></div>
                             </div>
                         </div>
                         <div className="row justify-content-center">
@@ -96,39 +147,15 @@ return (
                         <div className="row justify-content-center align-items-center pb-3">
                             <div className="col text-center">
                                 <div className="btn-group flex-wrap pt-3">
-                            <button className="button buttontop buttonnow button-text">Monthly Revenue</button>
-                            <button className="button buttontop buttonswitch button-text">Daily Orders</button>
-                            <button className="button buttontop buttonswitch button-text">Reviews</button>
+                            <button className={btn1} onClick={() =>toggleClick1()} >Monthly Orders</button>
+                            <button className={btn2} onClick={() =>toggleClick2()}>Daily Orders</button>
+                            <button className= {btn3}  onClick={() =>toggleClick3()}>Reviews</button>
                                 </div>
                             </div>
                         </div>
                         <div className="row justify-content-center align-items-center pb-3 pt-3">
-                        {<ReviewTable chefDetails={chefDetails}/>
-                        /* <div className="chart">
-                            <ul className="numbers">
-                              <li><span>100%</span></li>
-                              <li><span>50%</span></li>
-                              <li><span>0%</span></li>
-                            </ul>
-                            <ul className="bars">
-                              <li><div className="bar" data-percentage="50"></div><span>Option 01</span></li>
-                              <li><div className="bar" data-percentage="30"></div><span>Option 02</span></li>
-                              <li><div className="bar" data-percentage="60"></div><span>Option 03</span></li>
-                              <li><div className="bar" data-percentage="100"></div><span>Option 04</span></li>
-                              <li><div className="bar" data-percentage="80"></div><span>Option 05</span></li>
-                            </ul>
-                          </div>
-                          <script type="text/javascript">
-                            $(function(){
-                              $('.bars li .bar').each(function(key, bar){
-                                var percentage = $(this).data('percentage');
-                                $(this).animate({
-                                  'height' : percentage + '%'
-                                },1000);
-                              });
-                            });
-                            </script>
-                        </div> */}
+                        {returnState()
+                        }
                     </div>
                 </div>
             </div>
@@ -139,8 +166,9 @@ return (
 
 const mapStatesToProps = (state) => {
     return {
-        chefDetails: state.chefDetails
+        chefDetails: state.chefDetails,
+        chefOrders : state.ChefOrders
     }
 }
 
-export default connect(mapStatesToProps, { getChefAnalytics, getChefDetails, getOwnReviews })(ChefHome)
+export default connect(mapStatesToProps, { getChefAnalytics, getChefDetails, getOwnReviews,getMonthlyOrders, getDailyOrders })(ChefHome)

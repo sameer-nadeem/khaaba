@@ -108,5 +108,70 @@ router.get('/view-reviews', chefAuth, async (req, res) => {
     })
 })
 
+router.get('/orders-by-date', chefAuth, async (req, res) => {
+
+    let today = new Date();
+
+    let orders = await Order.find({
+        kitchen: req.user.kitchen,
+    })
+
+    let orderSizeArr = []
+    if(today.getDate()>4)
+    {
+    for (var i = 0; i < 5; i++) {
+        let order1 = orders.filter(order => order.date.getDate() === (today.getDate()-i) && order.date.getMonth() === today.getMonth() &&  order.date.getFullYear() === today.getFullYear()  )
+        orderSizeArr.push( order1.length)
+      }}
+    else{
+        for (var i = 0; i < today.getDate(); i++) {
+            let order1 = orders.filter(order => order.date.getDate() === (today.getDate()-i) && order.date.getMonth() === today.getMonth() &&  order.date.getFullYear() === today.getFullYear()  )
+            orderSizeArr.push( order1.length)
+          }
+          for (var i = 0; i < 5-today.getDate(); i++) {
+            let order1 = orders.filter(order => order.date.getDate() === (30-i) && order.date.getMonth() === (today.getMonth()-1) &&  order.date.getFullYear() === today.getFullYear()  )
+            orderSizeArr.push( order1.length)
+          }
+
+    }
+
+    return res.status(200).json({
+        orders: orderSizeArr
+    })
+
+})
+
+router.get('/orders-by-month', chefAuth, async (req, res) => {
+
+    let today = new Date();
+
+    let orders = await Order.find({
+        kitchen: req.user.kitchen,
+    })
+
+    let orderSizeArr = []
+    if(today.getDate()>4)
+    {
+    for (var i = 0; i < 5; i++) {
+        let order1 = orders.filter(order =>  order.date.getMonth() === (today.getMonth()-i) &&  order.date.getFullYear() === today.getFullYear()  )
+        orderSizeArr.push( order1.length)
+      }}
+    else{
+        for (var i = 0; i < today.getDate(); i++) {
+            let order1 = orders.filter(order => order.date.getMonth() === (today.getMonth()-i) &&  order.date.getFullYear() === today.getFullYear()  )
+            orderSizeArr.push( order1.length)
+          }
+          for (var i = 0; i < 5-today.getMonth(); i++) {
+            let order1 = orders.filter(order => order.date.getMonth() === (12-i) &&  order.date.getFullYear() === today.getFullYear()-1  )
+            orderSizeArr.push( order1.length)
+          }
+
+    }
+
+    return res.status(200).json({
+        orders: orderSizeArr
+    })
+
+})
 
 module.exports = router

@@ -1,4 +1,8 @@
-import { CHEF_ANALYTICS_SUCCESS, CHEF_ANALYTICS_FAIL, CHEF_OWN_DETAILS_SUCCESS, CHEF_OWN_DETAILS_FAIL, CHEF_OWN_REVIEWS_SUCCESS, CHEF_OWN_REVIEWS_FAIL } from '../actions/types'
+import { CHEF_ANALYTICS_SUCCESS, CHEF_ANALYTICS_FAIL, CHEF_OWN_DETAILS_SUCCESS, CHEF_OWN_DETAILS_FAIL, CHEF_OWN_REVIEWS_SUCCESS, CHEF_OWN_REVIEWS_FAIL,
+    KITCHEN_DAILY_ORDERS_SUCCESS,
+    KITCHEN_DAILY_ORDERS_FAIL ,
+    KITCHEN_MONTHLY_ORDERS_SUCCESS, 
+    KITCHEN_MONTHLY_ORDERS_FAIL, } from '../actions/types'
 
 const initialState = {
     kitchenName:'',
@@ -8,7 +12,10 @@ const initialState = {
     activeHours : {},
     totalOrders: 0,
     kitchenAvgRating: 0,
-    reviews : []
+    reviews : [],
+    dailyOrder: [],
+    MonthlyOrder: [],
+    
 }
 
 const chefDetailReducer = (state = initialState, action) => {
@@ -32,6 +39,16 @@ const chefDetailReducer = (state = initialState, action) => {
             return {
                 ...state, reviews: action.payload.kitchenReviews, kitchenAvgRating: action.payload.avgRating, loading: false
             }
+            case KITCHEN_DAILY_ORDERS_SUCCESS:
+            return {
+                ...state, dailyOrder: action.payload, loading: false
+            }
+            case KITCHEN_MONTHLY_ORDERS_SUCCESS:
+            return {
+                ...state, MonthlyOrder: action.payload, loading: false
+            }
+        case KITCHEN_DAILY_ORDERS_FAIL:
+        case KITCHEN_MONTHLY_ORDERS_FAIL:
         case CHEF_OWN_REVIEWS_FAIL:
         case CHEF_OWN_DETAILS_FAIL:
         case CHEF_ANALYTICS_FAIL:

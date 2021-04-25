@@ -687,7 +687,6 @@ input[type="checkbox"]:checked + label {
   border-radius: 20px;
 }
 .review-card {
-  position: absolute;
   width: 20pc;
   height: 305px;
   margin: auto;

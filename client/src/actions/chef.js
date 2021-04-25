@@ -8,7 +8,12 @@ import {
     CHEF_OWN_DETAILS_SUCCESS,
     CHEF_OWN_DETAILS_FAIL,
     CHEF_OWN_REVIEWS_SUCCESS,
-    CHEF_OWN_REVIEWS_FAIL
+    CHEF_OWN_REVIEWS_FAIL,
+    KITCHEN_DAILY_ORDERS_SUCCESS,
+    KITCHEN_DAILY_ORDERS_FAIL ,
+    KITCHEN_MONTHLY_ORDERS_SUCCESS, 
+    KITCHEN_MONTHLY_ORDERS_FAIL,
+
 } from './types'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -132,4 +137,57 @@ export const getChefDetails = () => async dispatch => {
     
         }
     }
+
+    export const getDailyOrders = () => async dispatch => {
+
+        try {
+    
+    
+            const res = await axios.get('/api/chef/orders-by-date')
+    
+    
+            dispatch({
+                type:KITCHEN_DAILY_ORDERS_SUCCESS,
+                payload: res.data.orders
+            })
+    
+        }
+        catch (error) {
+            dispatch({
+                type:KITCHEN_DAILY_ORDERS_FAIL
+            })
+    
+            console.log(error.message)
+    
+            toast.error("Server error!")
+    
+        }
+    }
+
+    export const getMonthlyOrders = () => async dispatch => {
+
+        try {
+    
+    
+            const res = await axios.get('/api/chef/orders-by-month')
+    
+    
+            dispatch({
+                type:KITCHEN_MONTHLY_ORDERS_SUCCESS,
+                payload: res.data.orders
+            })
+    
+        }
+        catch (error) {
+            dispatch({
+                type:KITCHEN_MONTHLY_ORDERS_FAIL
+            })
+    
+            console.log(error.message)
+    
+            toast.error("Server error!")
+    
+        }
+    }
+
 

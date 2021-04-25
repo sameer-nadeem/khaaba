@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bar } from 'react-chartjs-2';
 
-const BarChartFirst =({chartDataDaily})=>{
+const BarChartSecond =({chartDataMonthly})=>{
     // let dayDict = {
     //     0: 'Sunday',
     //     1: 'Monday',
@@ -35,10 +35,10 @@ const BarChartFirst =({chartDataDaily})=>{
         <div>
             < Bar 
             data= {{
-                labels: ['Today','Yesterday', '2days Ago', '3days Ago', '4days Ago'],
+                labels: ['This Month','Last Month', '2Months Ago', '3Months Ago', '4Months Ago'],
                 datasets: [{
                     label: '# of Orders',
-                    data: chartDataDaily,
+                    data: chartDataMonthly,
                     backgroundColor: '#ff6433'
                 }]
             }}
@@ -50,4 +50,4 @@ const BarChartFirst =({chartDataDaily})=>{
         
 }
 
-export default BarChartFirst
+export default BarChartSecond

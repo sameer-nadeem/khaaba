@@ -4,6 +4,7 @@ import cartReducer from './cartReducer'
 import chefReducer from './chefReducer'
 import customerReducer from './customerReducer'
 import chefDetailReducer from './chefDetailReducer'
+import userKitchenReducer from './userKitchenReducer'
 export default combineReducers({
-    auth, chefOrders: chefReducer, customerOrders: customerReducer, cart: cartReducer, chefDetails: chefDetailReducer
+    auth, chefOrders: chefReducer, customerOrders: customerReducer, cart: cartReducer, chefDetails: chefDetailReducer ,kitchenReviews: userKitchenReducer
 })
