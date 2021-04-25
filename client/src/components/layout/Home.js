@@ -250,7 +250,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card"  >
               <div className="image-container">
-                <LazyLoadImage className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage className="dish-image-small" src="/img/cuisines/appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -266,7 +266,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/pizza.png" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -283,7 +283,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card"  >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/burger.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -299,7 +299,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card"  >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/desserts.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -315,7 +315,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/salad.png" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -331,7 +331,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card"  >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/desi.png" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -347,7 +347,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card" >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/bev.png" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
@@ -364,7 +364,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
             <div className="card cusine-card"  >
               <div className="image-container">
-                <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
+                <LazyLoadImage effect="blur" className="dish-image-small" src="/img/cuisines/baked.png" alt="Dish preview" />
               </div>
               <div className="row px-3">
                 <div className="card-body d-flex justify-content-center">
