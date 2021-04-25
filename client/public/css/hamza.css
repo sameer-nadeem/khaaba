@@ -247,7 +247,11 @@ height: 25px;
   border: 4px solid #ff6433;
   box-sizing: border-box;
 }
-
+.cuisine-font {
+  
+  font-size: 1. vw;
+  word-wrap:normal;
+}
 .r-circle {
   border-radius: 50% !important;
   text-align: center;
@@ -782,17 +786,22 @@ input[type="checkbox"]:checked + label {
   color: #ff6433;
 }
 .cusine-card {
-  width: 10rem;
+  width: 200px;
   border-radius: 16px;
 }
 .kitchen-card {
   width: 18rem;
   border-radius: 16px;
+  
 }
 
 .rounded-image {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  max-width: 283px;
+  max-height: 283px;
+
+  top: 0;
 }
 
 .star1 {
@@ -807,6 +816,7 @@ input[type="checkbox"]:checked + label {
 
 .card {
   border: 2px solid #ff6433;
+  min-width: 10vw;
 }
 .carousel-control-next-icon {
   src: url ("./img/icons/cart.png");
@@ -907,8 +917,8 @@ input[type="checkbox"]:checked + label {
 }
 
 .fitted {
- margin-left:1rem;
- margin-right:1rem;
+ margin-left:4vh;
+
  padding-bottom: 10%;
  padding-top: 8% ;
 
@@ -952,9 +962,9 @@ input[type="checkbox"]:checked + label {
 }
 .search-heading {
   font-family: Poppins-semibold;
-  font-style: normal;
+  
 
-  font-size: 6em;
+  font-size:11vh;
   line-height: 90px;
   /* or 108% */
 
@@ -1006,5 +1016,5 @@ input[type="checkbox"]:checked + label {
   background-image: url("../img/backgrounds/Group_231.png");
   background-size: cover;
   background-repeat: no-repeat;
-  max-height:max-content;
+  min-height: 100vh;
 }

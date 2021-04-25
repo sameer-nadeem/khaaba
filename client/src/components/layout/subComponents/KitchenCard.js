@@ -13,7 +13,7 @@ const KitchenCard = ({ kitchen }) => {
 
     }
     return (
-        <div className="card justify-content-md-center kitchen-card">
+        <div className="card kitchen-card">
             <LazyLoadImage effect="blur" src={`/uploads/kitchen-logos/${kitchen.logo}`} className="card-img-top rounded-image" alt="Logo" />
             <div className="row px-3  justify-content-sm-center">
                 <div className="card-body">
