@@ -184,7 +184,7 @@ a:hover {
 /* The switch - the box around the slider */
 .input-group-text {
   border: 1px solid #ff6433;
-  border-radius: 10px;
+  border-radius: 0px;
   color: #ff6433;
   background-color: #fff;
 }
@@ -573,10 +573,12 @@ line-height: 130%;
   border-bottom-left-radius: 20px;
   border-top-left-radius:20px;
 }
+.price-addish{
 
+  border: 1px solid #ff6433;
   box-sizing: border-box;
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 10px;
+
 }
 
 .number-box {
@@ -716,7 +718,7 @@ a:hover {
   border: 1px solid #ff6433;
   box-sizing: border-box;
 
-  margin-top: 10px;
+
 
 }
 
@@ -1090,6 +1092,7 @@ input[type="checkbox"]:checked + label {
   font-weight: 500;
   font-size: 18px;
   line-height: 130%;
+  
 }
 
 .dishname {

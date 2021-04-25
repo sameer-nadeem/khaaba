@@ -121,11 +121,18 @@
                                 <div class="col m-1">
                                     <label for="exampleInputEmail1" class="login-field-headings">Price</label>
 
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1">PKR</span>
                                         <input type="text" class="form-control login-fields" id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="e.g. 500">
+                                    </div> -->
+
+                                    <div className="input-group">
+                                        <span className="input-group-text" id="basic-addon1">+92</span>
+                                        <input onChange={onChange} type="text" className="form-control login-fields" name='phone'
+                                            placeholder="etc. 090078601" />
                                     </div>
+                                    <span className='text-danger'>{errors.phone}</span>
                                 </div>
                                 <div class="col m-1">
                                     <label for="exampleInputEmail1" class="login-field-headings">Servings</label>
