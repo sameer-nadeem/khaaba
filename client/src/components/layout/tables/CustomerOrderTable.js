@@ -10,11 +10,11 @@ const CustomerOrderTable = ({ orders, getCustomerActiveOrders, getCustomerComple
     const handleClose = () => setShow("close");
     const handleShowOne = () => setShow("modal-one");
     const handleShowTwo = () => setShow("modal-two");
-    
-    
+
+
     const [orderDetail, setOrderDetail] = useState(null)
     const [kitchenID, setKitchenID] = useState(0)
-    
+
 
     const showOrderDetail = (order) => {
         setOrderDetail(order)
@@ -32,22 +32,18 @@ const CustomerOrderTable = ({ orders, getCustomerActiveOrders, getCustomerComple
     }
     const onPickup = async (id) => {
         await axios.get(`/api/user/pickup/${id}`)
-<<<<<<< HEAD
         getCustomerActiveOrders();
         getCustomerCompleteOrders();
-=======
-
->>>>>>> 08b352b79b3bd606e71c3901f094aa79b39086ea
     }
 
     const onFeedback = (id) => { }
 
     return (
         <>
-            <OrderDetail order={orderDetail} show= {show} handleClose={handleClose} />
-            <ReviewForm id={kitchenID} show= {show} handleClose={handleClose} />
-            
-            
+            <OrderDetail order={orderDetail} show={show} handleClose={handleClose} />
+            <ReviewForm id={kitchenID} show={show} handleClose={handleClose} />
+
+
 
             <table className="table table-hover text-center">
                 <thead>
@@ -87,22 +83,16 @@ const CustomerOrderTable = ({ orders, getCustomerActiveOrders, getCustomerComple
                                 <td className="text-dark"><button onClick={() => showOrderDetail(order)} className="btn detail-btn">Details</button></td>
                                 {/* <td className="text-dark">Delivery</td> */}
                                 <td className="text-dark">{order.status}</td>
-<<<<<<< HEAD
-                                {order.status === 'Completed' && <td className="text-dark"><button className="btn login-btn">Feedback</button></td>}
                                 {order.status === 'Ready' && <td className="text-dark"><button onClick={() => onPickup(order._id)} type="submit" className="btn login-btn">Collect</button></td>}
                                 {order.status === 'Cancelled' && <td className="text-dark">--</td>}
-
-=======
                                 {order.status === 'Completed' && <td className="text-dark"><button onClick={() => showReviewForm(order)} className="btn login-btn">Feedback</button></td>}
-                                {order.status === 'Ready' && <td className="text-dark"><button className="btn login-btn">Pickup</button></td>}
->>>>>>> 08b352b79b3bd606e71c3901f094aa79b39086ea
                                 {}
                             </tr>
 
                         ))
                     }
                 </tbody>
-            </table>
+            </table >
             <div className="row justify-content-center">
                 <div className="col-4 text-center">
                     {

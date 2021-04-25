@@ -26,26 +26,81 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0 text-center">
-              <li className="nav-item ">
-                <Link className="nav-link" to="/">
-                  <span
-                    className={location.pathname === "/" && "nav-link-active"}
-                  >
-                    Home
+              {
+                type !== 'chef' && type !== 'admin' &&
+                <li className="nav-item ">
+                  <Link className="nav-link" to="/">
+                    <span
+                      className={location.pathname === "/" && "nav-link-active"}
+                    >
+                      Home
                   </span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/all-kitchens" className="nav-link">
-                  <span
-                    className={
-                      location.pathname === "/all-kitchens" && "nav-link-active"
-                    }
-                  >
-                    Kitchens
+                  </Link>
+                </li>
+              }
+
+              {
+                type !== 'chef' && type !== 'admin' &&
+                < li className="nav-item">
+                  <Link to="/all-kitchens" className="nav-link">
+                    <span
+                      className={
+                        location.pathname === "/all-kitchens" && "nav-link-active"
+                      }
+                    >
+                      Kitchens
                   </span>
-                </Link>
-              </li>
+                  </Link>
+                </li>
+              }
+              {
+                type === 'chef' &&
+
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/chef"
+                  >
+                    <span
+                      className={
+                        location.pathname === "/chef" && "nav-link-active"
+                      }
+                    >Dashboard</span>
+                  </Link>
+                </li>
+              }
+              {
+                type === 'admin' &&
+
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/admin"
+                  >
+                    <span
+                      className={
+                        location.pathname === "/admin" && "nav-link-active"
+                      }
+                    >Admin</span>
+                  </Link>
+                </li>
+              }
+              {
+                type === 'chef' &&
+
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/chef/orders"
+                  >
+                    <span
+                      className={
+                        location.pathname === "/chef/orders" && "nav-link-active"
+                      }
+                    >My Orders</span>
+                  </Link>
+                </li>
+              }
               <li className="nav-item">
                 <Link className="nav-link" to="/about-us">
                   <span
@@ -57,15 +112,19 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                   </span>
                 </Link>
               </li>
+              {
+                type !== 'chef' && type !== 'admin' &&
 
-              <li className="nav-item">
-                <Link
-                  className="nav-link instant-khaaba-link"
-                  to="/instant-khaaba"
-                >
-                  <span>Instant Khaaba</span>
-                </Link>
-              </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link instant-khaaba-link"
+                    to="/instant-khaaba"
+                  >
+                    <span>Instant Khaaba</span>
+                  </Link>
+                </li>
+              }
+
             </ul>
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0 text-center align-items-center">
               {!isAuthenticated && (
@@ -83,7 +142,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                 </Fragment>
               )}
 
-              {type !== "chef" && (
+              {type !== "chef" && type !== 'admin' && (
                 <li className="nav-item">
                   <span className="nav-link">
                     <CartDishes auth={isAuthenticated} />
@@ -94,16 +153,16 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
               {
                 type === "chef" &&
                 <li className="nav-item">
-                <Link className="nav-link" to="/chef/menu">
-                  <span
-                    className={
-                      location.pathname === "/chef/menu" && "nav-link-active"
-                    }
-                  >
-                    Menu
+                  <Link className="nav-link" to="/chef/menu">
+                    <span
+                      className={
+                        location.pathname === "/chef/menu" && "nav-link-active"
+                      }
+                    >
+                      Menu
                   </span>
-                </Link>
-              </li>
+                  </Link>
+                </li>
 
               }
 
@@ -132,29 +191,34 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
                       className="dropdown-menu dropdown-menu-start"
                       aria-labelledby="navbarDropdown"
                     >
-                      <li>
-                        <Link
-                          className="dropdown-item"
-                          to={`/${type}/edit-profile`}
-                        >
-                          <img
-                            className="icon-dropdown pe-2"
-                            src="/img/icons/carbon_settings.png"
-                            alt=""
-                          />
+                      {
+                        type !== 'admin' &&
+                        <>
+                          <li>
+                            <Link
+                              className="dropdown-item"
+                              to={`/${type}/edit-profile`}
+                            >
+                              <img
+                                className="icon-dropdown pe-2"
+                                src="/img/icons/carbon_settings.png"
+                                alt=""
+                              />
                           Edit Profile
                         </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item" to={`/${type}/orders`}>
-                          <img
-                            className="icon-dropdown pe-2"
-                            src="/img/icons/orders.png"
-                            alt=""
-                          />
+                          </li>
+                          <li>
+                            <Link className="dropdown-item" to={`/${type}/orders`}>
+                              <img
+                                className="icon-dropdown pe-2"
+                                src="/img/icons/orders.png"
+                                alt=""
+                              />
                           My Orders
                         </Link>
-                      </li>
+                          </li>
+                        </>
+                      }
 
                       <li>
                         <Link
@@ -178,7 +242,7 @@ const Navbar = ({ isAuthenticated, type, logout }) => {
           </div>
         </div>
       </nav>
-    </div>
+    </div >
   );
 };
 

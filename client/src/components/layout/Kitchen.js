@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from 'axios'
 import DishCard from './subComponents/DishCard'
-
+import ReviewsBar from './tables/ReviewsBar'
 const Kitchen = () => {
     const { id } = useParams()
     const [khaabay, setKhaabay] = useState([])
@@ -90,55 +90,58 @@ const Kitchen = () => {
 
             </div>
             }
-            {!loading1 && !loading2 && <div className="container-fluid">
+            {!loading1 && !loading2 && <>
+                <div className="container-fluid">
 
-                <div className="row tags-row justify-content-center pb-4">
-
-
-                    <div className=" col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center pb-1" style={{ width: "150px" }}>
-                        Appetizers
-                      </div>
-
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex  justify-content-center" style={{ width: "150px" }}>
-                        Pizzas
-                      </div>
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
-                        Burgers
-                      </div>
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
-                        Desserts
-                      </div>
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
-                        Salad
-                      </div>
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
-                        Desi
-                      </div>
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
-                        Beverages
-                      </div>
-                    <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
-                        Baked
-                      </div>
+                    <div className="row tags-row justify-content-center pb-4">
 
 
+                        <div className=" col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center pb-1" style={{ width: "150px" }}>
+                            Appetizers
+                      </div>
+
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex  justify-content-center" style={{ width: "150px" }}>
+                            Pizzas
+                      </div>
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
+                            Burgers
+                      </div>
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
+                            Desserts
+                      </div>
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
+                            Salad
+                      </div>
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
+                            Desi
+                      </div>
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
+                            Beverages
+                      </div>
+                        <div className="col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center" style={{ width: "150px" }}>
+                            Baked
+                      </div>
+
+
+                    </div>
+
+
+                    <div className="row dish-card-row px-5 pb-4">
+                        {
+                            console.log(khaabay)
+                        }
+                        {
+                            khaabay.map((khaaba, i) => (
+
+                                <div key={i} className="col-md-3 col-sm-10 d-flex justify-content-center pb-4">
+                                    <DishCard khaaba={khaaba} />
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
-
-
-                <div className="row dish-card-row px-5 pb-4">
-                    {
-                        console.log(khaabay)
-                    }
-                    {
-                        khaabay.map((khaaba, i) => (
-
-                            <div key={i} className="col-md-3 col-sm-10 d-flex justify-content-center pb-4">
-                                <DishCard khaaba={khaaba} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
+                <ReviewsBar kitchenid={chef.kitchen._id} />
+            </>
             }
             <div className="row justify-content-center">
                 <div className="col-4 text-center">

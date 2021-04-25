@@ -60,12 +60,13 @@ export const login = (formData) => async dispatch => {
         })
         dispatch(loadUser())
         toast.success('Successfully logged in. Happy eating!')
-        if(type === 'admin')
-        {
+        if (type === 'admin') {
             history.push('/signup/admin')
         }
-        else{
+        else if (type === 'chef') {
 
+            history.push('/chef')
+        } else {
             history.push('/')
         }
     } catch (error) {
@@ -140,10 +141,10 @@ export const registerChef = (formData) => async dispatch => {
 }
 
 export const registerAdmin = (formData) => async dispatch => {
-    
+
     try {
 
-        console.log(formData,'in action')
+        console.log(formData, 'in action')
         const res = await axios.post('/api/auth/create-admin', formData)
         console.log(res.data)
         dispatch({
@@ -162,7 +163,7 @@ export const registerAdmin = (formData) => async dispatch => {
             toast.error('Admin with such email already exists')
         }
         else {
-            console.log('testing',errors)
+            console.log('testing', errors)
             toast.error('Server error')
         }
         dispatch({

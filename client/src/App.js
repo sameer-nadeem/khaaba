@@ -6,7 +6,7 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/layout/Register";
 import ChefHome from "./components/layout/ChefHome";
-import  BarChart from "./components/layout/tables/barChartFirst"
+import BarChart from "./components/layout/tables/barChartFirst"
 
 import AdminRegister from "./components/forms/AdminRegister";
 import Home from "./components/layout/Home";
@@ -38,7 +38,7 @@ import CustomerOrders from "./components/layout/CustomerOrders";
 import { addToCart, loadCart } from './actions/customer'
 import CheckoutSuccess from './components/layout/Checkout'
 import AdminLogin from './components/layout/AdminLogin'
-import Reviewscrsl from "./components/layout/tables/reviewsBar";
+import Reviewscrsl from "./components/layout/tables/ReviewsBar";
 
 import SearchResults from './components/layout/SearchResults'
 import Kitchen from './components/layout/Kitchen'
@@ -90,7 +90,7 @@ const App = () => {
         <Switch>
           <Route exact path='/checkout/success' component={CheckoutSuccess} />
           <Route exact path="/signup" component={Register} />
-          <Route exact path="/signup/admin" component={AdminRegister} />
+          <Route exact path="/admin" component={AdminRegister} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={AboutUs} />
@@ -111,7 +111,7 @@ const App = () => {
 
 
           <PrivateRoute exaxt path='/customer/confirm-checkout' component={ConfirmCheckout} />
-          
+
 
           <PrivateRoute exact path="/chef/edit-profile" component={EditProfileChef} />
           <PrivateRoute exact path="/customer/edit-profile" component={EditProfileCust} />

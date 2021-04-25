@@ -47,10 +47,17 @@ const DishCard = ({ khaaba, addToCart }) => {
                 <div className="row justify-content-between">
                     <div className="col dishname">
                         {
-                            khaaba.instantKhaaba.isInstant && khaaba.instantKhaaba.availableServings ?
-                                <button onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
-                                :
-                                <button disabled onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
+                            khaaba.instantKhaaba.isInstant && khaaba.instantKhaaba.availableServings > 0 &&
+                            <button onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
+                        }
+                        {
+                            khaaba.instantKhaaba.isInstant && khaaba.instantKhaaba.availableServings < 1 &&
+                            <button disabled onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
+
+                        }
+                        {
+                            !khaaba.instantKhaaba.isInstant &&
+                            <button onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
 
                         }
                     </div>

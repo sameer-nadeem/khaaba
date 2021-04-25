@@ -55,7 +55,7 @@ router.get('/bylocation/:lat/:lng', async (req, res) => {
             'address.city': cityLahore
         }).populate('kitchen')
 
-        chefs = chefs.filter(chef => getDistance(coords, chef.address.coords) < config.get('recommendation_radius_km'))
+        // chefs = chefs.filter(chef => getDistance(coords, chef.address.coords) < config.get('recommendation_radius_km'))
 
 
         chefs.sort((c1, c2) => {

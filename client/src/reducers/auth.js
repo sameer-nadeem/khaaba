@@ -9,7 +9,7 @@ import {
     LOGIN_SUCCESS,
     LOGOUT,
     ADMIN_REGISTER_SUCCESS,
-    ADMIN_REGISTER_FAIL
+    ADMIN_REGISTER_FAIL,
     CUSTOMER_EDITPROFILE_SUCCESS,
     CHEF_EDITPROFILE_SUCCESS
 
@@ -33,19 +33,19 @@ const authReducer = (state = initialState, action) => {
         case CUSTOMER_EDITPROFILE_SUCCESS:
             //console.log(`payload`,action.payload)
             return {
-            ...state,
-            isAuthenticated: true,
-            user: {type:'customer', profile:action.payload},
-            loading: false
-        }
+                ...state,
+                isAuthenticated: true,
+                user: { type: 'customer', profile: action.payload },
+                loading: false
+            }
         case CHEF_EDITPROFILE_SUCCESS:
             //console.log(`payload`,action.payload)
             return {
-            ...state,
-            isAuthenticated: true,
-            user: {type:'chef', profile:action.payload},
-            loading: false
-        }
+                ...state,
+                isAuthenticated: true,
+                user: { type: 'chef', profile: action.payload },
+                loading: false
+            }
 
         case USER_LOADED:
             return {
