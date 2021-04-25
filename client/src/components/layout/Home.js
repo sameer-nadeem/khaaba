@@ -21,7 +21,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
     temparray[index] = temparray[index] + 1
 
     setdishcounter(temparray)
-    console.log(temparray)
+    //console.log(temparray)
   }
 
   const decreasecounter = (index) => {
@@ -124,9 +124,9 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
     <Fragment>
 
-      <div className="container-fluid home-container fitted justify-content-center">
-
-        <div className="row">
+      <div className="container-fluid home-container justify-content-center">
+      <div className="fitted">
+        <div className="row pt-2 ">
 
           <div className="col-11 col-sm-5 align-bottom ">
 
@@ -147,6 +147,8 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
               <button type="button" onClick={onSearch} className="btn findfood-btn find-heading">Find Food</button>
             </div>
           </div>
+        </div>
+
         </div>
       </div>
 
@@ -174,7 +176,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
               <div className="col-md-4 form-group">
 
 
-                <button className="btn pull-right orange-btn" type="submit" onClick={() => history.push('/instant-khaaba')}>Try Now</button>
+                <button className="btn pull-right orange-btn color-white" type="submit" onClick={() => history.push('/instant-khaaba')}>Try Now</button>
 
               </div>
 
@@ -243,33 +245,33 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
         <div className="row justify-content-sm-center pb-5">
           <div className="review-heading d-inline "> Available<span className="color-white semibold"> Cuisines</span> </div>
         </div>
-        <div className="row justify-content-center px-lg-5 ">
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+        <div className="row justify-content-between px-lg-5 ">
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Appetizer</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Appetizer</h5>
 
                 </div>
               </div>
             </div>
 
           </div>
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4 px-3" >
 
             <div className="card cusine-card" >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Pizzas</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Pizzas</h5>
 
 
                 </div>
@@ -277,80 +279,80 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
             </div>
           </div>
 
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Burgers</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Burgers</h5>
 
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Desserts</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Desserts</h5>
 
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Salad</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Salad</h5>
 
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Desi</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Desi</h5>
 
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card" >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Beverages</h5>
+                  <h5 className="card-title text-center pb-2 cuisine-font semibold">Beverages</h5>
 
                 </div>
               </div>
@@ -358,16 +360,16 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
           </div>
 
 
-          <div className="col col-md-3 d-flex justify-content-center pb-4" >
+          <div className="col col-md-1 d-flex justify-content-center pb-4" >
 
             <div className="card cusine-card"  >
               <div className="image-container">
                 <LazyLoadImage effect="blur" className="dish-image-small" src="appetizer.jpg" alt="Dish preview" />
               </div>
               <div className="row px-3">
-                <div className="card-body">
+                <div className="card-body d-flex justify-content-center">
 
-                  <h5 className="card-title text-center pb-2">Baked</h5>
+                  <h5 className="card-title text-center pb-2 semibold">Baked</h5>
 
                 </div>
               </div>
