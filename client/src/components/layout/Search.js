@@ -37,13 +37,12 @@ const Search = ({ query, pageNumber, setQuery, setPageNumber }) => {
 
     function handleSearch(e) {
         setQuery(e.target.value)
-        setPageNumber(1)
-
     }
 
     const onSearch = () => {
-        setKitchens([])
         setPageNumber(1)
+        setKitchens([])
+
         fetchData(true)
     }
 

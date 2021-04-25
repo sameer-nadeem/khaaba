@@ -8,7 +8,7 @@ const DishCard = ({ khaaba, addToCart }) => {
 
     const incrementCounter = () => {
         if (khaaba.instantKhaaba.isInstant) {
-            if (counter === khaaba.instantKhaaba.availableServings) return
+            if (counter >= khaaba.instantKhaaba.availableServings) return
         }
         setCounter(counter + 1)
     }
@@ -17,6 +17,8 @@ const DishCard = ({ khaaba, addToCart }) => {
     const onAddCart = () => addToCart(
         khaaba.kitchen, khaaba._id, counter, khaaba.price, khaaba.title
     )
+
+    const [disables, setDisabled] = useState(false)
 
     return (
         <div className="card dish-card">
@@ -43,7 +45,15 @@ const DishCard = ({ khaaba, addToCart }) => {
             </div>
             <div className="row justify-content-start">
                 <div className="row justify-content-between">
-                    <div className="col dishname"><button onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button></div>
+                    <div className="col dishname">
+                        {
+                            khaaba.instantKhaaba.isInstant && khaaba.instantKhaaba.availableServings ?
+                                <button onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
+                                :
+                                <button disabled onClick={onAddCart} className=" add-to-cart-btn ">Add to cart</button>
+
+                        }
+                    </div>
                     <div className="col-2 text-end price dish-count" >
                         <div className="btn-group" role="group" aria-label="Basic example">
                             <button type="button" onClick={incrementCounter} className="counter-button-left px-1">+</button>

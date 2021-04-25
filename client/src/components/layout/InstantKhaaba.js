@@ -58,7 +58,7 @@ const InstantKhaaba = () => {
                             aria-labelledby="dropdownMenuButton1">
                             <li><button onClick={() => onSort('pricea')} style={{ color: "#ff6433" }} className="dropdown-item" >Price Asc</button></li>
                             <li><button onClick={() => onSort('priced')} style={{ color: "#ff6433" }} className="dropdown-item" >Price Desc</button></li>
-                            <li><button onClick={() => onSort('serving')} style={{ color: "#ff6433" }} className="dropdown-item" >Available Servings</button></li>
+                            <li><button onClick={() => onSort('servings')} style={{ color: "#ff6433" }} className="dropdown-item" >Available Servings</button></li>
 
                         </ul>
                     </div>
