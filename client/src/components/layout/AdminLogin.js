@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import RegisterForm from '../forms/RegisterForm'
+import { connect } from 'react-redux'
+import history from '../../util/history'
 import AdminForm from '../forms/AdminForm'
-const AdminLogin = () => {
+const AdminLogin = ({ auth }) => {
+    useEffect(() => {
+        if (auth.isAuthenticated) {
+            history.push('/')
+        }
+    }, [auth])
     return (
         <div className="login-container">
 
@@ -21,4 +29,10 @@ const AdminLogin = () => {
     )
 }
 
-export default AdminLogin
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(AdminLogin)

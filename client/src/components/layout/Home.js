@@ -9,7 +9,7 @@ import { setQuery, setPageNumber } from '../../actions/search'
 import DishCard from './subComponents/DishCard'
 import KitchenCard from './subComponents/KitchenCard'
 import history from '../../util/history'
-const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
+const Home = ({ addToCart, setQuery, setPageNumber, query, auth }) => {
 
   const [byHistory, sethistory] = React.useState([])
 
@@ -39,7 +39,18 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
   const [popLoading, setPopLoading] = useState(true)
   const [popkitchensCity, setPopkitchensCity] = useState([])
   const [popLoadingCity, setPopLoadingCity] = useState(true)
+
+  useEffect(() => {
+    if (auth.user) {
+      if (auth.user.type === 'admin') history.push('/admin')
+      if (auth.user.type === 'chef') history.push('/chef')
+
+    }
+  }, [auth])
+
   useEffect(async () => {
+
+
     try {
       const res = await axios.get('/api/recommendations/byhistory')
 
@@ -94,7 +105,7 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
 
 
-  
+
   console.log(popkitchens)
 
   let ratingcheck = (avgRating) => {
@@ -125,29 +136,29 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
     <Fragment>
 
       <div className="container-fluid home-container justify-content-center">
-      <div className="fitted">
-        <div className="row pt-2 ">
+        <div className="fitted">
+          <div className="row pt-2 ">
 
-          <div className="col-11 col-sm-5 align-bottom ">
+            <div className="col-11 col-sm-5 align-bottom ">
 
-            <span className="search-heading "> All your favourite Kitchens under <br /><span className="semibold color-orange">one roof</span></span>
+              <span className="search-heading "> All your favourite Kitchens under <br /><span className="semibold color-orange">one roof</span></span>
 
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-sm-6">
-            <h4 className="search-subheading ">Khaaba is the place to satisfy all your <br></br>cravings for delicious homecooked food  </h4>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-sm-6">
-            <div className="input-group ">
-              <input style={{ zIndex: "1" }} value={query} onChange={handleSearch} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
-                aria-describedby="search-addon" />
-              <button type="button" onClick={onSearch} className="btn findfood-btn find-heading">Find Food</button>
             </div>
           </div>
-        </div>
+          <div className="row">
+            <div className="col-12 col-sm-6">
+              <h4 className="search-subheading ">Khaaba is the place to satisfy all your <br></br>cravings for delicious homecooked food  </h4>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 col-sm-6">
+              <div className="input-group ">
+                <input style={{ zIndex: "1" }} value={query} onChange={handleSearch} type="search" className="form-control rounded-edges " placeholder="Find Food/Kitchen" aria-label="Search"
+                  aria-describedby="search-addon" />
+                <button type="button" onClick={onSearch} className="btn findfood-btn find-heading">Find Food</button>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -495,7 +506,8 @@ const Home = ({ addToCart, setQuery, setPageNumber, query }) => {
 
 const mapStateToProps = state => (
   {
-    query: state.search.query
+    query: state.search.query,
+    auth: state.auth
   }
 )
 

@@ -104,11 +104,11 @@ const EditDish = ({ editInstant, editNormal }) => {
         }
 
 
-        if (dish.instantKhaaba.isKhaaba && !isNumeric(dishDetails.servings)) {
+        if (dish.instantKhaaba.isInstant && !isNumeric(dishDetails.servings)) {
             errs.servings = 'servings field must be a number'
         }
 
-        if ((dish.instantKhaaba.isKhaaba && dishDetails.servings === 0) || dishDetails.servings == `0`) {
+        if ((dish.instantKhaaba.isInstant && dishDetails.servings === 0)) {
             errs.servings = 'servings field cannot be left empty'
         }
 
@@ -221,7 +221,7 @@ const EditDish = ({ editInstant, editNormal }) => {
                                                 <div className="col m-1">
                                                     <label for="exampleInputEmail1" className="login-field-headings">Expiry Time</label>
                                                     <br />
-                                                    <input className="time" type="time" onChange={onChange} name="expiryTime" required />
+                                                    <input defaultValue={"1:00"} className="time" type="time" onChange={onChange} name="expiryTime" required />
 
                                                 </div>
                                             </Fragment>

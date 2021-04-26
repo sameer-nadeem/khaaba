@@ -11,6 +11,7 @@ const ReviewsBar = ({ getKitchenReviews, kitchenReviews, kitchenid }) => {
   const [arr2d, setarr2d] = React.useState([])
 
   const reviewsMath = (reviewsTest) => {
+
     let reviews = reviewsTest
     let newreviews = [...reviews]
     let lenreviews = reviews.length

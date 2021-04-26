@@ -16,6 +16,40 @@ import API from '../config/url'
 import { toast } from 'react-toastify'
 import setAuthToken from '../util/setAuthToken'
 import history from '../util/history'
+import Resizer from "react-image-file-resizer";
+
+
+const resizeFile = (file) =>
+    new Promise((resolve) => {
+        Resizer.imageFileResizer(
+            file,
+            283,
+            283,
+            "JPEG",
+            20,
+            0,
+            (uri) => {
+                resolve(uri);
+            },
+            "base64"
+        );
+    });
+
+const dataURIToBlob = (dataURI) => {
+    const splitDataURI = dataURI.split(",");
+    const byteString =
+        splitDataURI[0].indexOf("base64") >= 0
+            ? atob(splitDataURI[1])
+            : decodeURI(splitDataURI[1]);
+    const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+    const ia = new Uint8Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
+    return new Blob([ia], { type: mimeString });
+};
+
+
+
+
 
 export const loadUser = () => async dispatch => {
     if (localStorage.token) {
@@ -61,7 +95,7 @@ export const login = (formData) => async dispatch => {
         dispatch(loadUser())
         toast.success('Successfully logged in. Happy eating!')
         if (type === 'admin') {
-            history.push('/signup/admin')
+            history.push('/admin')
         }
         else if (type === 'chef') {
 
@@ -98,13 +132,18 @@ export const login = (formData) => async dispatch => {
 
 export const registerChef = (formData) => async dispatch => {
     const form = new FormData()
+
+    const image = await resizeFile(formData.logo);
+    const logo = dataURIToBlob(image);
+
+
     form.append('firstName', formData.firstName)
     form.append('lastName', formData.lastName)
     form.append('title', formData.title)
     form.append('description', formData.description)
     form.append('email', formData.email)
     form.append('password', formData.password)
-    form.append('logo', formData.logo)
+    form.append('logo', logo)
     form.append('startingHour', formData.startingHour)
     form.append('endingHour', formData.endingHour)
     form.append('phone', formData.phone)
