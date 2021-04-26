@@ -953,7 +953,7 @@ input[type="checkbox"]:checked + label {
 .search-heading {
   font-family: Poppins-semibold;
 
-  font-size: 11vh;
+  font-size: 4em;
   line-height: 90px;
   /* or 108% */
 

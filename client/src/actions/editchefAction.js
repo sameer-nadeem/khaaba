@@ -46,7 +46,6 @@ const dataURIToBlob = (dataURI) => {
 
 
 export const editprofile_cheflogo = (formData) => async dispatch => {
-    console.log(`fromdata`, formData)
     const image = await resizeFile(formData.logo);
     const logo = dataURIToBlob(image);
 
@@ -97,7 +96,6 @@ export const editprofile_cheflogo = (formData) => async dispatch => {
 
 
 export const editprofile_chef = (formData) => async dispatch => {
-    console.log(`fromdata`, formData)
 
     // const form = new FormData()
     // form.append('firstName', formData.firstName)
@@ -144,7 +142,6 @@ export const editprofile_chef = (formData) => async dispatch => {
 
 export const passchange_chef = (formData) => async dispatch => {
     try {
-        console.log(`Form Data`, formData)
         const res = await axios.post('/api/profile/change-pass/chef', formData)
         console.log(`Resolution`, res.data)
         dispatch({

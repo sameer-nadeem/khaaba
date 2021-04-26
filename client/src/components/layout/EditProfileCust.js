@@ -149,7 +149,6 @@ const EditProfileCust = ({ profile, editprofile_customer, passchange_customer })
             }
             if (PassChangeFlag === true) {
                 if (validatepassword() === true) {
-                    console.log(NewPass)
                     passchange_customer(NewPass)
                 }
 

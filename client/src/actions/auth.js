@@ -80,7 +80,6 @@ export const login = (formData) => async dispatch => {
         type
     } = formData
 
-    console.log('login')
 
     try {
         const res = await axios.post(`/api/auth/login/${type}`, formData, {
@@ -152,7 +151,6 @@ export const registerChef = (formData) => async dispatch => {
 
     try {
         const res = await axios.post('/api/auth/signup/chef', form)
-        console.log(res.data)
         dispatch({
             type: CHEF_REGISTER_SUCCESS,
             payload: res.data.token
@@ -164,7 +162,6 @@ export const registerChef = (formData) => async dispatch => {
         console.log(error.response.data.errors)
         console.log(error.response.data)
         const errors = error.response.data.errors
-        console.log()
         if (errors[0] === "USER_ALREADY_EXISTS") {
             toast.error('User with such email already exists')
         }
@@ -183,7 +180,6 @@ export const registerAdmin = (formData) => async dispatch => {
 
     try {
 
-        console.log(formData, 'in action')
         const res = await axios.post('/api/auth/create-admin', formData)
         console.log(res.data)
         dispatch({
@@ -194,10 +190,8 @@ export const registerAdmin = (formData) => async dispatch => {
         dispatch(loadUser())
         history.push('/')
     } catch (error) {
-        console.log(error.response.data.errors)
-        console.log(error.response.data)
+
         const errors = error.response.data.errors
-        console.log()
         if (errors[0] === "ADMIN_ALREADY_EXISTS") {
             toast.error('Admin with such email already exists')
         }
@@ -221,7 +215,6 @@ export const register = (formData) => async dispatch => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(res.data)
         dispatch({
             type: CUSTOMER_REGISTER_SUCCESS,
             payload: res.data.token
@@ -232,7 +225,6 @@ export const register = (formData) => async dispatch => {
     } catch (error) {
         console.log(error.response.data)
         const errors = error.response.data.errors
-        console.log()
         if (errors[0] === "USER_ALREADY_EXISTS") {
             toast.error('User with such email already exists')
         }

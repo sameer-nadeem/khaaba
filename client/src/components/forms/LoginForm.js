@@ -20,7 +20,6 @@ const LoginForm = ({ login }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(email, password, toggle)
         login({
             email,
             password,
