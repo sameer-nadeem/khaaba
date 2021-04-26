@@ -64,7 +64,7 @@ export const editprofile_cheflogo = (formData) => async dispatch => {
     try {
 
         const res = await axios.post('/api/profile/change-profile/cheflogo', form)
-        console.log(`post response`, res.data)
+        // console.log(`post response`, res.data)
         dispatch({
             type: CHEF_EDITPROFILE_SUCCESS,
             payload: res.data.updObj
@@ -116,7 +116,7 @@ export const editprofile_chef = (formData) => async dispatch => {
     try {
 
         const res = await axios.post('/api/profile/change-profile/chef', formData)
-        console.log(`post response`, res.data)
+        // console.log(`post response`, res.data)
         dispatch({
             type: CHEF_EDITPROFILE_SUCCESS,
             payload: res.data.updObj
@@ -125,7 +125,7 @@ export const editprofile_chef = (formData) => async dispatch => {
 
     } catch (error) {
 
-        console.log(error.response.data)
+        // console.log(error.response.data)
         const errors = error.response.data.errors
 
         if (errors[0] === "USER_ALREADY_EXISTS") {
@@ -143,7 +143,7 @@ export const editprofile_chef = (formData) => async dispatch => {
 export const passchange_chef = (formData) => async dispatch => {
     try {
         const res = await axios.post('/api/profile/change-pass/chef', formData)
-        console.log(`Resolution`, res.data)
+        // console.log(`Resolution`, res.data)
         dispatch({
             type: CHEF_PASSCHANGE_SUCCESS,
             payload: res.data

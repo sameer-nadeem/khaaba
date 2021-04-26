@@ -140,11 +140,9 @@ const Register = ({ register, registerChef }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(registerFields)
 
         if (validateInputs()) {
             if (toggle) {
-                console.log(registerFields)
                 registerChef(registerFields)
             }
             else {
@@ -154,7 +152,6 @@ const Register = ({ register, registerChef }) => {
     }
 
     const logoSelect = (e) => {
-        console.log('11')
         setFileName(e.target.files[0].name)
         setRegisterFields({
             ...registerFields, logo: e.target.files[0]

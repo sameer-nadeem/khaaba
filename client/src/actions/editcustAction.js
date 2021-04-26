@@ -55,7 +55,7 @@ export const passchange_customer = (formData) => async dispatch => {
     try {
         // console.log(`Form Data`,formData)
         const res = await axios.post('/api/profile/change-pass/customer', formData)
-        console.log(`Resolution`, res.data)
+        // console.log(`Resolution`, res.data)
         dispatch({
             type: CUSTOMER_PASSCHANGE_SUCCESS,
             payload: res.data

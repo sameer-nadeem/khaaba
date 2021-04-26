@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { editprofile_chef, passchange_chef, editprofile_cheflogo } from '../../actions/editchefAction'
 import history from '../../util/history'
 const EditProfileChef = ({ profile, editprofile_chef, passchange_chef, editprofile_cheflogo }) => {
-    console.log(`the profile`, profile)
+    // console.log(`the profile`, profile)
     const [SaveAllow, setSaveAllow] = useState(true)
     const [registerFields, setRegisterFields] = useState({
         firstName: profile.firstName,
