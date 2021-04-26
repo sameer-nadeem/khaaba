@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoginForm from '../forms/LoginForm'
-const Login = () => {
+import { connect } from 'react-redux'
+import history from '../../util/history'
+const Login = ({ auth }) => {
+    useEffect(() => {
+        if (auth.isAuthenticated) {
+            history.push('/')
+        }
+    }, [auth])
     return (
         <div className="login-container">
 
@@ -21,4 +28,10 @@ const Login = () => {
     )
 }
 
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Login)

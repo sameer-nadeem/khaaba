@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import RegisterForm from '../forms/RegisterForm'
-const Register = () => {
+import { connect } from 'react-redux'
+import history from '../../util/history'
+
+const Register = ({ auth }) => {
+    console.log(auth)
+    useEffect(() => {
+        if (auth.isAuthenticated) {
+            history.push('/')
+        }
+    }, [auth])
     return (
         <div className="container-fluid login-container">
             <div className="row justify-content-center pt-5">
@@ -16,4 +25,10 @@ const Register = () => {
     )
 }
 
-export default Register
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Register)

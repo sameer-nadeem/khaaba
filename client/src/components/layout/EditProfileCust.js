@@ -112,6 +112,10 @@ const EditProfileCust = ({ profile, editprofile_customer, passchange_customer })
         setPassErrors({})
         const errs = {}
         //console.log(`new password`,NewPass.password)
+        if (NewPass.password.length < 6) {
+            errs.password = 'Password must contain atleast 6 characters'
+
+        }
         if (NewPass.password === '' || NewPass.password === "") {
             //console.log(`reached here`)
             errs.password = 'Password cannot be empty'

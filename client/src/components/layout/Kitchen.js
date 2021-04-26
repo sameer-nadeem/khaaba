@@ -93,7 +93,7 @@ const Kitchen = () => {
             {!loading1 && !loading2 && <>
                 <div className="container-fluid">
 
-                    <div className="row tags-row justify-content-center pb-4">
+                    {/* <div className="row tags-row justify-content-center pb-4">
 
 
                         <div className=" col-md-1 col-sm-12 menu-categories-btn d-flex justify-content-center pb-1" style={{ width: "150px" }}>
@@ -123,7 +123,7 @@ const Kitchen = () => {
                       </div>
 
 
-                    </div>
+                    </div> */}
 
 
                     <div className="row dish-card-row px-5 pb-4">

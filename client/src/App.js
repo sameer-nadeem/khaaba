@@ -3,6 +3,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { Switch, Router, Route } from "react-router-dom";
 import PrivateRoute from './components/routing/PrivateRoute'
+import ChefRoute from './components/routing/ChefRoute'
+import AdminRoute from './components/routing/AdminRoute'
+import CustomerRoute from './components/routing/CustomerRoute'
+
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/layout/Register";
 import ChefHome from "./components/layout/ChefHome";
@@ -88,37 +92,29 @@ const App = () => {
         <ToastContainer />
         <Navbar />
         <Switch>
-          <Route exact path='/checkout/success' component={CheckoutSuccess} />
-          <Route exact path="/signup" component={Register} />
-          <Route exact path="/admin" component={AdminRegister} />
-          <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
+          <CustomerRoute exact path='/checkout/success' component={CheckoutSuccess} />
+          <Route exact path="/signup" component={Register} />
+          <AdminRoute exact path="/admin" component={AdminRegister} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/about-us" component={AboutUs} />
-          <Route exact path="/chef/orders" component={ChefOrder} />
-          <Route exact path="/chef" component={ChefHome} />
+          <ChefRoute exact path="/chef/orders" component={ChefOrder} />
+          <ChefRoute exact path="/chef" component={ChefHome} />
           <Route exact path="/rc" component={Reviewscrsl} />
-          <Route exaxt path='/chef/order-history' component={ChefOrderHistory} />
-          <Route exaxt path='/customer/orders' component={CustomerOrders} />
-          <Route exaxt path='/login/admin' component={AdminLogin} />
-          <PrivateRoute exaxt path='/chef/menu' component={ChefMenu} />
-          <Route exaxt path='/chef/adddish' component={AddDish} />
-          <Route exaxt path='/chef/editdish' component={EditDish} />
-
-          <Route exaxt path='/search' component={Search} />
+          <ChefRoute exact path='/chef/order-history' component={ChefOrderHistory} />
+          <CustomerRoute exact path='/customer/orders' component={CustomerOrders} />
+          <Route exact path='/login/admin' component={AdminLogin} />
+          <ChefRoute exact path='/chef/menu' component={ChefMenu} />
+          <ChefRoute exact path='/chef/adddish' component={AddDish} />
+          <ChefRoute exact path='/chef/editdish' component={EditDish} />
+          <Route exact path='/search' component={Search} />
           <Route exact path='/all-kitchens' component={Kitchens} />
           <Route exact path='/instant-khaaba' component={InstantKhaaba} />
-          <Route exaxt path='/kitchen/:id' component={Kitchen} />
-
-
-          <PrivateRoute exaxt path='/customer/confirm-checkout' component={ConfirmCheckout} />
-
-
-          <PrivateRoute exact path="/chef/edit-profile" component={EditProfileChef} />
-          <PrivateRoute exact path="/customer/edit-profile" component={EditProfileCust} />
-
-          <PrivateRoute exact path='/dashboard' component={Dashboard} />
-
-
+          <Route exact path='/kitchen/:id' component={Kitchen} />
+          <CustomerRoute exact path='/customer/confirm-checkout' component={ConfirmCheckout} />
+          <ChefRoute exact path="/chef/edit-profile" component={EditProfileChef} />
+          <CustomerRoute exact path="/customer/edit-profile" component={EditProfileCust} />
+          <ChefRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </Router>
     </Provider>

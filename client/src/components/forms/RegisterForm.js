@@ -70,11 +70,16 @@ const Register = ({ register, registerChef }) => {
         if (!emailRegex.test(email)) {
             errs.email = 'Invalid email entered'
         }
+        if (password.length < 6) {
+            errs.password = 'Password must contain atleast 6 characters'
 
+        }
         if (password === '') {
             errs.password = 'Password cannot be empty'
 
         }
+
+
 
         if (password !== password2) {
             errs.password2 = "Passwords don't match"

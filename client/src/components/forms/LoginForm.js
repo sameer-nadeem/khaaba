@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../../actions/auth'
+import { Link } from 'react-router-dom'
 
 const LoginForm = ({ login }) => {
     const [email, setEmail] = useState('')
@@ -55,7 +56,7 @@ const LoginForm = ({ login }) => {
                 <button type="submit" className="btn login-form-btn">Login</button>
             </div>
             <div className="row text-center pt-4">
-                <div className="">Don't have an account? <a href="#">Sign Up!</a></div>
+                <div className="">Don't have an account? <Link to="/signup">Sign Up!</Link></div>
             </div>
         </form>
     )

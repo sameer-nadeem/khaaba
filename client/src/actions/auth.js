@@ -61,7 +61,7 @@ export const login = (formData) => async dispatch => {
         dispatch(loadUser())
         toast.success('Successfully logged in. Happy eating!')
         if (type === 'admin') {
-            history.push('/signup/admin')
+            history.push('/admin')
         }
         else if (type === 'chef') {
 
