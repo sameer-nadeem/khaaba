@@ -6,11 +6,44 @@ import {
 } from './types'
 
 import { toast } from 'react-toastify'
+import Resizer from "react-image-file-resizer";
+
+const resizeFile = (file) =>
+    new Promise((resolve) => {
+        Resizer.imageFileResizer(
+            file,
+            283,
+            283,
+            "JPEG",
+            20,
+            0,
+            (uri) => {
+                resolve(uri);
+            },
+            "base64"
+        );
+    });
+
+const dataURIToBlob = (dataURI) => {
+    const splitDataURI = dataURI.split(",");
+    const byteString =
+        splitDataURI[0].indexOf("base64") >= 0
+            ? atob(splitDataURI[1])
+            : decodeURI(splitDataURI[1]);
+    const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+    const ia = new Uint8Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
+    return new Blob([ia], { type: mimeString });
+};
+
+
 
 export const editInstant = (formData) => async dispatch => {
 
+    const image = await resizeFile(formData.dishPicture);
+    const logo = dataURIToBlob(image);
     const form = new FormData()
-    form.append('dishlogo', formData.dishPicture)
+    form.append('dishlogo', logo)
     form.append('title', formData.title)
     form.append('expiryTime', formData.expiryTime)
     form.append('price', formData.price)
@@ -18,7 +51,7 @@ export const editInstant = (formData) => async dispatch => {
     form.append('servings', formData.servings)
     form.append('categories', formData.categories)
     form.append('isInstantKhaaba', true)
-    
+
     try {
         const res = await axios.post(`/api/kitchen//edit-khaaba/${formData.khaabaID}`, form)
         console.log(`WALAAAAHAAHAHAHAHAHAHA:  ${res.data}`)
@@ -34,7 +67,7 @@ export const editInstant = (formData) => async dispatch => {
         console.log(error.response.data)
         const errors = error.response.data.errors
         toast.error('Server error')
-  
+
         dispatch({
             type: FAILED_TO_EDIT_DISH
         })
@@ -45,9 +78,10 @@ export const editInstant = (formData) => async dispatch => {
 
 export const editNormal = (formData) => async dispatch => {
 
-   
+    console.log('edit normal')
     const form = new FormData()
-    
+    const image = await resizeFile(formData.dishPicture);
+    const logo = dataURIToBlob(image);
     form.append('dishlogo', formData.dishPicture)
     form.append('title', formData.title)
 
@@ -58,12 +92,12 @@ export const editNormal = (formData) => async dispatch => {
     form.append('isInstantKhaaba', false)
 
     // console.log(`Received this in the action handles: formData->${formData}`)
-    
+
     try {
-        console.log("This is the logo name being sent to backend: ",formData.dishPicture)
+        console.log("This is the logo name being sent to backend: ", formData.dishPicture)
 
         const res = await axios.post(`/api/kitchen/edit-khaaba/${formData.khaabaID}`, form)
-        
+
         dispatch({
             type: DISH_EDITED_SUCCESSFULLY,
             // payload: res.data.token
