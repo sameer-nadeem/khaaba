@@ -115,6 +115,8 @@ const App = () => {
           <ChefRoute exact path="/chef/edit-profile" component={EditProfileChef} />
           <CustomerRoute exact path="/customer/edit-profile" component={EditProfileCust} />
           <ChefRoute exact path='/dashboard' component={Dashboard} />
+          <Route exact path='*' component={Home} />
+
         </Switch>
       </Router>
     </Provider>
