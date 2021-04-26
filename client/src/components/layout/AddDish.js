@@ -86,7 +86,7 @@ const AddDish = ({addInstant, addNormal}) =>{
 
         }
 
-        if (dishDetails.price === 0 || !isNumeric(dishDetails.price)) {
+        if (dishDetails.price === '0' || !isNumeric(dishDetails.price)) {
             errs.price = 'Price field cannot be left empty and must be a number'
 
         }
@@ -220,7 +220,7 @@ const AddDish = ({addInstant, addNormal}) =>{
                                 <div className="col m-1">
                                     <label for="exampleInputEmail1" className="login-field-headings">Expiry Time</label>
 <br/>
-                                        <input className="time" type="time"  onChange={onChange} name="expiryTime" min="1:00" max="12:00" required/>
+                                        <input className="time" type="time"  onChange={onChange} name="expiryTime" required/>
 
                                 </div>
                                 </Fragment>
@@ -241,10 +241,10 @@ const AddDish = ({addInstant, addNormal}) =>{
 
 <div className="input-group">
                         <span className="input-group-text" id="basic-addon1">PKR</span>
-                        <input onChange={onChange} type="text" className="form-control login-fields" name='price'
+                        <input onChange={onChange}  type="text" className="form-control login-fields" name='price'
                             placeholder="eg. 500" />
                     </div>
-                    <span className='text-danger'>{errors.phone}</span>
+                    <span className='text-danger'>{errors.price}</span>
                     
                                 </div>
                                 {
