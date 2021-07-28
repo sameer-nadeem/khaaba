@@ -30,6 +30,10 @@ app.use(express.static(path.join(__dirname, "client/build")));
 //Routes
 setRoutes(app)
 
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"))
+})
+
 //Starting the application at some PORT
 app.listen(PORT, () => {
     console.log(`Server started at PORT ----> ${PORT}`)
